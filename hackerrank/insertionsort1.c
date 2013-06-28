@@ -11,7 +11,7 @@ void print_array(int ar_size, int * ar) {
         }
         printf("\n");
 }
-/* Head ends here */
+
 void insertionSort(int ar_size, int *  ar) {
     int tmp = ar[ar_size-1];
     int i;
@@ -23,7 +23,6 @@ void insertionSort(int ar_size, int *  ar) {
     print_array(ar_size,ar);
 }
 
-/* Tail starts here */
 int main(void) {
 
    int _ar_size;
