@@ -1,31 +1,31 @@
 #include <cstdio>
 #include <cmath>
-int foo(int p) {
-    int c;
-    while(p > 0 && p%2 == 0)
+int logbase2(long long n) {
+    int r=0;
+    while (n >>= 1) // unroll for more speed...
 	{
-	    p = p/2;
-	    c++;
+	    r++;
 	}
-    return c;
+    return r;
 }
 int main(int argc, char *argv[])
 {
-    int i,n,x,num,p=0,k=0;
+    int i,n,num,x=0,p=0,k=0;
     scanf("%d",&n);
-    int a[n];
+    long long a[n];
     for(i=0;i<n;i++) {
-	scanf("%d",&a[i]);
+	scanf("%I64d",&a[i]);
 	num = a[i];
-	x = pow(2,foo(num));
+	x = logbase2(num);
 	if (p < x) p = x;
     }
+    num = pow(2,p);
     for(i=0;i<n;i++) {
-	if(a[i]>=p) k++;
+	if (a[i] >= num) k++;
     }
     printf("%d\n",k);
     for(i=0;i<n;i++) {
-	if (a[i] >= p) printf("%d ",a[i]);
+	if (a[i] >= num) printf("%I64d ",a[i]);
     }
     printf("\n");
     return 0;
