@@ -1,32 +1,30 @@
 #include <cstdio>
-#include <cmath>
-int logbase2(long long n) {
-    int r=0;
-    while (n >>= 1) // unroll for more speed...
-	{
-	    r++;
-	}
-    return r;
-}
+#include <vector>
+using namespace std;
+
 int main(int argc, char *argv[])
 {
-    int i,n,num,x=0,p=0,k=0;
+    int i,n,beauty,now;
+    vector <int> a,cur,ans;
     scanf("%d",&n);
-    long long a[n];
-    for(i=0;i<n;i++) {
-	scanf("%I64d",&a[i]);
-	num = a[i];
-	x = logbase2(num);
-	if (p < x) p = x;
+    a.resize(n);
+    for(i=0;i<n;i++) scanf ("%d",&a[i]);
+
+    for(beauty=29;beauty>-1;beauty--) {
+	now=(1<<30) - 1;
+	cur.clear();
+	for(i=0;i<n;i++) {
+	    if(a[i] & (1<<beauty)) {
+		cur.push_back(a[i]);
+		now &= a[i];
+	    }
+	}
+	if (now % (1<<beauty) == 0) {
+	    ans=cur;
+	    break;
+	}
     }
-    num = pow(2,p);
-    for(i=0;i<n;i++) {
-	if (a[i] >= num) k++;
-    }
-    printf("%d\n",k);
-    for(i=0;i<n;i++) {
-	if (a[i] >= num) printf("%I64d ",a[i]);
-    }
-    printf("\n");
+    printf("%d\n",ans.size());
+    for(i=0;i<ans.size();i++) printf("%d ",ans[i],"\n"[i == ans.size() - 1]);
     return 0;
 }
