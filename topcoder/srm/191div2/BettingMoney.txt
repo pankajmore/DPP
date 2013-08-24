@@ -1,0 +1,69 @@
+PROBLEM STATEMENT
+You run a gambling business in which people place bets on the margin of victory in a football game. At the end of the day, the company would like to know what the day's net gain has been. Just as in any other betting system, people place certain amounts as their bets and if they guess correctly, they get their money back plus a pre-specified percentage of their bet; otherwise they lose the money they bet.  You are given a vector <int>, amounts, the ith element of which is the number of dollars people have placed on a victory margin of i (i = 0 refers to the first element).  You are also given a vector <int>, centsPerDollar, the ith element of which is the number of cents the company has to pay for every dollar the people bet on a victory margin of i, if the final outcome is a victory margin of i.  Finally, you are given an int, finalResult, which is the final margin of victory. You have to determine what the net gain for the day was and return the amount in cents. For example, if amounts were {10,20,30}, it would mean that people placed $10 on a draw outcome, $20 on a victory margin of 1 and $30 on a victory margin of 2, and if centsPerDollar were {20,30,40}, it would mean the people would win 20 cents per dollar bet if the match were a draw, 30 cents per dollar if the victory margin were 1 and 40 cents per dollar if the victory margin were 2.  Suppose the final result is a victory margin of 1 (i.e., finalResult = 1). Then the people who guessed the outcome as a margin of 0 or 2 were wrong and the company receives the amounts they bet, $10+$30. However, the people who guessed that the outcome would be a margin of 1 were correct, and they receive money from the company according to the amount they bet (20 dollars) and the pre-set payoff percentage (30 cents per dollar) . This amounts to 20*30 = 600 cents. Hence, the day's net gain is 40 dollars - 600 cents = 3400 cents. You should return 3400.
+
+DEFINITION
+Class:BettingMoney
+Method:moneyMade
+Parameters:vector <int>, vector <int>, int
+Returns:int
+Method signature:int moneyMade(vector <int> amounts, vector <int> centsPerDollar, int finalResult)
+
+
+NOTES
+-Keep in mind that it is not relevant which team wins. Only the margin of victory matters.
+-A victory margin of 0 and a draw are the same thing.
+-There are 100 cents in a dollar.
+-If the company has to pay more than it receives, the day's net gain will be negative.
+
+
+CONSTRAINTS
+-amounts will contain between 1 and 50 elements, inclusive.
+-centsPerDollar will contain the same number of elements as amounts. 
+-finalResult will be between 0 and n-1, inclusive, where n is the number of elements in amounts.
+-Each element of amounts will be between 0 and 5000, inclusive.
+-Each element of centsPerDollar will be between 0 and 5000, inclusive.
+
+
+EXAMPLES
+
+0)
+{10,20,30}
+{20,30,40}
+1
+
+Returns: 3400
+
+The case explained in the problem statement above.
+
+1)
+{200,300,100}
+{10,10,10}
+2
+
+Returns: 49000
+
+The company gains 200+300 = 500 dollars from the people who bet on margins of 0 and 1. The company loses 100*10 = 1000 cents to the people who bet on a victory margin of 2. Hence, the net gain is 49000 cents.
+
+
+2)
+{100,100,100,100}
+{5,5,5,5}
+0
+
+Returns: 29500
+
+3)
+{5000,5000}
+{100,2}
+0
+
+Returns: 0
+
+4)
+{100}
+{10}
+0
+
+Returns: -1000
+
+The company doesn't gain anything! It has to pay the people who bet on the only outcome possible. It pays 100*10 cents. Hence, the net gain is -1000. (Negative indicates loss.)
