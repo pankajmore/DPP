@@ -1,0 +1,94 @@
+PROBLEM STATEMENT
+Fox Ciel is playing the popular game 'Cut the Rope' on her smartphone.
+The game has multiple stages, and for each stage the player can gain between 0 and 3 stars, inclusive.
+You are given a vector <string> result containing Fox Ciel's current results:
+For each stage, result contains an element that specifies Ciel's result in that stage.
+More precisely, result[i] will be "---" if she got 0 stars in stage i, "o--" if she got 1 star, "oo-" if she got 2 stars and "ooo" if she managed to get all 3 stars.
+Return the total number of stars Ciel has at the moment.
+
+DEFINITION
+Class:FoxAndGame
+Method:countStars
+Parameters:vector <string>
+Returns:int
+Method signature:int countStars(vector <string> result)
+
+
+CONSTRAINTS
+-result will contain between 1 and 50 elements, inclusive.
+-Each element in result will be one of "---", "o--", "oo-", "ooo".
+
+
+EXAMPLES
+
+0)
+{"ooo",
+ "ooo"}
+
+Returns: 6
+
+There are two stages. In each of them, Ciel got all three stars. Together, she now has 3+3 = 6 stars.
+
+1)
+{"ooo",
+ "oo-",
+ "o--"}
+
+Returns: 6
+
+This time the answer is 3 + 2 + 1 = 6.
+
+2)
+{"ooo",
+ "---",
+ "oo-",
+ "---",
+ "o--"}
+
+Returns: 6
+
+
+
+3)
+{"o--",
+ "o--",
+ "o--",
+ "ooo",
+ "---"}
+
+Returns: 6
+
+
+
+4)
+{"---",
+ "o--",
+ "oo-",
+ "ooo",
+ "ooo",
+ "oo-",
+ "o--",
+ "---"}
+
+Returns: 12
+
+
+
+5)
+{"---",
+ "---",
+ "---",
+ "---",
+ "---",
+ "---"}
+
+Returns: 0
+
+
+
+6)
+{"oo-"}
+
+Returns: 2
+
+
