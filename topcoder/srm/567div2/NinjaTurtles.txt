@@ -1,0 +1,66 @@
+PROBLEM STATEMENT
+The Ninja Turtles often battle the Foot Clan ninjas. The Turtles celebrate each victory with a pizza party. The amount of pizza they eat depends on the number of opponents they have defeated. Denote the number of defeated opponents as N. Three of the four Turtles have a moderate appetite and only consume floor(N / K) pizzas each. The fourth Turtle is always hungry and eats floor(N / 3) pizzas.
+
+
+
+You are given ints P and K, where P is the total number of pizzas the Turtles ate after a battle. If there exists at least one value of N such that after defeating N opponents the Turtles would eat exactly P pizzas at the party, return the smallest such N. Otherwise, return -1.
+
+DEFINITION
+Class:NinjaTurtles
+Method:countOpponents
+Parameters:int, int
+Returns:int
+Method signature:int countOpponents(int P, int K)
+
+
+NOTES
+-floor(X) is equal to the largest integer which is less or equal to X.
+
+
+CONSTRAINTS
+-P will be between 1 and 1,000,000, inclusive.
+-K will be between 4 and 100, inclusive.
+
+
+EXAMPLES
+
+0)
+5
+4
+
+Returns: 6
+
+If the Turtles defeated 6 opponents, three of the four Turtles would eat floor(6 / 4) = 1 pizza each and the fourth one would eat floor(6 / 3) = 2 pizzas, which makes 5 pizzas in total.
+Note that you always have to return the smallest possible N. For example, in this scenario for N = 7 the Turtles would also eat 5 pizzas, but 7 is not a correct return value, because 6 is less than 7.
+
+1)
+1
+4
+
+Returns: 3
+
+After a fight with three opponents, only the hungry Turtle would eat a pizza.
+
+2)
+13
+6
+
+Returns: -1
+
+There is no value of N such that if the Turtles battle N opponents, they eat exactly 13 pizzas for K = 6.
+
+3)
+13
+17
+
+Returns: 30
+
+For K = 17, after defeating 30 opponents the Turtles will eat 13 pizzas in total.
+
+4)
+122
+21
+
+Returns: 258
+
+
