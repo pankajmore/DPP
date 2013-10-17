@@ -1,0 +1,45 @@
+PROBLEM STATEMENT
+John and Brus are studying string theory at the university.  Brus likes palindromes very much.  A palindrome is a word that reads the same forward and backward.  John would like to surprise Brus by taking a string s, and appending 0 or more characters to the end of s to obtain a palindrome.  He wants that palindrome to be as short as possible.  Return the shortest possible length of a palindrome that John can generate.
+
+DEFINITION
+Class:ThePalindrome
+Method:find
+Parameters:string
+Returns:int
+Method signature:int find(string s)
+
+
+CONSTRAINTS
+-s will contain between 1 and 50 characters, inclusive.
+-Each character of s will be a lowercase letter ('a' - 'z').
+
+
+EXAMPLES
+
+0)
+"abab"
+
+Returns: 5
+
+"ababa" is the shortest palindrome that John can get.
+
+1)
+"abacaba"
+
+Returns: 7
+
+Already a palindrome.
+
+2)
+"qwerty"
+
+Returns: 11
+
+All characters are different.
+
+3)
+"abdfhdyrbdbsdfghjkllkjhgfds"
+
+Returns: 38
+
+
