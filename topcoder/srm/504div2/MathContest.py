@@ -4,6 +4,7 @@ class MathContest:
     def countBlack(self, ballSequence, repetitions):
         ls = [ballSequence for _ in xrange(repetitions)]
         s = "".join(ls)
+        s = [0 if x=="B" else 1 for x in s]
         i = 0
         N = len(s)
         j = N-1
@@ -11,28 +12,22 @@ class MathContest:
         ccol = 0
         c = 0
         for _ in xrange(N):
+            assert(i<=j)
             x = s[cpos]
             if cpos == i:
                 cpos += 1
                 i += 1
             else:
-                assert(cpos == j)
+                assert(cpos==j)
                 cpos -= 1
                 j -= 1
-            if x == 'B':
-                if ccol == 0:
-                    c += 1
-                    ccol = ccol ^ 1
-                if ccol == 1:
-                    cpos = i+j-cpos
+
+            if x == ccol:
+                ccol ^= 1
+                c += 1
             else:
-                assert(x == 'W')
-                if ccol == 0:
-                    cpos = i+j-cpos
-                if ccol == 1:
-                    ccol = ccol ^ 1
-                    c += 1
-        #assert(i==j)
+                assert(x != ccol)
+                cpos = i+j-cpos
         return c
 
 # CUT begin
