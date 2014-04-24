@@ -33,7 +33,7 @@ typedef pair<int,int> PII;
 #define PB push_back
 #define MP make_pair
 #define TR(c,i) for(typeof((c).begin() i = (c).begin(); i != (c).end(); i++)
-#define present(c,x) ((c).find(x) != (c).end())
+x#define present(c,x) ((c).find(x) != (c).end())
 #define cpresent(c,x) (find(all(c),x) != (c).end())
 
 class FoxAndHandleEasy

@@ -6,9 +6,9 @@ def pow(x,n,m):
     elif n == 1:
         return x
     elif n % 2 == 0:
-        return pow((x*x)%m,n/2)
+        return pow((x*x)%m,n/2,m)
     else:
-        return (x * pow((x*x)%m,n/2)) % m
+        return (x * pow((x*x)%m,n/2,m)) % m
 
 def fact(n):
   if n == 0:
