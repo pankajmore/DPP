@@ -21,6 +21,13 @@ public class Node {
         }
     }
 
+    public static Node prepend(Node h, int x){
+        Node n = new Node();
+        n.val = x;
+        n.next = h;
+        return n;
+    }
+
     public Node iReverse(){
         Node temp, curr = this, rest = null;
         while(curr != null){
