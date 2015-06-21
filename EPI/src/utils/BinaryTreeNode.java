@@ -84,7 +84,19 @@ public class BinaryTreeNode {
     {
         ArrayList<ArrayList<Integer>> ls = new ArrayList<ArrayList<Integer>>();
         Queue<BinaryTreeNode> q = new LinkedList<BinaryTreeNode>();
-        //TODO: complete this!
+        q.add(this);
+        int numNodesCurrLevel = 0, numNodePrevLevel = 0;
+        numNodesCurrLevel ++;
+        while(!q.isEmpty())
+        {
+            ArrayList<Integer> currDepth = new ArrayList<Integer>();
+            while(numNodesCurrLevel > 0 && !q.isEmpty())
+            {
+                BinaryTreeNode node = q.remove();
+                numNodesCurrLevel--;
+                //TODO: incomplete
+            }
+        }
         return ls;
     }
 }
