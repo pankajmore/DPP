@@ -1,9 +1,6 @@
 package utils;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * Created by Pankaj on 6/12/15.
@@ -30,9 +27,9 @@ public class BinaryTreeNode {
         return _right;
     }
 
-    public ArrayList<Integer> inOrder()
+    public List<Integer> inOrder()
     {
-        ArrayList<Integer> vals = new ArrayList<Integer>();
+        List<Integer> vals = new ArrayList<Integer>();
         if(this.left() != null)
             vals.addAll(this.left().inOrder());
         vals.add(this.val());
@@ -41,9 +38,9 @@ public class BinaryTreeNode {
         return vals;
     }
 
-    public ArrayList<Integer> preOrder()
+    public List<Integer> preOrder()
     {
-        ArrayList<Integer> vals = new ArrayList<Integer>();
+        List<Integer> vals = new ArrayList<Integer>();
         vals.add(this.val());
         if(this.left() != null)
             vals.addAll(this.left().preOrder());
@@ -52,9 +49,9 @@ public class BinaryTreeNode {
         return vals;
     }
 
-    public ArrayList<Integer> postOrder()
+    public List<Integer> postOrder()
     {
-        ArrayList<Integer> vals = new ArrayList<Integer>();
+        List<Integer> vals = new ArrayList<Integer>();
         if(this.left() != null)
             vals.addAll(this.left().postOrder());
         if(this.right() != null)
@@ -63,9 +60,9 @@ public class BinaryTreeNode {
         return vals;
     }
 
-    public ArrayList<Integer> levelOrder()
+    public List<Integer> levelOrder()
     {
-        ArrayList<Integer> vals = new ArrayList<Integer>();
+        List<Integer> vals = new ArrayList<Integer>();
         Queue<BinaryTreeNode> q = new LinkedList<BinaryTreeNode>();
         q.add(this);
         while(!q.isEmpty())
@@ -80,22 +77,36 @@ public class BinaryTreeNode {
         return vals;
     }
 
-    public ArrayList<ArrayList<Integer>> levelOrderByDepth()
+    /**
+     * @return List of
+     */
+    public List<List<Integer>> levelOrderByDepth()
     {
-        ArrayList<ArrayList<Integer>> ls = new ArrayList<ArrayList<Integer>>();
+        List<List<Integer>> ls = new ArrayList<List<Integer>>();
         Queue<BinaryTreeNode> q = new LinkedList<BinaryTreeNode>();
         q.add(this);
-        int numNodesCurrLevel = 0, numNodePrevLevel = 0;
-        numNodesCurrLevel ++;
+        int numNodesCurrLevel = 0, numNodesPrevLevel = 0;
+        numNodesPrevLevel ++;
         while(!q.isEmpty())
         {
-            ArrayList<Integer> currDepth = new ArrayList<Integer>();
-            while(numNodesCurrLevel > 0 && !q.isEmpty())
+            List<Integer> currDepth = new ArrayList<Integer>();
+            while(numNodesPrevLevel > 0 && !q.isEmpty())
             {
                 BinaryTreeNode node = q.remove();
-                numNodesCurrLevel--;
-                //TODO: incomplete
+                numNodesPrevLevel--;
+                currDepth.add(node.val());
+                if(node.left() != null){
+                    q.add(node.left());
+                    numNodesCurrLevel++;
+                }
+                if(node.right() != null){
+                    q.add(node.right());
+                    numNodesCurrLevel++;
+                }
             }
+            numNodesPrevLevel = numNodesCurrLevel;
+            numNodesCurrLevel = 0;
+            ls.add(currDepth);
         }
         return ls;
     }
