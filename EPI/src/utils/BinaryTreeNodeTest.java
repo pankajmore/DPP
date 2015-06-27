@@ -53,4 +53,20 @@ public class BinaryTreeNodeTest {
         BinaryTreeNode root = new BinaryTreeNode(314,l,r);
         return root;
     }
+
+    @Test
+    public void testHeight() throws Exception {
+        BinaryTreeNode n = new BinaryTreeNode(1,null,null);
+        assertTrue(n.height() == 0);
+        assertTrue(constructBookExample().height() == 5);
+    }
+
+    @Test
+    public void testIsBalanced() throws Exception {
+        assertTrue(!constructBookExample().isBalancedSlow());
+        assertTrue(!constructBookExample().isBalanced());
+        BinaryTreeNode balancedTree = new BinaryTreeNode(1,new BinaryTreeNode(2,new BinaryTreeNode(3,new BinaryTreeNode(4,new BinaryTreeNode(5,null,null),new BinaryTreeNode(6,null,null)),new BinaryTreeNode(7,null,null)),new BinaryTreeNode(8,new BinaryTreeNode(9,null,null),new BinaryTreeNode(10,null,null))),new BinaryTreeNode(11,new BinaryTreeNode(12,new BinaryTreeNode(13,null,null),new BinaryTreeNode(14,null,null)),new BinaryTreeNode(15,null,null)));
+        assertTrue(balancedTree.isBalancedSlow());
+        assertTrue(balancedTree.isBalanced());
+    }
 }

@@ -2,6 +2,9 @@ package utils;
 
 import java.util.*;
 
+import static java.lang.Math.abs;
+import static java.lang.Math.max;
+
 /**
  * Created by Pankaj on 6/12/15.
  */
@@ -25,6 +28,55 @@ public class BinaryTreeNode {
 
     public BinaryTreeNode right() {
         return _right;
+    }
+
+    public boolean isLeaf(){
+        return left() == null && right() == null;
+    }
+
+    public int height(){
+        int h = 0;
+        if(isLeaf())
+            return 0;
+        if (left() != null)
+            h = left().height();
+        if (right() != null && right().height() > h)
+            h = right().height();
+        return 1+h;
+    }
+
+    public boolean isBalancedSlow(){
+        if(left() == null && right() == null){
+            return true;
+        }
+        else if(left() == null){
+            return right().height() <= 1;
+        }
+        else if(right() == null){
+            return left().height() <= 1;
+        }
+        else{
+            boolean res;
+            res = Math.abs(left().height() - right().height()) <= 1;
+            res &= left().isBalancedSlow();
+            res &= right().isBalancedSlow();
+            return res;
+        }
+    }
+
+    public boolean isBalanced(){
+        return heightBalanced() != -2;
+    }
+
+    private int heightBalanced() {
+        if(isLeaf()) return 0;
+        int l_height, r_height;
+        l_height = left() == null ? -1 : left().heightBalanced();
+        if(l_height == -2) return -2;
+        r_height = right() == null ? -1 : right().heightBalanced();
+        if(r_height == -2) return -2;
+        if(abs(l_height - r_height) > 1) return -2;
+        return 1 + max(l_height,r_height);
     }
 
     public List<Integer> inOrder()
@@ -78,7 +130,7 @@ public class BinaryTreeNode {
     }
 
     /**
-     * @return List of
+     * @return List of list of nodes at each level by depth
      */
     public List<List<Integer>> levelOrderByDepth()
     {
