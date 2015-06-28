@@ -90,6 +90,12 @@ public class BinaryTreeNode {
         return vals;
     }
 
+    //TODO: implement morris traversal
+    public List<Integer> inOrderMorris()
+    {
+        return inOrder();
+    }
+
     public List<Integer> preOrder()
     {
         List<Integer> vals = new ArrayList<Integer>();
