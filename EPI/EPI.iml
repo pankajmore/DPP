@@ -27,5 +27,6 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="com.pholser:junit-quickcheck-core:0.4" level="project" />
   </component>
 </module>
