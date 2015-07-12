@@ -1,10 +1,9 @@
-package test;
+package utils;
 
 import org.junit.Test;
-import utils.Stack;
-import utils.StackWithMax;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 public class StackWithMaxTest {
     @Test

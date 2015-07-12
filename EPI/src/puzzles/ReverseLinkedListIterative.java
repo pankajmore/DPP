@@ -1,7 +1,9 @@
-import java.io.PrintStream;
-import java.util.Scanner;
+package puzzles;
 
 import utils.Node;
+
+import java.io.PrintStream;
+import java.util.Scanner;
 
 /**
  * Created by Pankaj on 6/9/15.

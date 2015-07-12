@@ -1,3 +1,5 @@
+package puzzles;
+
 /**
  * Created by pankajm on 5/26/15.
  */

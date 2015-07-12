@@ -1,3 +1,5 @@
+package puzzles;
+
 import utils.Node;
 
 import java.io.PrintStream;

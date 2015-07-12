@@ -1,5 +1,9 @@
+package puzzles;
+
 import java.io.PrintStream;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
 
 import static java.lang.Math.min;
 import static java.lang.StrictMath.ceil;

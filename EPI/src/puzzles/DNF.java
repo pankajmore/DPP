@@ -1,3 +1,5 @@
+package puzzles;
+
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Comparator;
