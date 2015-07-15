@@ -9,7 +9,7 @@ public class BinarySearchFirstK {
     /*
     Assumes list is sorted.
      */
-    public <T extends Comparable<T>> int binarySearchFirstK(List<T> ls, T k){
+    public static <T extends Comparable<T>> int binarySearchFirstK(List<T> ls, T k){
         int l = 0, h = ls.size()-1, mid, index = -1;
         while(l<=h){
             mid = l + (h-l)/2;
