@@ -14,10 +14,10 @@ public class BinarySearchFirstK {
         while(l<=h){
             mid = l + (h-l)/2;
             int c = ls.get(mid).compareTo(k);
-            if(c == -1){
+            if(c < 0){
                 l = mid+1;
             }
-            else if(c == 1){
+            else if(c > 0){
                 h = mid-1;
             }
             else{
