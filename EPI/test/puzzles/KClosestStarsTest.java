@@ -33,6 +33,7 @@ public class KClosestStarsTest {
     }
 
     //TODO: fix the generator for Star
+    //TODO: report the issue to the github tracker
     @Theory
     public void kSmallestFromSorted(@ForAll @From(StarGenerator.class) List<KClosestStars.Star> ls) {
         for (int k = 0; k <= ls.size(); k++) {
