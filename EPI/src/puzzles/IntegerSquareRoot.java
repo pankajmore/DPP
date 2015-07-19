@@ -9,7 +9,7 @@ public class IntegerSquareRoot {
      * @param k k >= 0
      * @return largest integer s | s^2 <= k
      */
-    public int integerSquareRoot(int k)
+    public static int integerSquareRoot(int k)
     {
         int l = 0, h = k, mid, s = 0;
         while(l<=h) {
@@ -25,7 +25,7 @@ public class IntegerSquareRoot {
         return s;
     }
 
-    private boolean check(int s, int k){
-        return s*s<=k;
+    private static boolean check(int s, int k){
+        return ((long) s)* ((long) s)<= ((long) k);
     }
 }
