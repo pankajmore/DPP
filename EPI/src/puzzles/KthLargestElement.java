@@ -2,6 +2,7 @@ package puzzles;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by Pankaj on 7/21/15.
@@ -15,36 +16,36 @@ public class KthLargestElement {
      * @return
      */
     public static <T extends Comparable<T>> T usingPartitionRecursive(List<T> l, int k) {
-        T pivot = l.get(0);
-        int i = partitionPivotRank(l, 0);
+        int pivotIndex = new Random().nextInt(l.size());
+        T pivot = l.get(pivotIndex);
+        int i = partitionPivotRank(l, pivotIndex);
         if (k == i) return pivot;
         else if (k < i) return usingPartitionRecursive(l.subList(0, i), k);
         else return usingPartitionRecursive(l.subList(i + 1, l.size()), k - (i + 1));
     }
 
     public static <T extends Comparable<T>> T usingPartitionIterative(List<T> l, int k) {
-        T pivot = l.get(0);
-        int i = partitionPivotRank(l, 0);
+        int pivotIndex = new Random().nextInt(l.size());
+        T pivot = l.get(pivotIndex);
+        int i = partitionPivotRank(l, pivotIndex);
         while (k != i) {
             if (k < i) {
-                pivot = l.get(0);
                 l = l.subList(0, i);
-                i = partitionPivotRank(l, k);
             } else {
-                pivot = l.get(i);
-                l = l.subList(i, l.size() - 1);
-                k -= i;
-                i = partitionPivotRank(l, k);
+                l = l.subList(i + 1, l.size());
+                k -= i + 1;
             }
+            pivotIndex = new Random().nextInt(l.size());
+            pivot = l.get(pivotIndex);
+            i = partitionPivotRank(l, pivotIndex);
         }
         return pivot;
     }
 
-    private static <T extends Comparable<T>> int partitionPivotRank(List<T> l, int pivotIndex) {
+    public static <T extends Comparable<T>> int partitionPivotRank(List<T> l, int pivotIndex) {
         T pivot = l.get(pivotIndex);
         Collections.swap(l, 0, pivotIndex); // bring pivot to 0
         if (l.size() == 1) return 0;
-        if (l.size() == 2) return pivot == Collections.max(l) ? 0 : 1;
         int i = 1, j = l.size() - 1;
         while (i < j) {
             if (l.get(i).compareTo(pivot) < 0 && l.get(j).compareTo(pivot) > 0) {
@@ -53,9 +54,13 @@ public class KthLargestElement {
             if (l.get(i).compareTo(pivot) > 0) i++;
             if (l.get(j).compareTo(pivot) < 0) j--;
         }
-        if (l.get(i).compareTo(pivot) > 0) Collections.swap(l, i, 0);
-        else Collections.swap(l, i - 1, 0);
-        return i;
+        if (l.get(i).compareTo(pivot) > 0) {
+            Collections.swap(l, i, 0);
+            return i;
+        } else {
+            Collections.swap(l, i - 1, 0);
+            return i - 1;
+        }
     }
 
     public static <T extends Comparable<T>> T usingSort(List<T> l, int k) {
