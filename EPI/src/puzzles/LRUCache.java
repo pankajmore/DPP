@@ -29,8 +29,8 @@ public class LRUCache {
     /**
      * Simulates reading from disk by just generating a random price instead.
      *
-     * @param key
-     * @return
+     * @param key the ISB key for a given book
+     * @return the dollar price read outside of cache
      */
     private static double readFromDisk(String key) {
         return new Random().nextDouble();
