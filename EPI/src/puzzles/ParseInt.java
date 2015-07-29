@@ -11,18 +11,16 @@ public class ParseInt {
         int N = s.length();
         int x = 0;
         int p = 1;
-        for(int i=N-1;i>=0;i--)
-        {
+        for (int i = N - 1; i >= 0; i--) {
             int d = s.charAt(i) - '0';
-            if(d >= 0 && d <= 9){
-                x += p*d;
+            if (d >= 0 && d <= 9) {
+                x += p * d;
                 p *= 10;
-            }
-            else if(i!=0){
+            } else if (i != 0) {
                 throw new Exception("Not an integer!");
             }
         }
-        if(s.charAt(0) == '-')
+        if (s.charAt(0) == '-')
             x *= -1;
         return x;
     }

@@ -48,8 +48,9 @@ public class KClosestStarsTest {
      */
     public static class StarGenerator extends Generator<List<Star>> {
 
-        @SuppressWarnings("unchecked") public StarGenerator() {
-            super(asList((Class<List<Star>>)(Object)List.class));
+        @SuppressWarnings("unchecked")
+        public StarGenerator() {
+            super(asList((Class<List<Star>>) (Object) List.class));
         }
 
         @Override

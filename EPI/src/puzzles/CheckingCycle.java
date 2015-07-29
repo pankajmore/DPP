@@ -15,15 +15,15 @@ public class CheckingCycle {
 
         int N = in.nextInt();
         int[] A = new int[N];
-        for(int i=0;i<N;i++) A[i] = in.nextInt();
+        for (int i = 0; i < N; i++) A[i] = in.nextInt();
         Node head = new Node(A);
 
         out.println("Before cycle : ");
         out.println(head.toString());
 
-        assert(head.checkCycle() == null);
+        assert (head.checkCycle() == null);
 
-        head.introduceCycle(N/2);
+        head.introduceCycle(N / 2);
 
         out.println("After cycle : ");
         out.println(head.toString());

@@ -1,6 +1,5 @@
 package utils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Math.abs;
@@ -36,13 +35,13 @@ public class BinaryTreeNodeWithParent extends BinaryTreeNode {
         return super.postOrder();
     }
 
-    public BinaryTreeNodeWithParent leastCommonAncestor(BinaryTreeNodeWithParent n1, BinaryTreeNodeWithParent n2){
+    public BinaryTreeNodeWithParent leastCommonAncestor(BinaryTreeNodeWithParent n1, BinaryTreeNodeWithParent n2) {
         int h1 = n1.height();
         int h2 = n2.height();
-        int t = abs(h1-h2);
-        if(h1 > h2) while (t-- > 0) n1 = n1._parent;
+        int t = abs(h1 - h2);
+        if (h1 > h2) while (t-- > 0) n1 = n1._parent;
         else while (t-- > 0) n2 = n2._parent;
-        while(n1 != n2){
+        while (n1 != n2) {
             n1 = n1._parent;
             n2 = n2._parent;
         }

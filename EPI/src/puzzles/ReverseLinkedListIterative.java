@@ -16,11 +16,11 @@ public class ReverseLinkedListIterative {
 
         int N = in.nextInt();
         int[] A = new int[N];
-        for(int i=0;i<N;i++) A[i] = in.nextInt();
+        for (int i = 0; i < N; i++) A[i] = in.nextInt();
         Node head = new Node(A);
         out.println(head.toString());
         out.println(head.iReverse().toString());
 
-        assert(head.iReverse().iReverse().equals(head));
+        assert (head.iReverse().iReverse().equals(head));
     }
 }

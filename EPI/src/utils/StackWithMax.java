@@ -35,7 +35,7 @@ public class StackWithMax extends Stack {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(super.toString());
-        if(max != null)
+        if (max != null)
             sb.append("\n").append(max.toString());
         return sb.toString();
     }

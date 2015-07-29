@@ -9,23 +9,21 @@ public class IntegerSquareRoot {
      * @param k k >= 0
      * @return largest integer s | s^2 <= k
      */
-    public static int integerSquareRoot(int k)
-    {
+    public static int integerSquareRoot(int k) {
         int l = 0, h = k, mid, s = 0;
-        while(l<=h) {
-            mid = l + (h-l)/2;
-            if(check(mid,k)) {
+        while (l <= h) {
+            mid = l + (h - l) / 2;
+            if (check(mid, k)) {
                 s = mid;
-                l = mid+1;
-            }
-            else {
-                h = mid-1;
+                l = mid + 1;
+            } else {
+                h = mid - 1;
             }
         }
         return s;
     }
 
-    private static boolean check(int s, int k){
-        return ((long) s)* ((long) s)<= ((long) k);
+    private static boolean check(int s, int k) {
+        return ((long) s) * ((long) s) <= ((long) k);
     }
 }

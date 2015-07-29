@@ -8,10 +8,10 @@ public class StackTest {
 
     @Test
     public void testPush() {
-        Stack s  = new Stack();
+        Stack s = new Stack();
         s.push(1);
         try {
-            assert(s.peek()==1);
+            assert (s.peek() == 1);
         } catch (Exception e) {
             fail("Should not be empty!");
         }
@@ -29,7 +29,7 @@ public class StackTest {
     }
 
     @Test
-    public void testPop(){
+    public void testPop() {
         Stack s = new Stack();
         try {
             s.pop();
@@ -56,11 +56,11 @@ public class StackTest {
 
     @Test
     public void testToString() {
-        assert(new Stack().toString().equals("Empty"));
+        assert (new Stack().toString().equals("Empty"));
         Stack s = new Stack();
         s.push(1);
-        assert(s.toString().equals("1"));
+        assert (s.toString().equals("1"));
         s.push(2);
-        assert(s.toString().equals("2 -> 1"));
+        assert (s.toString().equals("2 -> 1"));
     }
 }
