@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Queue;
 
 import static java.lang.Math.abs;
-import static java.lang.Math.max;
 
 /**
  * Created by Pankaj on 6/12/15.
@@ -65,6 +64,24 @@ public class BinaryTreeNode {
         }
     }
 
+    public BinaryTreeNode min() {
+        BinaryTreeNode m = this;
+        if (this.left() != null && this.left().min().val() < m.val())
+            m = this.left().min();
+        if (this.right() != null && this.right().min().val() < m.val())
+            m = this.right().min();
+        return m;
+    }
+
+    public BinaryTreeNode max() {
+        BinaryTreeNode m = this;
+        if (this.left() != null && this.left().max().val() > m.val())
+            m = this.left().max();
+        if (this.right() != null && this.right().max().val() > m.val())
+            m = this.right().max();
+        return m;
+    }
+
     public boolean isBalanced() {
         return heightBalanced() != -2;
     }
@@ -77,7 +94,7 @@ public class BinaryTreeNode {
         r_height = right() == null ? -1 : right().heightBalanced();
         if (r_height == -2) return -2;
         if (abs(l_height - r_height) > 1) return -2;
-        return 1 + max(l_height, r_height);
+        return 1 + Math.max(l_height, r_height);
     }
 
     public List<Integer> inOrder() {
@@ -159,6 +176,15 @@ public class BinaryTreeNode {
             ls.add(currDepth);
         }
         return ls;
+    }
+
+    public boolean isBinarySearchTree() {
+        boolean ok = true;
+        if (this.left() != null)
+            ok &= this.left().max().val() <= this.val() && this.left().isBinarySearchTree();
+        if (this.right() != null)
+            ok &= this.right().min().val() >= this.val() && this.right().isBinarySearchTree();
+        return ok;
     }
 }
 
