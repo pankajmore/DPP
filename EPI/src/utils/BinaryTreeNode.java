@@ -186,5 +186,10 @@ public class BinaryTreeNode {
             ok &= this.right().min().val() >= this.val() && this.right().isBinarySearchTree();
         return ok;
     }
+
+    public boolean isBinarySearchTreeSpaceOptimized() {
+        //TODO: write an O(n) time and O(h) space algorithm here
+        return true;
+    }
 }
 
