@@ -187,9 +187,27 @@ public class BinaryTreeNode {
         return ok;
     }
 
-    public boolean isBinarySearchTreeSpaceOptimized() {
-        //TODO: write an O(n) time and O(h) space algorithm here
-        return true;
+    public boolean isBST() {
+        return isBSTPostOrderImpl().second();
+    }
+
+    public Pair<Pair<Integer, Integer>, Boolean> isBSTPostOrderImpl() {
+        int min = this._val, max = this._val;
+        if (this.left() != null) {
+            Pair<Pair<Integer, Integer>, Boolean> l = this.left().isBSTPostOrderImpl();
+            if (!l.second()) return l;
+            if (this.val() < l.first().second()) return l;
+            min = min > l.first().first() ? l.first().first() : min;
+            max = max < l.first().second() ? l.first().second() : max;
+        }
+        if (this.right() != null) {
+            Pair<Pair<Integer, Integer>, Boolean> r = this.right().isBSTPostOrderImpl();
+            if (!r.second()) return r;
+            if (this.val() > r.first().first()) return r;
+            min = min > r.first().first() ? r.first().first() : min;
+            max = max < r.first().second() ? r.first().second() : max;
+        }
+        return new Pair<>(new Pair<>(min, max), true);
     }
 }
 
