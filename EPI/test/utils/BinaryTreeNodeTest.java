@@ -84,6 +84,7 @@ public class BinaryTreeNodeTest {
         assert (tree.isBinarySearchTree());
         assert (tree.isBSTPostOrderImpl().second());
         assert (tree.isBSTInOrderImpl().second());
+        assert (tree.isBSTRange());
 
         BinaryTreeNode notBST = constructBookExample();
         List<Integer> inOrder = notBST.inOrder();
@@ -92,5 +93,6 @@ public class BinaryTreeNodeTest {
         assertFalse(notBST.isBinarySearchTree());
         assertFalse(notBST.isBSTPostOrderImpl().second());
         assertFalse(notBST.isBSTInOrderImpl().second());
+        assertFalse(notBST.isBSTRange());
     }
 }

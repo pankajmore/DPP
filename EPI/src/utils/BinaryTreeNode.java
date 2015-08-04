@@ -208,7 +208,6 @@ public class BinaryTreeNode {
         if (this.left() != null) {
             Pair<Pair<Integer, Integer>, Boolean> l = this.left().isBSTPostOrderImpl();
             if (!l.second() || this.val() < l.first().second()) return new Pair<>(new Pair<>(0, 0), false);
-            ;
             min = min > l.first().first() ? l.first().first() : min;
             max = max < l.first().second() ? l.first().second() : max;
         }
@@ -219,6 +218,17 @@ public class BinaryTreeNode {
             max = max < r.first().second() ? r.first().second() : max;
         }
         return new Pair<>(new Pair<>(min, max), true);
+    }
+
+    public boolean isBSTRange() {
+        return isBSTRangeImpl(Integer.MIN_VALUE, Integer.MAX_VALUE);
+    }
+
+    public boolean isBSTRangeImpl(int min, int max) {
+        if (this.val() < min || this.val() > max) return false;
+        if (this.left() != null && !this.left().isBSTRangeImpl(min, this._val)) return false;
+        if (this.right() != null && !this.right().isBSTRangeImpl(this._val, max)) return false;
+        return true;
     }
 }
 
