@@ -1,9 +1,6 @@
 package utils;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 import static java.lang.Math.abs;
 
@@ -97,18 +94,18 @@ public class BinaryTreeNode {
         return 1 + Math.max(l_height, r_height);
     }
 
-    public List<Integer> inOrder() {
-        List<Integer> vals = new ArrayList<Integer>();
+    public List<BinaryTreeNode> inOrder() {
+        List<BinaryTreeNode> ls = new ArrayList<>();
         if (this.left() != null)
-            vals.addAll(this.left().inOrder());
-        vals.add(this.val());
+            ls.addAll(this.left().inOrder());
+        ls.add(this);
         if (this.right() != null)
-            vals.addAll(this.right().inOrder());
-        return vals;
+            ls.addAll(this.right().inOrder());
+        return ls;
     }
 
     //TODO: implement morris traversal
-    public List<Integer> inOrderMorris() {
+    public List<BinaryTreeNode> inOrderMorris() {
         return inOrder();
     }
 
@@ -229,6 +226,33 @@ public class BinaryTreeNode {
         if (this.left() != null && !this.left().isBSTRangeImpl(min, this._val)) return false;
         if (this.right() != null && !this.right().isBSTRangeImpl(this._val, max)) return false;
         return true;
+    }
+
+    public BinaryTreeNode successor(int k) {
+        return successorInOrderImpl(k);
+    }
+
+    private BinaryTreeNode successorInOrderImpl(int k) {
+        Iterator<BinaryTreeNode> iter = this.inOrder().iterator();
+        while (iter.hasNext()) {
+            if (iter.next().val() == k) return iter.hasNext() ? iter.next() : null;
+        }
+        return null;
+    }
+
+    //TODO: there is a bug in here
+    public Pair<Boolean, BinaryTreeNode> successorImpl(int k) {
+        if (this.left() != null) {
+            Pair<Boolean, BinaryTreeNode> l = this.left().successorImpl(k);
+            if (l.first()) return new Pair<>(true, this);
+        }
+        if (this.val() == k) return new Pair<>(true, null);
+        if (this.val() > k) return new Pair<>(false, null);
+        if (this.right() != null) {
+            Pair<Boolean, BinaryTreeNode> r = this.right().successorImpl(k);
+            if (r.first()) return r;
+        }
+        return new Pair<>(false, null);
     }
 }
 

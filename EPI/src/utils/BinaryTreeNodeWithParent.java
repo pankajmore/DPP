@@ -21,7 +21,7 @@ public class BinaryTreeNodeWithParent extends BinaryTreeNode {
     }
 
     @Override
-    public List<Integer> inOrder() {
+    public List<BinaryTreeNode> inOrder() {
         return super.inOrder(); // TODO: make it use O(1) space
     }
 

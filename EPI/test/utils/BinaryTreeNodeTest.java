@@ -4,7 +4,9 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static junit.framework.TestCase.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -87,12 +89,22 @@ public class BinaryTreeNodeTest {
         assert (tree.isBSTRange());
 
         BinaryTreeNode notBST = constructBookExample();
-        List<Integer> inOrder = notBST.inOrder();
+        List<Integer> inOrder = notBST.inOrder().stream().map(x -> x.val()).collect(Collectors.toList());
         List<Integer> inOrderSorted = new ArrayList<>(inOrder);
-        assert (inOrder.equals(inOrderSorted));
+        Collections.sort(inOrderSorted);
+        assertFalse(inOrder.equals(inOrderSorted));
         assertFalse(notBST.isBinarySearchTree());
         assertFalse(notBST.isBSTPostOrderImpl().second());
         assertFalse(notBST.isBSTInOrderImpl().second());
         assertFalse(notBST.isBSTRange());
+    }
+
+    @Test
+    public void testSuccessor() {
+        BinaryTreeNode tree = constructBSTExample();
+        assert (tree.successor(23) != null);
+        assert (tree.successor(23).val() == 29);
+        assert (tree.successor(32) == null);
+
     }
 }
