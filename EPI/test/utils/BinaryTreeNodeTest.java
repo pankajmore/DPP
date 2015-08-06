@@ -1,5 +1,6 @@
 package utils;
 
+import examples.BinaryTreeExample;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -12,20 +13,6 @@ import static junit.framework.TestCase.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class BinaryTreeNodeTest {
-
-    public static BinaryTreeNode constructBookExample() {
-        BinaryTreeNode l = new BinaryTreeNode(6, new BinaryTreeNode(271, new BinaryTreeNode(28, null, null), new BinaryTreeNode(0, null, null)), new BinaryTreeNode(561, null, new BinaryTreeNode(3, new BinaryTreeNode(17, null, null), null)));
-        BinaryTreeNode r = new BinaryTreeNode(6, new BinaryTreeNode(2, null, new BinaryTreeNode(1, new BinaryTreeNode(401, null, new BinaryTreeNode(641, null, null)), new BinaryTreeNode(257, null, null))), new BinaryTreeNode(271, null, new BinaryTreeNode(28, null, null)));
-        BinaryTreeNode root = new BinaryTreeNode(314, l, r);
-        return root;
-    }
-
-    public static BinaryTreeNode constructBSTExample() {
-        BinaryTreeNode l = new BinaryTreeNode(7, new BinaryTreeNode(3, new BinaryTreeNode(2, null, null), new BinaryTreeNode(5, null, null)), new BinaryTreeNode(11, null, new BinaryTreeNode(17, new BinaryTreeNode(13, null, null), null)));
-        BinaryTreeNode r = new BinaryTreeNode(43, new BinaryTreeNode(23, null, new BinaryTreeNode(37, new BinaryTreeNode(29, null, new BinaryTreeNode(31, null, null)), new BinaryTreeNode(41, null, null))), new BinaryTreeNode(47, null, new BinaryTreeNode(53, null, null)));
-        BinaryTreeNode root = new BinaryTreeNode(19, l, r);
-        return root;
-    }
 
     @Test
     public void testInOrder() throws Exception {
@@ -49,7 +36,7 @@ public class BinaryTreeNodeTest {
 
     @Test
     public void testLevelOrderByDepth() throws Exception {
-        BinaryTreeNode root = constructBookExample();
+        BinaryTreeNode root = BinaryTreeExample.constructBookExample();
         List<List<Integer>> ls = root.levelOrderByDepth();
         List<List<Integer>> es = new ArrayList<List<Integer>>();
         es = Arrays.asList(
@@ -68,13 +55,13 @@ public class BinaryTreeNodeTest {
     public void testHeight() throws Exception {
         BinaryTreeNode n = new BinaryTreeNode(1, null, null);
         assertTrue(n.height() == 0);
-        assertTrue(constructBookExample().height() == 5);
+        assertTrue(BinaryTreeExample.constructBookExample().height() == 5);
     }
 
     @Test
     public void testIsBalanced() throws Exception {
-        assertTrue(!constructBookExample().isBalancedSlow());
-        assertTrue(!constructBookExample().isBalanced());
+        assertTrue(!BinaryTreeExample.constructBookExample().isBalancedSlow());
+        assertTrue(!BinaryTreeExample.constructBookExample().isBalanced());
         BinaryTreeNode balancedTree = new BinaryTreeNode(1, new BinaryTreeNode(2, new BinaryTreeNode(3, new BinaryTreeNode(4, new BinaryTreeNode(5, null, null), new BinaryTreeNode(6, null, null)), new BinaryTreeNode(7, null, null)), new BinaryTreeNode(8, new BinaryTreeNode(9, null, null), new BinaryTreeNode(10, null, null))), new BinaryTreeNode(11, new BinaryTreeNode(12, new BinaryTreeNode(13, null, null), new BinaryTreeNode(14, null, null)), new BinaryTreeNode(15, null, null)));
         assertTrue(balancedTree.isBalancedSlow());
         assertTrue(balancedTree.isBalanced());
@@ -82,13 +69,13 @@ public class BinaryTreeNodeTest {
 
     @Test
     public void testisBST() {
-        BinaryTreeNode tree = constructBSTExample();
+        BinaryTreeNode tree = BinaryTreeExample.constructBSTExample();
         assert (tree.isBinarySearchTree());
         assert (tree.isBSTPostOrderImpl().second());
         assert (tree.isBSTInOrderImpl().second());
         assert (tree.isBSTRange());
 
-        BinaryTreeNode notBST = constructBookExample();
+        BinaryTreeNode notBST = BinaryTreeExample.constructBookExample();
         List<Integer> inOrder = notBST.inOrder().stream().map(x -> x.val()).collect(Collectors.toList());
         List<Integer> inOrderSorted = new ArrayList<>(inOrder);
         Collections.sort(inOrderSorted);
@@ -101,7 +88,7 @@ public class BinaryTreeNodeTest {
 
     @Test
     public void testSuccessor() {
-        BinaryTreeNode tree = constructBSTExample();
+        BinaryTreeNode tree = BinaryTreeExample.constructBSTExample();
         assert (tree.successor(23) != null);
         assert (tree.successor(23).val() == 29);
         assert (tree.successor(32) == null);
