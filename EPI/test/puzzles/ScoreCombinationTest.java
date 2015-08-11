@@ -14,8 +14,8 @@ public class ScoreCombinationTest {
         W.add(3);
         W.add(7);
         int actual = 4;
-        int expected = ScoreCombination.countCombinations(s, W);
-        assert (actual == expected);
+        assert (actual == ScoreCombination.countCombinationsRecursive(s, W));
+        assert (actual == ScoreCombination.countCombinationsDP(s, W));
     }
 
 }
