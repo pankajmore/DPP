@@ -13,9 +13,12 @@ public class ScoreCombinationTest {
         W.add(2);
         W.add(3);
         W.add(7);
-        int actual = 4;
-        assert (actual == ScoreCombination.countCombinationsRecursive(s, W));
-        assert (actual == ScoreCombination.countCombinationsDP(s, W));
+
+        assert (4 == ScoreCombination.countCombinationsRecursive(s, W));
+        assert (4 == ScoreCombination.countCombinationsDP(s, W));
+
+        assert (18 == ScoreCombination.countPermutationsRecursive(s, W));
+        assert (18 == ScoreCombination.countPermutationsDP(s, W));
     }
 
 }
