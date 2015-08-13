@@ -8,25 +8,18 @@ import java.util.List;
 public class ScoreCombination {
     /**
      * DP optimised solution
-     * Time complexity : O(s*n^2) where n = W.size()
+     * Time complexity : O(s*n) where n = scores.size()
      * Space Complexity : O(s)
      *
      * @param s the score s
-     * @param W the list of points
-     * @return number of ways s can be scored using points in W
+     * @param scores the list of scores
+     * @return number of ways s can be scored using scores in W
      */
-    public static int countCombinationsDP(int s, List<Integer> W) {
+    public static int countCombinationsDP(int s, List<Integer> scores) {
         int[] A = new int[s + 1];
         A[0] = 1;
-        for (int i = 1; i <= s; i++) A[i] = i % W.get(0) == 0 ? 1 : 0;
-        for (int i = 1; i < W.size(); i++) {
-            for (int j = s; j >= 0; j--) {
-                int k = j - W.get(i);
-                while (k >= 0) {
-                    A[j] += A[k];
-                    k -= W.get(i);
-                }
-            }
+        for (Integer score : scores) {
+            for (int j = score; j <= s; j++) A[j] += A[j - score];
         }
         return A[s];
     }
