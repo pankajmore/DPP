@@ -1,5 +1,6 @@
 package puzzles;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -41,6 +42,32 @@ public class ScoreCombination {
             s -= x;
         }
         return c;
+    }
+
+    public static ArrayList<ArrayList<Integer>> printCombinations(int s, List<Integer> scores) {
+        ArrayList<ArrayList<Integer>> ans = new ArrayList<>();
+        if (s == 0) return ans;
+        if (scores.size() == 1) {
+            if (s % scores.get(0) == 0) {
+                ans.add(new ArrayList<>());
+                ans.get(0).add(s / scores.get(0));
+            }
+            return ans;
+        }
+        int x = scores.get(scores.size() - 1);
+        List<Integer> tail = scores.subList(0, scores.size() - 1);
+        ans = printCombinations(s, tail);
+        s -= x;
+        int i = 1;
+        while (s >= 0) {
+            for (ArrayList<Integer> l : printCombinations(s, tail)) {
+                l.add(i);
+                ans.add(l);
+            }
+            i++;
+            s -= x;
+        }
+        return ans;
     }
 
     /**

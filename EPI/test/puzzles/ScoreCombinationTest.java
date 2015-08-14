@@ -19,6 +19,9 @@ public class ScoreCombinationTest {
 
         assert (18 == ScoreCombination.countPermutationsRecursive(s, W));
         assert (18 == ScoreCombination.countPermutationsDP(s, W));
+
+        ArrayList<ArrayList<Integer>> ans = ScoreCombination.printCombinations(s, W);
+        assert (ans.size() == 4);
     }
 
 }
