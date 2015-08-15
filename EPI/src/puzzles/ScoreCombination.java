@@ -33,7 +33,6 @@ public class ScoreCombination {
      * @return number of ways s can be scored using points in W
      */
     public static int countCombinationsRecursive(int s, List<Integer> W) {
-        if (s == 0) return 1;
         if (W.size() == 1) return s % W.get(0) == 0 ? 1 : 0;
         int x = W.get(W.size() - 1), c = 0;
         List<Integer> tail = W.subList(0, W.size() - 1);
@@ -46,7 +45,6 @@ public class ScoreCombination {
 
     public static ArrayList<ArrayList<Integer>> printCombinations(int s, List<Integer> scores) {
         ArrayList<ArrayList<Integer>> ans = new ArrayList<>();
-        if (s == 0) return ans;
         if (scores.size() == 1) {
             if (s % scores.get(0) == 0) {
                 ans.add(new ArrayList<>());
