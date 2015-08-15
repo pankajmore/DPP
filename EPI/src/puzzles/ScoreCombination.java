@@ -43,8 +43,8 @@ public class ScoreCombination {
         return c;
     }
 
-    public static ArrayList<ArrayList<Integer>> printCombinations(int s, List<Integer> scores) {
-        ArrayList<ArrayList<Integer>> ans = new ArrayList<>();
+    public static List<List<Integer>> printCombinations(int s, List<Integer> scores) {
+        List<List<Integer>> ans = new ArrayList<>();
         if (scores.size() == 1) {
             if (s % scores.get(0) == 0) {
                 ans.add(new ArrayList<>());
@@ -58,7 +58,7 @@ public class ScoreCombination {
         s -= x;
         int i = 1;
         while (s >= 0) {
-            for (ArrayList<Integer> l : printCombinations(s, tail)) {
+            for (List<Integer> l : printCombinations(s, tail)) {
                 l.add(i);
                 ans.add(l);
             }
