@@ -39,6 +39,9 @@ public class ScoreCombinationTest {
         l.add(1);
         expected.add(l);
         assert (ans.equals(expected));
+
+        ans = ScoreCombination.printPermutations(s, W);
+        assert (18 == ans.size());
     }
 
 }
