@@ -28,19 +28,16 @@ public class ScoreCombination {
     /**
      * Recursive exponential algorithm
      *
-     * @param s the score s
-     * @param W the list of points
-     * @return number of ways s can be scored using points in W
+     * @param s      the score s
+     * @param scores the list of points
+     * @return number of ways s can be scored using points in scores
      */
-    public static int countCombinationsRecursive(int s, List<Integer> W) {
+    public static int countCombinationsRecursive(int s, List<Integer> scores) {
+        if (scores.isEmpty()) return 0;
         if (s == 0) return 1;
-        if (W.size() == 1) return s % W.get(0) == 0 ? 1 : 0;
-        int x = W.get(W.size() - 1), c = 0;
-        List<Integer> tail = W.subList(0, W.size() - 1);
-        while (s >= 0) {
-            c += countCombinationsRecursive(s, tail);
-            s -= x;
-        }
+        int c = 0;
+        c += countCombinationsRecursive(s, scores.subList(1, scores.size()));
+        c += (s - scores.get(0)) >= 0 ? countCombinationsRecursive(s - scores.get(0), scores) : 0;
         return c;
     }
 
