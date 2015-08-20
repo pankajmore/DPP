@@ -24,14 +24,18 @@ public class ScoreCombinationTest {
         List<List<Integer>> expected = new ArrayList<>();
         List<Integer> l = new ArrayList<>();
         l.add(6);
+        l.add(0);
+        l.add(0);
         expected.add(l);
         l = new ArrayList<>();
         l.add(3);
         l.add(2);
+        l.add(0);
         expected.add(l);
         l = new ArrayList<>();
         l.add(0);
         l.add(4);
+        l.add(0);
         expected.add(l);
         l = new ArrayList<>();
         l.add(1);

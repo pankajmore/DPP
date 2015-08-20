@@ -43,25 +43,26 @@ public class ScoreCombination {
 
     public static List<List<Integer>> printCombinations(int s, List<Integer> scores) {
         List<List<Integer>> ans = new ArrayList<>();
-        if (scores.size() == 1) {
+        ArrayList<Integer> l = new ArrayList<>();
+        if (s < 0) return ans;
+        if (s == 0) {
+            for (int i = 0; i < scores.size(); i++) l.add(0);
+            ans.add(l);
+            return ans;
+        } else if (scores.size() == 1) {
             if (s % scores.get(0) == 0) {
-                ans.add(new ArrayList<>());
-                ans.get(0).add(s / scores.get(0));
+                l.add(s / scores.get(0));
+                ans.add(l);
             }
             return ans;
         }
-        int x = scores.get(scores.size() - 1);
-        List<Integer> tail = scores.subList(0, scores.size() - 1);
-        ans = printCombinations(s, tail);
-        s -= x;
-        int i = 1;
-        while (s >= 0) {
-            for (List<Integer> l : printCombinations(s, tail)) {
-                l.add(i);
-                ans.add(l);
-            }
-            i++;
-            s -= x;
+        for (List<Integer> list : printCombinations(s, scores.subList(0, scores.size() - 1))) {
+            list.add(0);
+            ans.add(list);
+        }
+        for (List<Integer> list : printCombinations(s - scores.get(scores.size() - 1), scores)) {
+            list.set(list.size() - 1, list.get(list.size() - 1) + 1);
+            ans.add(list);
         }
         return ans;
     }
