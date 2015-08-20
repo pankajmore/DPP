@@ -20,7 +20,7 @@ public class ScoreCombinationTest {
         assert (18 == ScoreCombination.countPermutationsRecursive(s, W));
         assert (18 == ScoreCombination.countPermutationsDP(s, W));
 
-        List<List<Integer>> ans = ScoreCombination.printCombinations(s, W);
+        List<List<Integer>> ans = ScoreCombination.listCombinations(s, W);
         List<List<Integer>> expected = new ArrayList<>();
         List<Integer> l = new ArrayList<>();
         l.add(6);
@@ -44,8 +44,12 @@ public class ScoreCombinationTest {
         expected.add(l);
         assert (ans.equals(expected));
 
-        ans = ScoreCombination.printPermutations(s, W);
+        ans = ScoreCombination.listPermutations(s, W);
         assert (18 == ans.size());
+        for (List<Integer> list : ans) {
+            assert (list.stream().reduce(0, (a, b) -> a + b) == s);
+        }
+        ScoreCombination.printPermutations(s, W, new ArrayList<>());
     }
 
 }

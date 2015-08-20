@@ -41,7 +41,7 @@ public class ScoreCombination {
         return c;
     }
 
-    public static List<List<Integer>> printCombinations(int s, List<Integer> scores) {
+    public static List<List<Integer>> listCombinations(int s, List<Integer> scores) {
         List<List<Integer>> ans = new ArrayList<>();
         ArrayList<Integer> l = new ArrayList<>();
         if (s < 0) return ans;
@@ -56,11 +56,11 @@ public class ScoreCombination {
             }
             return ans;
         }
-        for (List<Integer> list : printCombinations(s, scores.subList(0, scores.size() - 1))) {
+        for (List<Integer> list : listCombinations(s, scores.subList(0, scores.size() - 1))) {
             list.add(0);
             ans.add(list);
         }
-        for (List<Integer> list : printCombinations(s - scores.get(scores.size() - 1), scores)) {
+        for (List<Integer> list : listCombinations(s - scores.get(scores.size() - 1), scores)) {
             list.set(list.size() - 1, list.get(list.size() - 1) + 1);
             ans.add(list);
         }
@@ -102,16 +102,27 @@ public class ScoreCombination {
         return A[s];
     }
 
-    public static List<List<Integer>> printPermutations(int s, List<Integer> scores) {
+    public static List<List<Integer>> listPermutations(int s, List<Integer> scores) {
         List<List<Integer>> ans = new ArrayList<>();
         if (s == 0) ans.add(new ArrayList<>());
         else
             scores.stream().filter(score -> s - score >= 0).forEach(score -> {
-                for (List<Integer> l : printPermutations(s - score, scores)) {
+                for (List<Integer> l : listPermutations(s - score, scores)) {
                     l.add(score);
                     ans.add(l);
                 }
             });
         return ans;
+    }
+
+    public static void printPermutations(int s, List<Integer> scores, List<Integer> l) {
+        if (s == 0) {
+            System.out.println(l);
+        } else
+            scores.stream().filter(score -> s - score >= 0).forEach(score -> {
+                ArrayList<Integer> ll = new ArrayList<>(l);
+                ll.add(score);
+                printPermutations(s - score, scores, ll);
+            });
     }
 }
