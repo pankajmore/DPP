@@ -115,6 +115,31 @@ public class ScoreCombination {
         return ans;
     }
 
+    /**
+     * Time : Exponential
+     * Space : Exponential
+     *
+     * @param s
+     * @param scores
+     * @return
+     */
+    public static List<List<Integer>> listPermutationsDP(int s, List<Integer> scores) {
+        List<List<List<Integer>>> A = new ArrayList<>();
+        for (int i = 0; i <= s; i++) A.add(new ArrayList<>());
+        A.get(0).add(new ArrayList<>());
+        for (int i = 1; i <= s; i++) {
+            for (Integer score : scores) {
+                if (i - score < 0) continue;
+                for (List<Integer> l : A.get(i - score)) {
+                    ArrayList<Integer> newl = new ArrayList<>(l);
+                    newl.add(score);
+                    A.get(i).add(newl);
+                }
+            }
+        }
+        return A.get(s);
+    }
+
     public static void printPermutations(int s, List<Integer> scores, List<Integer> l) {
         if (s == 0) {
             System.out.println(l);

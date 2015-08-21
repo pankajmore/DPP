@@ -45,6 +45,8 @@ public class ScoreCombinationTest {
         assert (ans.equals(expected));
 
         ans = ScoreCombination.listPermutations(s, W);
+        List<List<Integer>> ansDP = ScoreCombination.listPermutationsDP(s, W);
+        assert (ans.equals(ansDP));
         assert (18 == ans.size());
         for (List<Integer> list : ans) {
             assert (list.stream().reduce(0, (a, b) -> a + b) == s);
