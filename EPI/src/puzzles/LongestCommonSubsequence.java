@@ -14,6 +14,6 @@ public class LongestCommonSubsequence {
      * @return
      */
     public static int usingEditDistance(String s1, String s2) {
-        return (s1.length() + s2.length() - LevenshteinDistance.editDistanceDP(s1, s2)) / 2;
+        return (s1.length() + s2.length() - LevenshteinDistance.editDistanceInsertAndDeleteOnly(s1, s2)) / 2;
     }
 }
