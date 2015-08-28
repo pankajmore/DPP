@@ -1,5 +1,8 @@
 package puzzles;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Pankaj on 8/22/15.
  */
@@ -42,6 +45,7 @@ public class LevenshteinDistance {
         }
         return A[n];
     }
+
     /**
      * Compute the number of inserts + deletes + edits
      * needed to transform s1 to s2
@@ -57,5 +61,16 @@ public class LevenshteinDistance {
         return Math.min(Math.min(editDistance(s1.substring(0, s1.length() - 1), s2) + 1,
                         editDistance(s1, s2.substring(0, s2.length() - 1)) + 1),
                 editDistance(s1.substring(0, s1.length() - 1), s2.substring(0, s2.length() - 1)) + (s1.charAt(s1.length() - 1) == s2.charAt(s2.length() - 1) ? 0 : 1));
+    }
+
+    //TODO
+    public List<Integer> editDistanceOps(String s1, String s2) {
+        return new ArrayList<>();
+    }
+
+    public enum Ops {
+        Insert,
+        Delete,
+        Edit
     }
 }
