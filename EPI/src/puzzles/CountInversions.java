@@ -11,32 +11,35 @@ public class CountInversions {
     }
 
     private static int countInversionsImpl(List<Integer> A, int i, int j) {
-        if (i == j) return 0;
+        if (i >= j) return 0;
         int m = (i + j) / 2, c = 0;
         c += countInversionsImpl(A, i, m);
         c += countInversionsImpl(A, m + 1, j);
-        c += countMerge(A, i, m + 1);
+        c += countMerge(A, i, j);
         return c;
     }
 
-    private static int countMerge(List<Integer> A, int i, int j) {
-        int M = j - 1;
-        int N = A.size();
-        int mid = j;
+    private static int countMerge(List<Integer> A, int l, int h) {
+        int M = (l + h) / 2;
+        int N = h;
+        int i = 0, j = M;
         int c = 0;
-        while (i < M && j < N) {
+        while (i <= M && j <= N) {
             if (A.get(i) <= A.get(j)) {
                 i++;
-                c += j - mid;
+                c += j - M;
             } else {
+                int temp = A.get(i);
+                A.set(i, A.get(j));
+                A.set(j, temp);
                 j++;
             }
         }
-        while (i < M) {
+        while (i <= M) {
             i++;
-            c += j - mid;
+            c += j - M;
         }
-        while (j < N) j++;
+        while (j <= N) j++;
         return c;
     }
 
