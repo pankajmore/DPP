@@ -18,7 +18,6 @@ public class CountInversions {
         c += countMerge(A, i, j);
         return c;
     }
-
     private static int countMerge(List<Integer> A, int l, int h) {
         int M = (l + h) / 2;
         int N = h;
