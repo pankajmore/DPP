@@ -63,9 +63,56 @@ public class LevenshteinDistance {
                 editDistance(s1.substring(0, s1.length() - 1), s2.substring(0, s2.length() - 1)) + (s1.charAt(s1.length() - 1) == s2.charAt(s2.length() - 1) ? 0 : 1));
     }
 
-    //TODO
-    public List<Integer> editDistanceOps(String s1, String s2) {
-        return new ArrayList<>();
+    public static List<Ops> editDistanceOps(String s1, String s2) {
+        if (s1.length() > s2.length()) {
+            String tmp = s1;
+            s1 = s2;
+            s2 = tmp;
+        }
+        int m = s1.length(), n = s2.length();
+        int A[] = new int[n + 1];
+        List<List<Ops>> ls = new ArrayList<>();
+        for (int i = 0; i <= n; i++) ls.add(new ArrayList<>());
+        A[0] = 0;
+        for (int i = 1; i <= n; i++) {
+            A[i] = i;
+            List<Ops> l = new ArrayList<>(ls.get(i - 1));
+            l.add(Ops.Insert);
+            ls.set(i, l);
+        }
+        for (int i = 1; i <= m; i++) {
+            int pp, prev = A[0];
+            List<Ops> ppL, prevL = new ArrayList<>(ls.get(0));
+            List<Ops> iL = new ArrayList<>(ls.get(0));
+            iL.add(Ops.Insert);
+            ls.set(0, iL);
+            for (int j = 1; j <= n; j++) {
+                pp = A[j];
+                ppL = new ArrayList<>(ls.get(j));
+                List<Ops> l = new ArrayList<>();
+                if (s1.charAt(i - 1) == s2.charAt(j - 1)) {
+                    l.addAll(prevL);
+                    A[j] = prev;
+                } else {
+                    int min = Math.min(Math.min(A[j - 1], A[j]), prev);
+                    A[j] = 1 + min;
+                    if (min == prev) {
+                        l.addAll(prevL);
+                        l.add(Ops.Edit);
+                    } else if (min == A[j - 1]) {
+                        l.addAll(ls.get(j - 1));
+                        l.add(Ops.Insert);
+                    } else {
+                        l.addAll(ls.get(j));
+                        l.add(Ops.Delete);
+                    }
+                }
+                prev = pp;
+                prevL = ppL;
+                ls.set(j, l);
+            }
+        }
+        return ls.get(n);
     }
 
     public enum Ops {

@@ -2,6 +2,8 @@ package puzzles;
 
 import org.junit.Test;
 
+import java.util.Arrays;
+
 import static puzzles.LevenshteinDistance.*;
 
 public class LevenshteinDistanceTest {
@@ -38,5 +40,16 @@ public class LevenshteinDistanceTest {
         assert editDistanceInsertAndDeleteOnly("xay", "bac") == 4;
         assert editDistanceInsertAndDeleteOnly("google", "googol") == 2;
         assert editDistanceInsertAndDeleteOnly("nitina", "anitin") == 2;
+    }
+
+    @Test
+    public void testEditDistanceOps() throws Exception {
+        assert editDistanceOps("", "").isEmpty();
+        assert editDistanceOps("", "foo").equals(Arrays.asList(Ops.Insert, Ops.Insert, Ops.Insert));
+        assert editDistanceOps("foo", "foo").isEmpty();
+        assert editDistanceOps("a", "b").equals(Arrays.asList(Ops.Edit));
+        assert editDistanceOps("xay", "bac").equals(Arrays.asList(Ops.Edit, Ops.Edit));
+        assert editDistanceOps("google", "googol").equals(Arrays.asList(Ops.Edit, Ops.Edit));
+        assert editDistanceOps("nitina", "anitin").equals(Arrays.asList(Ops.Insert, Ops.Delete));
     }
 }
