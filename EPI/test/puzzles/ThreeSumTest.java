@@ -22,20 +22,23 @@ public class ThreeSumTest {
     }
 
     @Theory
-    public void carefullyChosenMustNotExist(@ForAll Integer[] A) {
-        int k = notDefinitelyInA(A);
+    public void carefullyChosenKShouldReturnFalse(@ForAll(sampleSize = 1000) Integer[] A) {
+        int k = -1;
+        while (k == -1) k = findKThatCannotBeAchievedAsASumOf3Numbers(A);
         assert !ThreeSum.slow(A, k);
     }
 
-    private int notDefinitelyInA(Integer[] A) {
+    private int findKThatCannotBeAchievedAsASumOf3Numbers(Integer[] A) {
         Set<Integer> set = new HashSet<>(Arrays.asList(A));
-        while (true) {
-            int x = new Random().nextInt();
-            x = 3 * Math.abs(x);
-            if (set.contains(x / 3)) continue;
-            for (int d = 0; d <= x; d++) if (twoSumCheck(A, x - d)) continue;
-            return x;
+        int k = new Random().nextInt();
+        k = 3 * Math.abs(k);
+        if (set.contains(k / 3)) return -1;
+        for (Integer x : A) {
+            if (set.contains(k - 2 * x)) return -1;
+            if (twoSumCheck(A, k - x)) return -1;
         }
+        return k;
+
     }
 
     private boolean twoSumCheck(Integer[] A, Integer k) {
