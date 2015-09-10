@@ -24,4 +24,7 @@ public class ThreeSum {
             for (int y : A) if (set.contains(k - x - y)) return true;
         return false;
     }
+
+    /* There is an O(nlogn) solution if numbers are non-negative and max(A) ~ O(n)
+    * Using FFT*/
 }
