@@ -29,5 +29,5 @@ public class TrappingRainWater {
         return c;
     }
 
-    //TODO: implement O(1) space optmized solution
+    //TODO: implement O(1) space optimized solution
 }
