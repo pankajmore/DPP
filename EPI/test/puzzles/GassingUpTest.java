@@ -71,6 +71,8 @@ public class GassingUpTest {
         int[] distance = {300, 400, 1000, 300, 300, 600, 400, 1100, 400, 1000, 200, 300, 300};
         GassingUp G = new GassingUp(capacity, distance);
         assert G.check(G.ampleCity());
+        assert G.check(G.ampleCityGuaranteed());
+        assert G.ampleCityGuaranteed() == 8;
         assert G.check(8);
     }
 }

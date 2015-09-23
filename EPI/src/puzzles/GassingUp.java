@@ -14,9 +14,27 @@ public class GassingUp {
         this.N = capacity.length;
     }
 
+    /**
+     * Sum(capacity) == Sum(distance)
+     *
+     * @return an ample city
+     */
+    public int ampleCityGuaranteed() {
+        int csum = 0, minSum = 0;
+        int city = 0;
+        for (int i = 1; i < this.N; i++) {
+            csum += val(i - 1);
+            if (csum < minSum) {
+                minSum = csum;
+                city = i;
+            }
+        }
+        return city;
+    }
+
     public int ampleCity() {
         if (this.N == 0) return -1;
-        int sum = 0, csum = 0, flag = 0;
+        int sum = 0, csum, flag = 0;
         for (int i = 0; i < this.N; i++) {
             sum += val(i);
             if (val(i) < 0) flag = 1;
