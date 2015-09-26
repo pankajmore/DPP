@@ -8,49 +8,82 @@ import java.util.List;
  */
 public class OddEven {
     private static final Object lock = new Object();
+    private static final List<Integer> output = new ArrayList<>();
     private static Integer val = 0;
-    private static Integer end = 0;
-    private static List<Integer> output = new ArrayList<>();
 
-    public static void main(String[] args) throws InterruptedException {
-        Odd odd = new Odd();
+    public static List<Integer> oddEvenInterleave(int N) throws InterruptedException {
+        Odd odd = new Odd(N);
         Thread oddThread = new Thread(odd);
-        Even even = new Even();
+        Even even = new Even(N);
         Thread evenThread = new Thread(even);
         oddThread.start();
         evenThread.start();
-        while (end != 2) ;
-        for (int i = 1; i < 100; i++) assert output.get(i - 1).equals(i);
-
+        oddThread.join();
+        evenThread.join();
+        return output;
     }
 
     private static class Odd implements Runnable {
+        private final int N;
+
+        public Odd(int N) {
+            this.N = N;
+        }
+
         @Override
         public void run() {
-            while (val < 99) {
-                if (val % 2 == 0)
-                    synchronized (lock) {
-                        val += 1;
-                        output.add(val);
-                        System.out.println(val);
+            int c = 0;
+            while (true) {
+                c++;
+                synchronized (lock) {
+                    while (val % 2 == 1) try {
+                        lock.wait();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
+                    val += 1;
+                    if (val > N) {
+                        lock.notify();
+                        break;
+                    }
+                    output.add(val);
+                    System.out.println(val);
+                    lock.notify();
+                }
             }
-            end += 1;
+            System.out.println("Odd count : " + c);
         }
     }
 
     private static class Even implements Runnable {
+        private final int N;
+
+        public Even(int N) {
+            this.N = N;
+        }
+
         @Override
         public void run() {
-            while (val < 100) {
-                if (val % 2 == 1)
-                    synchronized (lock) {
-                        val += 1;
-                        output.add(val);
-                        System.out.println(val);
+            int c = 0;
+            while (true) {
+                c++;
+                synchronized (lock) {
+                    while (val % 2 == 0) try {
+                        lock.wait();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
+                    val += 1;
+                    if (val > N) {
+                        lock.notify();
+                        break;
+                    }
+                    output.add(val);
+                    System.out.println(val);
+                    lock.notify();
+                }
             }
-            end += 1;
+            System.out.println("Even count : " + c);
         }
     }
 }
