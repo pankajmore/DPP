@@ -29,6 +29,25 @@ public class Node {
         return n;
     }
 
+    public int length() {
+        Node head = this;
+        int len = 0;
+        while (head != null) {
+            head = head.next;
+            len++;
+        }
+        return len;
+    }
+
+    public Node kthNext(int k) {
+        Node curr = this;
+        while (k-- > 0) {
+            curr = curr.next;
+            if (curr == null) return null;
+        }
+        return curr;
+    }
+
     public Node iReverse() {
         Node temp, curr = this, rest = null;
         while (curr != null) {
