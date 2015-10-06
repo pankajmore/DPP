@@ -48,6 +48,35 @@ public class Node {
         return curr;
     }
 
+    public Node kthLast(int k) throws Exception {
+        Node x = this, y = this;
+        while (k-- > 0) {
+            if (y == null) throw new Exception("Index k out of bounds");
+            y = y.next;
+        }
+        while (y != null) {
+            x = x.next;
+            y = y.next;
+        }
+        return x;
+    }
+
+    public Node removeKthLast(int k) throws Exception {
+        Node n;
+        try {
+            n = this.kthLast(k + 1);
+            Node toBeDeleted = n.next;
+            n.next = toBeDeleted.next;
+            return this;
+        } catch (Exception e) {
+            n = this.kthLast(k);
+            assert (n == this);
+            Node newHead = this.next;
+            this.next = null;
+            return newHead;
+        }
+    }
+
     public Node iReverse() {
         Node temp, curr = this, rest = null;
         while (curr != null) {
