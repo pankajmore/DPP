@@ -33,7 +33,7 @@ public class RPN {
                         res = x / y;
                         break;
                     default:
-                        throw new Exception(String.format("Unknow operator encountered : %s", s));
+                        throw new Exception(String.format("Unknown operator encountered : %s", s));
                 }
                 stack.push(res);
             }
