@@ -18,6 +18,13 @@ public class BinaryTreeNode {
         this._right = right;
     }
 
+    public BinaryTreeNode(BinaryTreeNode other) throws Exception {
+        if (other == null) throw new Exception("Cannot copy a null tree!");
+        this._val = other._val;
+        if (other._left != null) this._left = new BinaryTreeNode(other._left);
+        if (other._right != null) this._right = new BinaryTreeNode(other._right);
+    }
+
     public int val() {
         return _val;
     }
@@ -253,6 +260,35 @@ public class BinaryTreeNode {
             if (r.first()) return r;
         }
         return new Pair<>(false, null);
+    }
+
+    public boolean isSymmetric() throws Exception {
+        if (this._left == null)
+            return this._right == null;
+        BinaryTreeNode left = new BinaryTreeNode(this.left());
+        left.invert();
+        return left.equals(this._right);
+    }
+
+    public void invert() {
+        if (this._left != null) this._left.invert();
+        if (this._right != null) this._right.invert();
+        BinaryTreeNode temp = this._left;
+        this._left = this._right;
+        this._right = temp;
+    }
+
+    public boolean equals(Object other) {
+        if (other == null) return false;
+        if (!(other instanceof BinaryTreeNode)) return false;
+        BinaryTreeNode btOther = (BinaryTreeNode) other;
+        boolean ok;
+        ok = (this._val == btOther._val);
+        if (this._left != null)
+            ok &= this._left.equals(btOther._left);
+        if (this._right != null)
+            ok &= this._right.equals(btOther._right);
+        return ok;
     }
 }
 

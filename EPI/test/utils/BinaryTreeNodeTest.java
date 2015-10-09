@@ -94,4 +94,10 @@ public class BinaryTreeNodeTest {
         assert (tree.successor(32) == null);
 
     }
+
+    @Test
+    public void testIsSymmetric() throws Exception {
+        assert BinaryTreeExample.symmetricTree().isSymmetric();
+
+    }
 }

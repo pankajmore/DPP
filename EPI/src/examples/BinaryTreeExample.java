@@ -19,4 +19,8 @@ public class BinaryTreeExample {
         BinaryTreeNode root = new BinaryTreeNode(19, l, r);
         return root;
     }
+
+    public static BinaryTreeNode symmetricTree() {
+        return new BinaryTreeNode(314, new BinaryTreeNode(6, null, new BinaryTreeNode(2, null, new BinaryTreeNode(3, null, null))), new BinaryTreeNode(6, new BinaryTreeNode(2, new BinaryTreeNode(3, null, null), null), null));
+    }
 }
