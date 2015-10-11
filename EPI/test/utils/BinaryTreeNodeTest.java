@@ -100,4 +100,13 @@ public class BinaryTreeNodeTest {
         assert BinaryTreeExample.symmetricTree().isSymmetric();
 
     }
+
+    @Test
+    public void testInOrderPreOrder() throws Exception {
+        BinaryTreeNode tree = BinaryTreeExample.constructBSTExample();
+        BinaryTreeNode derivedFromPreOrder = BinaryTreeNode.construct(tree.inOrderVals(), tree.preOrder());
+        BinaryTreeNode derivedFromPostOrder = BinaryTreeNode.construct(tree.inOrderVals(), tree.postOrder());
+        assert tree.equals(derivedFromPreOrder);
+        assert tree.equals(derivedFromPostOrder);
+    }
 }

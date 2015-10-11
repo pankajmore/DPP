@@ -25,6 +25,54 @@ public class BinaryTreeNode {
         if (other._right != null) this._right = new BinaryTreeNode(other._right);
     }
 
+    public static BinaryTreeNode construct(List<Integer> inOrder, List<Integer> otherOrder) throws Exception {
+        if (inOrder.get(0).equals(otherOrder.get(0))) //postOrder
+            return constructFromInOrderAndPostOrder(inOrder, otherOrder);
+        return constructFromInOrderAndPreOrder(inOrder, otherOrder);
+    }
+
+    public static BinaryTreeNode constructFromInOrderAndPostOrder(List<Integer> inOrder, List<Integer> postOrder) throws Exception {
+        if (inOrder.size() != postOrder.size()) throw new Exception("Unequal lists!");
+        if (postOrder.size() == 0) throw new Exception("Cannot create a tree out of empty list!");
+        BinaryTreeNode root = new BinaryTreeNode(postOrder.get(postOrder.size() - 1), null, null);
+        int rootPosition = inOrder.indexOf(root._val);
+        if (rootPosition == -1) throw new Exception("Cannot find the root in the inOrder list");
+        List<Integer> leftInOrder = inOrder.subList(0, rootPosition);
+        if (!leftInOrder.isEmpty()) {
+            List<Integer> leftPostOrder = postOrder.subList(0, leftInOrder.size());
+            assert leftInOrder.size() == leftPostOrder.size();
+            root._left = constructFromInOrderAndPostOrder(leftInOrder, leftPostOrder);
+        }
+        if (rootPosition + 1 < inOrder.size()) {
+            List<Integer> rightInOrder = inOrder.subList(rootPosition + 1, inOrder.size());
+            List<Integer> rightPostOrder = postOrder.subList(leftInOrder.size(), postOrder.size() - 1);
+            assert rightInOrder.size() == rightPostOrder.size();
+            root._right = constructFromInOrderAndPostOrder(rightInOrder, rightPostOrder);
+        }
+        return root;
+    }
+
+    private static BinaryTreeNode constructFromInOrderAndPreOrder(List<Integer> inOrder, List<Integer> preOrder) throws Exception {
+        if (inOrder.size() != preOrder.size()) throw new Exception("Unequal lists!");
+        if (preOrder.size() == 0) throw new Exception("Cannot create a tree out of empty list!");
+        BinaryTreeNode root = new BinaryTreeNode(preOrder.get(0), null, null);
+        int rootPosition = inOrder.indexOf(root._val);
+        if (rootPosition == -1) throw new Exception("Cannot find the root in the inOrder list");
+        List<Integer> leftInOrder = inOrder.subList(0, rootPosition);
+        if (!leftInOrder.isEmpty()) {
+            List<Integer> leftPreOrder = preOrder.subList(1, leftInOrder.size() + 1);
+            assert leftInOrder.size() == leftPreOrder.size();
+            root._left = constructFromInOrderAndPreOrder(leftInOrder, leftPreOrder);
+        }
+        if (rootPosition + 1 < inOrder.size()) {
+            List<Integer> rightInOrder = inOrder.subList(rootPosition + 1, inOrder.size());
+            List<Integer> rightPreOrder = preOrder.subList(leftInOrder.size() + 1, preOrder.size());
+            assert rightInOrder.size() == rightPreOrder.size();
+            root._right = constructFromInOrderAndPreOrder(rightInOrder, rightPreOrder);
+        }
+        return root;
+    }
+
     public int val() {
         return _val;
     }
@@ -109,6 +157,16 @@ public class BinaryTreeNode {
         if (this.right() != null)
             ls.addAll(this.right().inOrder());
         return ls;
+    }
+
+    public List<Integer> inOrderVals() {
+        List<Integer> vals = new ArrayList<>();
+        if (this.left() != null)
+            vals.addAll(this.left().inOrderVals());
+        vals.add(this.val());
+        if (this.right() != null)
+            vals.addAll(this.right().inOrderVals());
+        return vals;
     }
 
     //TODO: implement morris traversal
