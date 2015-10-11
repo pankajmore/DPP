@@ -26,50 +26,37 @@ public class BinaryTreeNode {
     }
 
     public static BinaryTreeNode construct(List<Integer> inOrder, List<Integer> otherOrder) throws Exception {
+        Map<Integer, Integer> nodeToIndex = new HashMap<>();
+        for (int i = 0; i < inOrder.size(); i++)
+            nodeToIndex.put(inOrder.get(i), i);
         if (inOrder.get(0).equals(otherOrder.get(0))) //postOrder
-            return constructFromInOrderAndPostOrder(inOrder, otherOrder);
-        return constructFromInOrderAndPreOrder(inOrder, otherOrder);
+            return constructFromInOrderAndPostOrder(otherOrder, 0, otherOrder.size(), 0, inOrder.size(), nodeToIndex);
+        return constructFromInOrderAndPreOrder(otherOrder, 0, otherOrder.size(), 0, inOrder.size(), nodeToIndex);
     }
 
-    public static BinaryTreeNode constructFromInOrderAndPostOrder(List<Integer> inOrder, List<Integer> postOrder) throws Exception {
-        if (inOrder.size() != postOrder.size()) throw new Exception("Unequal lists!");
-        if (postOrder.size() == 0) throw new Exception("Cannot create a tree out of empty list!");
+    private static BinaryTreeNode constructFromInOrderAndPostOrder(List<Integer> postOrder, Integer postOrderStart, Integer postOrderEnd,
+                                                                   Integer inOrderStart, Integer inOrderEnd,
+                                                                   Map<Integer, Integer> nodeToIndex) throws Exception {
+        if (inOrderEnd <= inOrderStart || postOrderEnd <= postOrderStart) return null;
         BinaryTreeNode root = new BinaryTreeNode(postOrder.get(postOrder.size() - 1), null, null);
-        int rootPosition = inOrder.indexOf(root._val);
-        if (rootPosition == -1) throw new Exception("Cannot find the root in the inOrder list");
-        List<Integer> leftInOrder = inOrder.subList(0, rootPosition);
-        if (!leftInOrder.isEmpty()) {
-            List<Integer> leftPostOrder = postOrder.subList(0, leftInOrder.size());
-            assert leftInOrder.size() == leftPostOrder.size();
-            root._left = constructFromInOrderAndPostOrder(leftInOrder, leftPostOrder);
-        }
-        if (rootPosition + 1 < inOrder.size()) {
-            List<Integer> rightInOrder = inOrder.subList(rootPosition + 1, inOrder.size());
-            List<Integer> rightPostOrder = postOrder.subList(leftInOrder.size(), postOrder.size() - 1);
-            assert rightInOrder.size() == rightPostOrder.size();
-            root._right = constructFromInOrderAndPostOrder(rightInOrder, rightPostOrder);
-        }
+        Integer rootPosition = nodeToIndex.get(root._val);
+        if (rootPosition == null) throw new Exception("Cannot find the root in the inOrder list");
+        Integer leftSubtreeSize = rootPosition - inOrderStart;
+        root._left = constructFromInOrderAndPostOrder(postOrder, postOrderStart, postOrderStart + leftSubtreeSize, inOrderStart, rootPosition, nodeToIndex);
+        root._right = constructFromInOrderAndPostOrder(postOrder, postOrderStart + leftSubtreeSize, postOrderEnd - 1, rootPosition + 1, inOrderEnd, nodeToIndex);
         return root;
     }
 
-    private static BinaryTreeNode constructFromInOrderAndPreOrder(List<Integer> inOrder, List<Integer> preOrder) throws Exception {
-        if (inOrder.size() != preOrder.size()) throw new Exception("Unequal lists!");
-        if (preOrder.size() == 0) throw new Exception("Cannot create a tree out of empty list!");
-        BinaryTreeNode root = new BinaryTreeNode(preOrder.get(0), null, null);
-        int rootPosition = inOrder.indexOf(root._val);
-        if (rootPosition == -1) throw new Exception("Cannot find the root in the inOrder list");
-        List<Integer> leftInOrder = inOrder.subList(0, rootPosition);
-        if (!leftInOrder.isEmpty()) {
-            List<Integer> leftPreOrder = preOrder.subList(1, leftInOrder.size() + 1);
-            assert leftInOrder.size() == leftPreOrder.size();
-            root._left = constructFromInOrderAndPreOrder(leftInOrder, leftPreOrder);
-        }
-        if (rootPosition + 1 < inOrder.size()) {
-            List<Integer> rightInOrder = inOrder.subList(rootPosition + 1, inOrder.size());
-            List<Integer> rightPreOrder = preOrder.subList(leftInOrder.size() + 1, preOrder.size());
-            assert rightInOrder.size() == rightPreOrder.size();
-            root._right = constructFromInOrderAndPreOrder(rightInOrder, rightPreOrder);
-        }
+    private static BinaryTreeNode constructFromInOrderAndPreOrder(List<Integer> preOrder, Integer preOrderStart, Integer preOrderEnd,
+                                                                  Integer inOrderStart, Integer inOrderEnd,
+                                                                  Map<Integer, Integer> nodeToIndex) throws Exception {
+        if (inOrderEnd <= inOrderStart || preOrderEnd <= preOrderStart) return null;
+        Integer rootPosition = nodeToIndex.get(preOrder.get(preOrderStart));
+        if (rootPosition == null) throw new Exception("Cannot find the root in the inOrder list");
+        Integer leftSubTreeSize = rootPosition - inOrderStart;
+        BinaryTreeNode root = new BinaryTreeNode(preOrder.get(preOrderStart), null, null);
+        root._left = constructFromInOrderAndPreOrder(preOrder, preOrderStart + 1, preOrderStart + 1 + leftSubTreeSize, inOrderStart, rootPosition, nodeToIndex);
+        root._right = constructFromInOrderAndPreOrder(preOrder, preOrderStart + 1 + leftSubTreeSize, preOrderEnd, rootPosition + 1, inOrderEnd, nodeToIndex);
         return root;
     }
 
