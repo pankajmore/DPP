@@ -38,7 +38,7 @@ public class BinaryTreeNode {
                                                                    Integer inOrderStart, Integer inOrderEnd,
                                                                    Map<Integer, Integer> nodeToIndex) throws Exception {
         if (inOrderEnd <= inOrderStart || postOrderEnd <= postOrderStart) return null;
-        BinaryTreeNode root = new BinaryTreeNode(postOrder.get(postOrder.size() - 1), null, null);
+        BinaryTreeNode root = new BinaryTreeNode(postOrder.get(postOrderEnd - 1), null, null);
         Integer rootPosition = nodeToIndex.get(root._val);
         if (rootPosition == null) throw new Exception("Cannot find the root in the inOrder list");
         Integer leftSubtreeSize = rootPosition - inOrderStart;
