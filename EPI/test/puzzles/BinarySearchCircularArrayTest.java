@@ -1,6 +1,7 @@
 package puzzles;
 
 import com.pholser.junit.quickcheck.ForAll;
+import org.junit.Test;
 import org.junit.contrib.theories.Theories;
 import org.junit.contrib.theories.Theory;
 import org.junit.runner.RunWith;
@@ -12,6 +13,13 @@ import java.util.Random;
 
 @RunWith(Theories.class)
 public class BinarySearchCircularArrayTest {
+    @Test
+    public void duplicatesTest() {
+        Integer[] A = {1, 1, 1, 1, 1, 1, 1, 1, 0, 1};
+        assert BinarySearchCircularArray.minIndex(A) != 8;
+        assert BinarySearchCircularArray.minIndexWithDuplicatesAllowed(A) == 8;
+    }
+
     @Theory
     public void sameAsMinIndex(@ForAll List<Integer> A) {
         if (A.size() < 1) return;
