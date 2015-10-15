@@ -29,4 +29,18 @@ public class BinarySearchCircularArray {
             return A[r_res] < A[l_res] ? r_res : l_res;
         }
     }
+
+    public static int index(Integer[] A, Integer x) {
+        int l = 0, r = A.length - 1, m = minIndex(A);
+        if (x < A[r]) l = m;
+        else if (x > A[r]) r = m;
+        else return r;
+        while (l <= r) {
+            m = l + (r - l) / 2;
+            if (x > A[m]) l = m + 1;
+            else if (x < A[m]) r = m - 1;
+            else return m;
+        }
+        return -1;
+    }
 }
