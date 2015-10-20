@@ -109,4 +109,13 @@ public class BinaryTreeNodeTest {
         assert tree.equals(derivedFromPreOrder);
         assert tree.equals(derivedFromPostOrder);
     }
+
+    @Test
+    public void testLeastCommonAncestorDistinctBST() throws Exception {
+        BinaryTreeNode root = BinaryTreeExample.constructBSTExample();
+        BinaryTreeNode x = root.left().left();
+        BinaryTreeNode y = root.left().right().right();
+        BinaryTreeNode l = root.left();
+        assert l.equals(root.leastCommonAncestorDistinctBST(x, y));
+    }
 }

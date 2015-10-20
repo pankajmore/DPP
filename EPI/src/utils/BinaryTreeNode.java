@@ -323,6 +323,23 @@ public class BinaryTreeNode {
         this._right = temp;
     }
 
+    /**
+     * This must be a distinct binary search tree.
+     *
+     * @param x a node in this BST
+     * @param y another node in this BST
+     *          assume x.val() < y.val(), x and y are in the bST
+     * @return least common ancestor of x & y
+     */
+    public BinaryTreeNode leastCommonAncestorDistinctBST(BinaryTreeNode x, BinaryTreeNode y) {
+        BinaryTreeNode t = this;
+        while (t.val() < x.val() || t.val() > y.val()) {
+            while (t.val() < x.val()) t = t.right();
+            while (t.val() > y.val()) t = t.left();
+        }
+        return t;
+    }
+
     public boolean equals(Object other) {
         if (other == null) return false;
         if (!(other instanceof BinaryTreeNode)) return false;
