@@ -6,7 +6,12 @@ import java.util.*;
  * Created by Pankaj on 10/21/15.
  */
 public class MostVisitedPages {
-    private TreeMap<Key, Integer> _map = new TreeMap<>(new EntryComparator());
+    private Map<String, Integer> _hash = new HashMap<>();
+    private TreeMap<Key, Integer> _map = new TreeMap<>();
+
+    private Key getKey(String page) {
+        return new Key(page, _hash.get(page));
+    }
 
     /**
      * Time : O(log(n)), n = number of distinct pages
@@ -14,20 +19,19 @@ public class MostVisitedPages {
      * @param p adds the given log entry
      */
     public void add(Entry p) {
-        if (!_map.containsKey(p.toKey(0))) {
-            _map.put(p.toKey(0), 0);
-        }
-        Integer count = _map.get(p.toKey(0));
-        _map.remove(p.toKey(0));
-        _map.put(p.toKey(++count), count);
+        if (!_hash.containsKey(p._page)) _hash.put(p._page, 0);
+        if (!_map.containsKey(getKey(p._page))) _map.put(getKey(p._page), 0);
+        _map.remove(getKey(p._page));
+        _hash.put(p._page, _hash.get(p._page) + 1);
+        _map.put(getKey(p._page), _hash.get(p._page));
     }
 
 
     /**
-     * Time : O(k*log(n)), n = number of distinct pages
+     * Time : O(k+log(n)), n = number of distinct pages
      *
      * @param k most visited pages
-     * @return list of top k most visited pages
+     * @return list of top min(k,n) most visited pages
      */
     public List<String> common(int k) {
         ArrayList<String> topKPages = new ArrayList<>();
@@ -62,15 +66,10 @@ public class MostVisitedPages {
 
         @Override
         public int compareTo(Key o) {
-            return Integer.compare(this._count, o._count);
-        }
-    }
-
-    private static class EntryComparator implements Comparator<Key> {
-
-        @Override
-        public int compare(Key o1, Key o2) {
-            return o1._page.compareTo(o2._page);
+            int i = Integer.compare(this._count, o._count);
+            if (i != 0) return i;
+            // if count is same, the smaller page is "more frequent" than larger page.
+            return -this._page.compareTo(o._page);
         }
     }
 }
