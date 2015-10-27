@@ -8,7 +8,7 @@ import java.util.List;
 public class ZeroOneKnapsack {
     public static int knapsack(int capacity, List<Item> items) {
         int N = items.size();
-        Integer[][] V = new Integer[N][capacity + 1];
+        int[][] V = new int[N][capacity + 1];
         for (int i = 1; i < N; i++)
             for (int w = 0; w <= capacity; w++)
                 V[i][w] = items.get(i).weight < w ? Math.max(V[i - 1][w], V[i - 1][w - items.get(i).weight] + items.get(i).value)
