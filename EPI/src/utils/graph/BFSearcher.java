@@ -23,4 +23,8 @@ public class BFSearcher {
             for (Integer v : g.adj(u)) if (!visited[v]) q.add(v);
         }
     }
+
+    public boolean isReachable(int v) {
+        return visited[v];
+    }
 }
