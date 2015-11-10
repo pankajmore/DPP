@@ -18,8 +18,9 @@ public class DirectedGraph {
         for (int i = 0; i < _numVertices; i++) _adjacencyList.add(new HashSet<>());
     }
 
-    public void addEdge(int u, int v) {
+    public DirectedGraph addEdge(int u, int v) {
         _adjacencyList.get(u).add(v);
+        return this;
     }
 
     public Set<Integer> adj(int u) {
