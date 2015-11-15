@@ -18,6 +18,13 @@ public class DirectedGraph {
         for (int i = 0; i < _numVertices; i++) _adjacencyList.add(new HashSet<>());
     }
 
+    public DirectedGraph transpose() {
+        DirectedGraph gt = new DirectedGraph(_numVertices);
+        for (int u = 0; u < _numVertices; u++)
+            for (Integer v : adj(u)) gt.addEdge(v, u);
+        return gt;
+    }
+
     public DirectedGraph addEdge(int u, int v) {
         _adjacencyList.get(u).add(v);
         return this;
