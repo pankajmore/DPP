@@ -1,5 +1,8 @@
 package utils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Pankaj on 6/10/15.
  */
@@ -27,6 +30,16 @@ public class Node {
         n.val = x;
         n.next = h;
         return n;
+    }
+
+    public List<Integer> toList() {
+        Node curr = this;
+        List<Integer> l = new ArrayList<>();
+        while (curr != null) {
+            l.add(curr.val);
+            curr = curr.next;
+        }
+        return l;
     }
 
     public int length() {
