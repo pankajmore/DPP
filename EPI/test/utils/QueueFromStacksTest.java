@@ -1,4 +1,4 @@
-package utils.graph;
+package utils;
 
 import org.junit.Test;
 
