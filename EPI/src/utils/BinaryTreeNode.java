@@ -1,8 +1,10 @@
 package utils;
 
 import java.util.*;
+import java.util.Stack;
 
 import static java.lang.Math.abs;
+import static java.util.stream.Collectors.toList;
 
 /**
  * Created by Pankaj on 6/12/15.
@@ -146,6 +148,19 @@ public class BinaryTreeNode {
         return ls;
     }
 
+    public List<BinaryTreeNode> preOrderUsingStack() {
+        List<BinaryTreeNode> ls = new ArrayList<>();
+        Stack<BinaryTreeNode> stack = new Stack<>();
+        stack.push(this);
+        while (!stack.isEmpty()) {
+            BinaryTreeNode n = stack.pop();
+            ls.add(n);
+            if (n.right() != null) stack.push(n.right());
+            if (n.left() != null) stack.push(n.left());
+        }
+        return ls;
+    }
+
     public List<Integer> inOrderVals() {
         List<Integer> vals = new ArrayList<>();
         if (this.left() != null)
@@ -161,14 +176,18 @@ public class BinaryTreeNode {
         return inOrder();
     }
 
-    public List<Integer> preOrder() {
-        List<Integer> vals = new ArrayList<Integer>();
-        vals.add(this.val());
+    public List<BinaryTreeNode> preOrder() {
+        List<BinaryTreeNode> ls = new ArrayList<>();
+        ls.add(this);
         if (this.left() != null)
-            vals.addAll(this.left().preOrder());
+            ls.addAll(this.left().preOrder());
         if (this.right() != null)
-            vals.addAll(this.right().preOrder());
-        return vals;
+            ls.addAll(this.right().preOrder());
+        return ls;
+    }
+
+    public List<Integer> preOrderVals() {
+        return preOrder().stream().map(BinaryTreeNode::val).collect(toList());
     }
 
     public List<Integer> postOrder() {

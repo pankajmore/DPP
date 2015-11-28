@@ -104,7 +104,7 @@ public class BinaryTreeNodeTest {
     @Test
     public void testInOrderPreOrder() throws Exception {
         BinaryTreeNode tree = BinaryTreeExample.constructBSTExample();
-        BinaryTreeNode derivedFromPreOrder = BinaryTreeNode.construct(tree.inOrderVals(), tree.preOrder());
+        BinaryTreeNode derivedFromPreOrder = BinaryTreeNode.construct(tree.inOrderVals(), tree.preOrderVals());
         BinaryTreeNode derivedFromPostOrder = BinaryTreeNode.construct(tree.inOrderVals(), tree.postOrder());
         assert tree.equals(derivedFromPreOrder);
         assert tree.equals(derivedFromPostOrder);
@@ -117,5 +117,51 @@ public class BinaryTreeNodeTest {
         BinaryTreeNode y = root.left().right().right();
         BinaryTreeNode l = root.left();
         assert l.equals(root.leastCommonAncestorDistinctBST(x, y));
+    }
+
+    @Test
+    public void testPreOrderUsingStack() throws Exception {
+        BinaryTreeNode tree = BinaryTreeExample.constructBookExample();
+        assert tree.preOrder().equals(tree.preOrderUsingStack());
+    }
+
+    @Test
+    public void testIsBinarySearchTree() throws Exception {
+
+    }
+
+    @Test
+    public void testIsBSTInOrderImpl() throws Exception {
+
+    }
+
+    @Test
+    public void testIsBSTPostOrderImpl() throws Exception {
+
+    }
+
+    @Test
+    public void testIsBSTRange() throws Exception {
+
+    }
+
+    @Test
+    public void testIsBSTRangeImpl() throws Exception {
+
+    }
+
+    @Test
+    public void testSuccessorImpl() throws Exception {
+
+    }
+
+    @Test
+    public void testInvert() throws Exception {
+
+    }
+
+    @Test
+    public void testEquals() throws Exception {
+
     }
 }
