@@ -77,14 +77,13 @@ public class BinaryTreeNodeTest {
     @Test
     public void testIsSymmetric() throws Exception {
         assert BinaryTreeExample.symmetricTree().isSymmetric();
-
     }
 
     @Test
     public void testInOrderPreOrder() throws Exception {
         BinaryTreeNode tree = BinaryTreeExample.constructBSTExample();
         BinaryTreeNode derivedFromPreOrder = BinaryTreeNode.construct(tree.inOrderVals(), tree.preOrderVals());
-        BinaryTreeNode derivedFromPostOrder = BinaryTreeNode.construct(tree.inOrderVals(), tree.postOrder());
+        BinaryTreeNode derivedFromPostOrder = BinaryTreeNode.construct(tree.inOrderVals(), tree.postOrderVals());
         assert tree.equals(derivedFromPreOrder);
         assert tree.equals(derivedFromPostOrder);
     }
@@ -102,5 +101,11 @@ public class BinaryTreeNodeTest {
     public void testPreOrderUsingStack() throws Exception {
         BinaryTreeNode tree = BinaryTreeExample.constructBookExample();
         assert tree.preOrder().equals(tree.preOrderUsingStack());
+    }
+
+    @Test
+    public void testPostOrderUsingStack() throws Exception {
+        BinaryTreeNode tree = BinaryTreeExample.constructBookExample();
+        assert tree.postOrder().equals(tree.postOrderUsingStack());
     }
 }

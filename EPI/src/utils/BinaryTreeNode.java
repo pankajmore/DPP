@@ -161,6 +161,32 @@ public class BinaryTreeNode {
         return ls;
     }
 
+    public List<BinaryTreeNode> postOrderUsingStack() {
+        List<BinaryTreeNode> ls = new ArrayList<>();
+        Stack<BinaryTreeNode> s = new Stack<>();
+        Stack<BinaryTreeNode> v = new Stack<>();
+        s.push(this);
+        while (!s.isEmpty()) {
+            BinaryTreeNode n = s.peek();
+            if (v.empty()) {
+                v.push(n);
+                if (n.right() != null) s.push(n.right());
+                if (n.left() != null) s.push(n.left());
+            } else {
+                if (n.equals(v.peek())) {
+                    s.pop();
+                    v.pop();
+                    ls.add(n);
+                } else {
+                    v.push(n);
+                    if (n.right() != null) s.push(n.right());
+                    if (n.left() != null) s.push(n.left());
+                }
+            }
+        }
+        return ls;
+    }
+
     public List<Integer> inOrderVals() {
         List<Integer> vals = new ArrayList<>();
         if (this.left() != null)
@@ -190,14 +216,18 @@ public class BinaryTreeNode {
         return preOrder().stream().map(BinaryTreeNode::val).collect(toList());
     }
 
-    public List<Integer> postOrder() {
-        List<Integer> vals = new ArrayList<Integer>();
+    public List<BinaryTreeNode> postOrder() {
+        List<BinaryTreeNode> ls = new ArrayList<>();
         if (this.left() != null)
-            vals.addAll(this.left().postOrder());
+            ls.addAll(this.left().postOrder());
         if (this.right() != null)
-            vals.addAll(this.right().postOrder());
-        vals.add(this.val());
-        return vals;
+            ls.addAll(this.right().postOrder());
+        ls.add(this);
+        return ls;
+    }
+
+    public List<Integer> postOrderVals() {
+        return postOrder().stream().map(BinaryTreeNode::val).collect(toList());
     }
 
     public List<Integer> levelOrder() {
