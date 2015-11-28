@@ -13,27 +13,6 @@ import static junit.framework.TestCase.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class BinaryTreeNodeTest {
-
-    @Test
-    public void testInOrder() throws Exception {
-
-    }
-
-    @Test
-    public void testPreOrder() throws Exception {
-
-    }
-
-    @Test
-    public void testPostOrder() throws Exception {
-
-    }
-
-    @Test
-    public void testLevelOrder() throws Exception {
-
-    }
-
     @Test
     public void testLevelOrderByDepth() throws Exception {
         BinaryTreeNode root = BinaryTreeExample.constructBookExample();
@@ -123,45 +102,5 @@ public class BinaryTreeNodeTest {
     public void testPreOrderUsingStack() throws Exception {
         BinaryTreeNode tree = BinaryTreeExample.constructBookExample();
         assert tree.preOrder().equals(tree.preOrderUsingStack());
-    }
-
-    @Test
-    public void testIsBinarySearchTree() throws Exception {
-
-    }
-
-    @Test
-    public void testIsBSTInOrderImpl() throws Exception {
-
-    }
-
-    @Test
-    public void testIsBSTPostOrderImpl() throws Exception {
-
-    }
-
-    @Test
-    public void testIsBSTRange() throws Exception {
-
-    }
-
-    @Test
-    public void testIsBSTRangeImpl() throws Exception {
-
-    }
-
-    @Test
-    public void testSuccessorImpl() throws Exception {
-
-    }
-
-    @Test
-    public void testInvert() throws Exception {
-
-    }
-
-    @Test
-    public void testEquals() throws Exception {
-
     }
 }
