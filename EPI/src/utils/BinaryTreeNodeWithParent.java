@@ -1,9 +1,10 @@
 package utils;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-import static java.lang.Integer.max;
 import static java.lang.Math.abs;
 
 /**
@@ -35,6 +36,18 @@ public class BinaryTreeNodeWithParent {
         this._parent = null;
         _left._parent = this;
         _right._parent = this;
+    }
+
+    public BinaryTreeNodeWithParent left() {
+        return this._left;
+    }
+
+    public BinaryTreeNodeWithParent right() {
+        return this._right;
+    }
+
+    public BinaryTreeNodeWithParent parent() {
+        return this._parent;
     }
 
     public BinaryTreeNodeWithParent leftMost() {
@@ -76,11 +89,19 @@ public class BinaryTreeNodeWithParent {
         return _val;
     }
 
+    /**
+     * Time : O(max(d1,d2))
+     * Space : O(1)
+     *
+     * @param n1 node 1
+     * @param n2 node 2
+     * @return the lca of n1 and n2
+     */
     public BinaryTreeNodeWithParent leastCommonAncestor(BinaryTreeNodeWithParent n1, BinaryTreeNodeWithParent n2) {
-        int h1 = n1.height();
-        int h2 = n2.height();
-        int t = abs(h1 - h2);
-        if (h1 > h2) while (t-- > 0) n1 = n1._parent;
+        int d1 = n1.depth();
+        int d2 = n2.depth();
+        int t = abs(d1 - d2);
+        if (d1 > d2) while (t-- > 0) n1 = n1._parent;
         else while (t-- > 0) n2 = n2._parent;
         while (n1 != n2) {
             n1 = n1._parent;
@@ -89,9 +110,51 @@ public class BinaryTreeNodeWithParent {
         return n1;
     }
 
+    /**
+     * Time: O(max(d(lca-n1),d(lca-n2))
+     * Space: O(max(d(lca-n1),d(lca-n2))
+     *
+     * @param n1 node 1
+     * @param n2 node 2
+     * @return lca of n1 and n2
+     */
+    public BinaryTreeNodeWithParent leastCommonAncestorHashTable(BinaryTreeNodeWithParent n1, BinaryTreeNodeWithParent n2) {
+        Set<BinaryTreeNodeWithParent> visited = new HashSet<>();
+        while (n1 != null || n2 != null) {
+            if (n1 != null) {
+                if (!visited.add(n1)) return n1;
+                n1 = n1._parent;
+            }
+            if (n2 != null) {
+                if (!visited.add(n2)) return n2;
+                n2 = n2._parent;
+            }
+        }
+        return null;
+    }
+
+    public int depth() {
+        BinaryTreeNodeWithParent n = this;
+        int d = 0;
+        while (n._parent != null) {
+            d++;
+            n = n._parent;
+        }
+        return d;
+    }
+
     public int height() {
-        if (_left == null && _right == null) return 0;
-        else if (_left == null) return 1 + _right.height();
-        else return 1 + max(_left.height(), _right.height());
+        int h = 0;
+        if (isLeaf())
+            return 0;
+        if (left() != null)
+            h = left().height();
+        if (right() != null && right().height() > h)
+            h = right().height();
+        return 1 + h;
+    }
+
+    public boolean isLeaf() {
+        return this._left == null && this._right == null;
     }
 }

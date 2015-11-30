@@ -15,4 +15,14 @@ public class BinaryTreeNodeWithParentTest {
         int[] expected = BinaryTreeExample.constructBookExample().inOrder().stream().mapToInt(BinaryTreeNode::val).toArray();
         assert Arrays.equals(actual, expected);
     }
+
+    @Test
+    public void testLeastCommonAncestor() {
+        BinaryTreeNodeWithParent root = new BinaryTreeNodeWithParent(BinaryTreeExample.constructBSTExample());
+        BinaryTreeNodeWithParent x = root.left().left();
+        BinaryTreeNodeWithParent y = root.left().right().right();
+        BinaryTreeNodeWithParent l = root.left();
+        assert l.equals(root.leastCommonAncestor(x, y));
+        assert l.equals(root.leastCommonAncestorHashTable(x, y));
+    }
 }
