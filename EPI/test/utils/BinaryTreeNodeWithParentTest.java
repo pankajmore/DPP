@@ -7,6 +7,13 @@ import java.util.Arrays;
 
 //TODO: Generate and test on random trees
 public class BinaryTreeNodeWithParentTest {
+    @Test
+    public void testDepth() {
+        BinaryTreeNodeWithParent bookExample = new BinaryTreeNodeWithParent(BinaryTreeExample.constructBookExample());
+        assert bookExample.depth() == 0;
+        assert bookExample.left().left().right().depth() == 3;
+        assert bookExample.right().left().right().left().depth() == 4;
+    }
 
     @Test
     public void testInOrder() throws Exception {
