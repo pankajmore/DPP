@@ -3,6 +3,9 @@ package puzzles;
 import org.junit.Test;
 import puzzles.SubseqCover.SubArray;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
 
@@ -18,5 +21,14 @@ public class SubseqCoverTest {
         List<String> subseq4 = Arrays.asList("0", "2", "9", "4", "6");
         SubArray rr = findSmallestSequentiallyCoveringSubset(a3, subseq4);
         assert (rr.start == 0 && rr.end == 9);
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        for (String s : a3) {
+            baos.write(s.getBytes());
+            baos.write("\n".getBytes());
+        }
+        InputStream stream = new ByteArrayInputStream(baos.toByteArray());
+        rr = findSmallestSequentiallyCoveringSubset(stream, subseq4);
+        assert rr.start == 0 && rr.end == 9;
     }
 }

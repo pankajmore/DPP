@@ -1,11 +1,20 @@
 package puzzles;
 
+import java.io.InputStream;
 import java.util.*;
+import java.util.concurrent.ConcurrentLinkedDeque;
 
 /**
  * Created by Pankaj on 11/30/15.
  */
 public class SubseqCover {
+    /**
+     * Assumes that keywords are distinct
+     *
+     * @param paragraph
+     * @param keywords
+     * @return
+     */
     public static SubArray findSmallestSequentiallyCoveringSubset(List<String> paragraph, List<String> keywords) {
         int i = 0, j = 0, N = paragraph.size(), M = keywords.size();
         SubArray minimalSubArray = new SubArray(0, N - 1);
@@ -25,19 +34,47 @@ public class SubseqCover {
                 if (subArray.compareTo(minimalSubArray) < 0) minimalSubArray = subArray;
             }
             while (i < j && map.size() == M) {
+                SubArray subArray = new SubArray(i, j - 1);
+                if (subArray.compareTo(minimalSubArray) < 0) minimalSubArray = subArray;
                 String keyword = paragraph.get(i);
                 if (keywordSet.contains(keyword)) {
                     map.put(keyword, map.get(keyword) - 1);
-                    if (map.get(keyword) == 0) {
-                        map.remove(keyword);
-                        SubArray subArray = new SubArray(i, j - 1);
-                        if (subArray.compareTo(minimalSubArray) < 0) minimalSubArray = subArray;
-                    }
+                    if (map.get(keyword) == 0) map.remove(keyword);
                 }
                 ++i;
             }
         }
         return minimalSubArray;
+    }
+
+    public static SubArray findSmallestSequentiallyCoveringSubset(InputStream paragraph, List<String> keywords) {
+        LinkedList<Integer> lastOccurrence = new LinkedList<>();
+        Map<String, Iterator<Integer>> map = new HashMap<>();
+        Set<String> keywordSet = new HashSet<>(keywords);
+        Scanner in = new Scanner(paragraph);
+        SubArray bestSubArray = null;
+        int i = 0;
+        while (in.hasNext()) {
+            String s = in.next();
+            if (keywordSet.contains(s)) {
+                if (map.containsKey(s)) {
+                    try {
+                        map.get(s).remove();
+                    } catch (ConcurrentModificationException e) {
+                        //TODO: understand why does it throw?
+                        e.printStackTrace();
+                    }
+                }
+                lastOccurrence.add(i);
+                map.put(s, lastOccurrence.descendingIterator());
+            }
+            if (map.size() == keywordSet.size()) {
+                SubArray currSubArray = new SubArray(lastOccurrence.getFirst(), i);
+                if (bestSubArray == null || currSubArray.compareTo(bestSubArray) < 0) bestSubArray = currSubArray;
+            }
+            ++i;
+        }
+        return bestSubArray;
     }
 
     public static class SubArray implements Comparable<SubArray> {
