@@ -48,7 +48,7 @@ public class SubseqCover {
     }
 
     public static SubArray findSmallestSequentiallyCoveringSubset(InputStream paragraph, List<String> keywords) {
-        LinkedList<Integer> lastOccurrence = new LinkedList<>();
+        Deque<Integer> lastOccurrence = new ConcurrentLinkedDeque<>();
         Map<String, Iterator<Integer>> map = new HashMap<>();
         Set<String> keywordSet = new HashSet<>(keywords);
         Scanner in = new Scanner(paragraph);
@@ -58,12 +58,8 @@ public class SubseqCover {
             String s = in.next();
             if (keywordSet.contains(s)) {
                 if (map.containsKey(s)) {
-                    try {
-                        map.get(s).remove();
-                    } catch (ConcurrentModificationException e) {
-                        //TODO: understand why does it throw?
-                        e.printStackTrace();
-                    }
+                    map.get(s).next(); // needed to make remove() not throw IllegalStateException
+                    map.get(s).remove();
                 }
                 lastOccurrence.add(i);
                 map.put(s, lastOccurrence.descendingIterator());
