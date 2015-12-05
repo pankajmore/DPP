@@ -1,5 +1,7 @@
 package puzzles;
 
+import utils.Node;
+
 import java.io.PrintStream;
 import java.util.Scanner;
 
@@ -7,9 +9,26 @@ import java.util.Scanner;
  * Created by Pankaj on 6/7/15.
  */
 public class MergeSortedLists {
+    public static Node sortList(Node l) {
+        if (l == null || l.next == null) return l;
+        Node prev = null;
+        Node slow = l;
+        Node fast = l;
+        while (fast != null && fast.next != null) {
+            prev = slow;
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        assert prev != null;
+        prev.next = null;
+        Node sortedL = sortList(l);
+        Node sortedR = sortList(slow);
+        return mergeSortedLists(sortedL, sortedR);
+    }
+
     public static Node mergeSortedLists(Node l, Node r) {
         Node cl = l, cr = r, head, curr;
-        if (l.value < r.value) {
+        if (l.val < r.val) {
             head = l;
             cl = cl.next;
         } else {
@@ -18,7 +37,7 @@ public class MergeSortedLists {
         }
         curr = head;
         while (cl != null && cr != null) {
-            if (cl.value < cr.value) {
+            if (cl.val < cr.val) {
                 curr.next = cl;
                 cl = cl.next;
             } else {
@@ -35,7 +54,7 @@ public class MergeSortedLists {
         return head;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Scanner in = new Scanner(System.in);
         PrintStream out = new PrintStream(System.out);
         int M = in.nextInt();
@@ -52,36 +71,4 @@ public class MergeSortedLists {
         out.println(m.toString());
     }
 
-    public static class Node {
-        public int value;
-        public Node next;
-
-        public Node(int v, Node next) {
-            this.value = v;
-            this.next = next;
-        }
-
-        public Node(int[] v) {
-            this.value = v[0];
-            this.next = null;
-            Node prev = this;
-            for (int i = 1; i < v.length; i++) {
-                prev.next = new Node(v[i], null);
-                prev = prev.next;
-            }
-        }
-
-        public String toString() {
-            StringBuilder sb = new StringBuilder();
-            sb.append(this.value);
-            Node curr = this.next;
-            while (curr != null) {
-                sb.append(" -> ");
-                sb.append(curr.value);
-                curr = curr.next;
-            }
-            return sb.toString();
-        }
-
-    }
 }
