@@ -87,4 +87,22 @@ public class Permutations {
         }
         return -1;
     }
+
+    public static List<List<Integer>> allPermutations1(List<Integer> sequence) {
+        List<List<Integer>> allPermutations = new ArrayList<>();
+        allPermutations1Helper(0, sequence, allPermutations);
+        return allPermutations;
+    }
+
+    private static void allPermutations1Helper(int currentIndex, List<Integer> sequence, List<List<Integer>> allPermutations) {
+        if (currentIndex == sequence.size()) {
+            allPermutations.add(new ArrayList<>(sequence));
+            return;
+        }
+        for (int j = currentIndex; j < sequence.size(); j++) {
+            swap(sequence, currentIndex, j);
+            allPermutations1Helper(currentIndex + 1, sequence, allPermutations);
+            swap(sequence, j, currentIndex);
+        }
+    }
 }
