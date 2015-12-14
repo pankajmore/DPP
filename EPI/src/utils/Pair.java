@@ -19,4 +19,11 @@ public class Pair<T1, T2> {
     public T2 second() {
         return _second;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || !(o instanceof Pair)) return false;
+        Pair other = (Pair) o;
+        return other._first.equals(_first) && other._second.equals(_second);
+    }
 }
