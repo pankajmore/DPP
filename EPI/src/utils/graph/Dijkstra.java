@@ -4,7 +4,7 @@ import java.util.*;
 
 /**
  * Shortest path finding algorithm
- * Time : O(|V|^2)
+ * Time : O(|E| + |V|log|V|)
  * Space: O(|V|)
  */
 public class Dijkstra {
@@ -23,34 +23,28 @@ public class Dijkstra {
 
     private void run() {
         _dist[_source] = 0.0;
-        Set<Integer> unvisited = new HashSet<>();
-        for (int i = 0; i < _graph.size(); i++) unvisited.add(i);
+        PriorityQueue<Integer> unvisited = new PriorityQueue<>(new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                if (_dist[o1] == null || _dist[o2] == null) {
+                    return 0;
+                }
+                return Double.compare(_dist[o1], _dist[o2]);
+            }
+        });
+        unvisited.add(_source);
         while (!unvisited.isEmpty()) {
-            Integer u = findMin(unvisited);
-            if (u == null) return;
-            unvisited.remove(u);
+            Integer u = unvisited.poll();
             for (Edge edge : _graph.adj(u)) {
                 double alternate = _dist[u] + edge.w;
                 if (_dist[edge.v] == null || alternate < _dist[edge.v]) {
                     _dist[edge.v] = alternate;
                     _prev[edge.v] = u;
+                    if (!unvisited.contains(edge.v))
+                        unvisited.add(edge.v);
                 }
             }
         }
-    }
-
-    private Integer findMin(Set<Integer> unvisited) {
-        Double minDistance = null;
-        Integer minVertex = null;
-        for (Integer v : unvisited) {
-            if (_dist[v] != null) {
-                if (minVertex == null || _dist[v] < minDistance) {
-                    minVertex = v;
-                    minDistance = _dist[v];
-                }
-            }
-        }
-        return minVertex;
     }
 
     public double shortestPath(int v) {
