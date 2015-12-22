@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import static puzzles.Permutations.*;
 
-public class PermutationsTest {
+public class PermutationxsTest {
 
     @Test
     public void testAllPermutations() throws Exception {
@@ -29,6 +29,11 @@ public class PermutationsTest {
 
     @Test
     public void testNextPermutation() throws Exception {
+        assert nextPermutation(Arrays.asList(1, 2, 3)).equals(Arrays.asList(1, 3, 2));
+        assert nextPermutation(Arrays.asList(1, 3, 2)).equals(Arrays.asList(2, 1, 3));
+        assert nextPermutation(Arrays.asList(2, 1, 3)).equals(Arrays.asList(2, 3, 1));
+        assert nextPermutation(Arrays.asList(2, 3, 1)).equals(Arrays.asList(3, 1, 2));
+        assert nextPermutation(Arrays.asList(3, 1, 2)).equals(Arrays.asList(3, 2, 1));
         assert nextPermutation(Arrays.asList(3, 2, 1)) == null;
     }
 
