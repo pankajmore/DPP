@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import static puzzles.Permutations.*;
 
-public class PermutationxsTest {
+public class PermutationsTest {
 
     @Test
     public void testAllPermutations() throws Exception {
