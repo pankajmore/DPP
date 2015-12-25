@@ -8,7 +8,7 @@ import java.util.*;
 public class OnlineSampling {
     /**
      * Time : O(k)
-     * Space : O(1)
+     * Space : O(k)
      *
      * @param n positive integer
      * @param k 0 <= k <= n, k is an integer
@@ -41,7 +41,7 @@ public class OnlineSampling {
 
     /**
      * Time : O(k)
-     * Space : O(1)
+     * Space : O(k)
      * TODO: check the correctness
      *
      * @param n positive integer
