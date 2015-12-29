@@ -90,17 +90,6 @@ public class Node {
         }
     }
 
-    public Node iReverse() {
-        Node temp, curr = this, rest = null;
-        while (curr != null) {
-            temp = curr.next;
-            curr.next = rest;
-            rest = curr;
-            curr = temp;
-        }
-        return rest;
-    }
-
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(val);
@@ -155,5 +144,35 @@ public class Node {
                 return slow;
             }
         }
+    }
+
+    /**
+     * Modifies the original list, beware the side effects!
+     *
+     * @return true if the given linked list is a palindrome else false
+     */
+    public boolean isPalindrome() {
+        int size = this.length();
+        Node x = this;
+        Node y = this.kthNext((size - 1) / 2);
+        if ((size & 1) == 1) y = y.next; /* for odd, we start from mid + 1 */
+        y = y.reverse();
+        while (x != null && y != null) {
+            if (x.val != y.val) return false;
+            x = x.next;
+            y = y.next;
+        }
+        return true;
+    }
+
+    public Node reverse() {
+        Node curr = this, prev = null, next;
+        while (curr != null) {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        return prev;
     }
 }

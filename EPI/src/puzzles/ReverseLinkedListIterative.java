@@ -19,8 +19,8 @@ public class ReverseLinkedListIterative {
         for (int i = 0; i < N; i++) A[i] = in.nextInt();
         Node head = new Node(A);
         out.println(head.toString());
-        out.println(head.iReverse().toString());
+        out.println(head.reverse().toString());
 
-        assert (head.iReverse().iReverse().equals(head));
+        assert (head.reverse().reverse().equals(head));
     }
 }

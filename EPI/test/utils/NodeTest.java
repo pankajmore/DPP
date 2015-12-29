@@ -26,4 +26,12 @@ public class NodeTest {
         assert n.removeKthLast(1).val == 2;
         assert n.removeKthLast(1) == null;
     }
+
+    @Test
+    public void testIsPalindrome() throws Exception {
+        assert new Node(new int[]{1, 2, 1}).isPalindrome();
+        assert new Node(new int[]{1, 1}).isPalindrome();
+        assert new Node(new int[]{1, 2, 2, 1}).isPalindrome();
+        assert !(new Node(new int[]{1, 2, 3, 1}).isPalindrome());
+    }
 }
