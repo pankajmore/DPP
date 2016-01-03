@@ -2,7 +2,6 @@ package puzzles;
 
 import examples.BinaryTreeExample;
 import org.junit.Test;
-import utils.BinaryTree;
 import utils.BinaryTreeNode;
 
 import java.util.Arrays;
