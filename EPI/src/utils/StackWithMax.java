@@ -8,13 +8,21 @@ package utils;
 * with O(1) best case space complexity
 * */
 public class StackWithMax extends Stack {
-    private Node max;
+    private Stack max;
+
+    public StackWithMax() {
+        max = new Stack();
+    }
 
     public void push(int x) {
         super.push(x);
-        if (max != null && max.val > x)
-            x = max.val;
-        max = Node.prepend(max, x);
+        try {
+            if (max.isEmpty() || max.peek() <= x)
+                max.push(x);
+        } catch (Exception e) {
+            assert false;
+            e.printStackTrace();
+        }
     }
 
     public int peek() throws Exception {
@@ -22,14 +30,15 @@ public class StackWithMax extends Stack {
     }
 
     public int pop() throws Exception {
-        max = max.next;
+        if (max.isEmpty()) throw new Exception("Max stack should not be empty!");
+        if (super.peek() == max.peek()) max.pop();
         return super.pop();
     }
 
     public int max() throws Exception {
         if (max == null)
             throw new Exception("Stack is Empty!");
-        return max.val;
+        return max.peek();
     }
 
     public String toString() {

@@ -10,7 +10,6 @@ public class StackWithMaxTest {
     public void testMax() throws Exception {
         StackWithMax s = new StackWithMax();
         assert (s.isEmpty());
-        assert (s.toString().equals("Empty"));
         try {
             s.peek();
             fail();
