@@ -24,7 +24,7 @@ public class RenderingCalendar {
         return maxCount;
     }
 
-    public static class Interval {
+    public static class Interval implements Comparable<Interval> {
         private final int _start;
         private final int _end;
 
@@ -39,6 +39,11 @@ public class RenderingCalendar {
 
         public int end() {
             return _end;
+        }
+
+        @Override
+        public int compareTo(Interval o) {
+            return Integer.compare(this._start, o._start);
         }
     }
 
