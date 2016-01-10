@@ -10,21 +10,21 @@ import static java.util.stream.Collectors.toList;
  * Created by Pankaj on 6/12/15.
  */
 public class BinaryTreeNode {
-    private int _val;
-    private BinaryTreeNode _left;
-    private BinaryTreeNode _right;
+    public BinaryTreeNode left;
+    public BinaryTreeNode right;
+    private int val;
 
     public BinaryTreeNode(int val, BinaryTreeNode left, BinaryTreeNode right) {
-        this._val = val;
-        this._left = left;
-        this._right = right;
+        this.val = val;
+        this.left = left;
+        this.right = right;
     }
 
     public BinaryTreeNode(BinaryTreeNode other) throws Exception {
         if (other == null) throw new Exception("Cannot copy a null tree!");
-        this._val = other._val;
-        if (other._left != null) this._left = new BinaryTreeNode(other._left);
-        if (other._right != null) this._right = new BinaryTreeNode(other._right);
+        this.val = other.val;
+        if (other.left != null) this.left = new BinaryTreeNode(other.left);
+        if (other.right != null) this.right = new BinaryTreeNode(other.right);
     }
 
     public static BinaryTreeNode construct(List<Integer> inOrder, List<Integer> otherOrder) throws Exception {
@@ -41,11 +41,11 @@ public class BinaryTreeNode {
                                                                    Map<Integer, Integer> nodeToIndex) throws Exception {
         if (inOrderEnd <= inOrderStart || postOrderEnd <= postOrderStart) return null;
         BinaryTreeNode root = new BinaryTreeNode(postOrder.get(postOrderEnd - 1), null, null);
-        Integer rootPosition = nodeToIndex.get(root._val);
+        Integer rootPosition = nodeToIndex.get(root.val);
         if (rootPosition == null) throw new Exception("Cannot find the root in the inOrder list");
         Integer leftSubtreeSize = rootPosition - inOrderStart;
-        root._left = constructFromInOrderAndPostOrder(postOrder, postOrderStart, postOrderStart + leftSubtreeSize, inOrderStart, rootPosition, nodeToIndex);
-        root._right = constructFromInOrderAndPostOrder(postOrder, postOrderStart + leftSubtreeSize, postOrderEnd - 1, rootPosition + 1, inOrderEnd, nodeToIndex);
+        root.left = constructFromInOrderAndPostOrder(postOrder, postOrderStart, postOrderStart + leftSubtreeSize, inOrderStart, rootPosition, nodeToIndex);
+        root.right = constructFromInOrderAndPostOrder(postOrder, postOrderStart + leftSubtreeSize, postOrderEnd - 1, rootPosition + 1, inOrderEnd, nodeToIndex);
         return root;
     }
 
@@ -57,21 +57,21 @@ public class BinaryTreeNode {
         if (rootPosition == null) throw new Exception("Cannot find the root in the inOrder list");
         Integer leftSubTreeSize = rootPosition - inOrderStart;
         BinaryTreeNode root = new BinaryTreeNode(preOrder.get(preOrderStart), null, null);
-        root._left = constructFromInOrderAndPreOrder(preOrder, preOrderStart + 1, preOrderStart + 1 + leftSubTreeSize, inOrderStart, rootPosition, nodeToIndex);
-        root._right = constructFromInOrderAndPreOrder(preOrder, preOrderStart + 1 + leftSubTreeSize, preOrderEnd, rootPosition + 1, inOrderEnd, nodeToIndex);
+        root.left = constructFromInOrderAndPreOrder(preOrder, preOrderStart + 1, preOrderStart + 1 + leftSubTreeSize, inOrderStart, rootPosition, nodeToIndex);
+        root.right = constructFromInOrderAndPreOrder(preOrder, preOrderStart + 1 + leftSubTreeSize, preOrderEnd, rootPosition + 1, inOrderEnd, nodeToIndex);
         return root;
     }
 
     public int val() {
-        return _val;
+        return val;
     }
 
     public BinaryTreeNode left() {
-        return _left;
+        return left;
     }
 
     public BinaryTreeNode right() {
-        return _right;
+        return right;
     }
 
     public boolean isLeaf() {
@@ -302,7 +302,7 @@ public class BinaryTreeNode {
     }
 
     public Pair<Pair<Integer, Integer>, Boolean> isBSTPostOrderImpl() {
-        int min = this._val, max = this._val;
+        int min = this.val, max = this.val;
         if (this.left() != null) {
             Pair<Pair<Integer, Integer>, Boolean> l = this.left().isBSTPostOrderImpl();
             if (!l.second() || this.val() < l.first().second()) return new Pair<>(new Pair<>(0, 0), false);
@@ -324,8 +324,8 @@ public class BinaryTreeNode {
 
     public boolean isBSTRangeImpl(int min, int max) {
         if (this.val() < min || this.val() > max) return false;
-        if (this.left() != null && !this.left().isBSTRangeImpl(min, this._val)) return false;
-        if (this.right() != null && !this.right().isBSTRangeImpl(this._val, max)) return false;
+        if (this.left() != null && !this.left().isBSTRangeImpl(min, this.val)) return false;
+        if (this.right() != null && !this.right().isBSTRangeImpl(this.val, max)) return false;
         return true;
     }
 
@@ -357,19 +357,19 @@ public class BinaryTreeNode {
     }
 
     public boolean isSymmetric() throws Exception {
-        if (this._left == null)
-            return this._right == null;
+        if (this.left == null)
+            return this.right == null;
         BinaryTreeNode left = new BinaryTreeNode(this.left());
         left.invert();
-        return left.equals(this._right);
+        return left.equals(this.right);
     }
 
     public void invert() {
-        if (this._left != null) this._left.invert();
-        if (this._right != null) this._right.invert();
-        BinaryTreeNode temp = this._left;
-        this._left = this._right;
-        this._right = temp;
+        if (this.left != null) this.left.invert();
+        if (this.right != null) this.right.invert();
+        BinaryTreeNode temp = this.left;
+        this.left = this.right;
+        this.right = temp;
     }
 
     /**
@@ -394,11 +394,11 @@ public class BinaryTreeNode {
         if (!(other instanceof BinaryTreeNode)) return false;
         BinaryTreeNode btOther = (BinaryTreeNode) other;
         boolean ok;
-        ok = (this._val == btOther._val);
-        if (this._left != null)
-            ok &= this._left.equals(btOther._left);
-        if (this._right != null)
-            ok &= this._right.equals(btOther._right);
+        ok = (this.val == btOther.val);
+        if (this.left != null)
+            ok &= this.left.equals(btOther.left);
+        if (this.right != null)
+            ok &= this.right.equals(btOther.right);
         return ok;
     }
 }
