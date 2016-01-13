@@ -7,6 +7,7 @@ import java.util.Collections;
 
 import static puzzles.PowerSet.generatePowerSet;
 import static puzzles.PowerSet.generatePowerSet1;
+import static puzzles.PowerSet.generatePowerSetUsingBits;
 
 /**
  * Created by pankaj on 1/12/16.
@@ -31,5 +32,10 @@ public class PowerSetTest {
     @Test
     public void testGeneratePowerSet1() throws Exception {
         generatePowerSet1(Arrays.asList(1, 2, 3));
+    }
+
+    @Test
+    public void testGeneratePowerSetUsingBits() throws Exception {
+        generatePowerSetUsingBits(Arrays.asList(1, 2, 3));
     }
 }

@@ -57,4 +57,24 @@ public class PowerSet {
         generatePowerSetHelper(A, index + 1, subset);
         subset.remove(subset.size() - 1);
     }
+
+    /**
+     * Prints all the subsets of A
+     * Time : O(N*2^N)
+     * Space : O(N)
+     *
+     * @param A a list of size N
+     */
+    public static void generatePowerSetUsingBits(List<Integer> A) {
+        int N = A.size();
+        for (int bitset = 0; bitset < (1 << N); bitset++) {
+            int currentBitset = bitset;
+            List<Integer> subset = new ArrayList<>();
+            for (Integer x : A) {
+                if ((currentBitset & 1) == 1) subset.add(x);
+                currentBitset >>= 1;
+            }
+            System.out.println(subset);
+        }
+    }
 }
