@@ -5,9 +5,7 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.Collections;
 
-import static puzzles.PowerSet.generatePowerSet;
-import static puzzles.PowerSet.generatePowerSet1;
-import static puzzles.PowerSet.generatePowerSetUsingBits;
+import static puzzles.PowerSet.*;
 
 /**
  * Created by pankaj on 1/12/16.
@@ -37,5 +35,18 @@ public class PowerSetTest {
     @Test
     public void testGeneratePowerSetUsingBits() throws Exception {
         generatePowerSetUsingBits(Arrays.asList(1, 2, 3));
+    }
+
+    @Test
+    public void testSubsetsOfFixedSize() throws Exception {
+        subsetsOfFixedSize(Arrays.asList(1, 2, 3, 4), 0);
+        System.out.println();
+        subsetsOfFixedSize(Arrays.asList(1, 2, 3, 4), 1);
+        System.out.println();
+        subsetsOfFixedSize(Arrays.asList(1, 2, 3, 4), 2);
+        System.out.println();
+        subsetsOfFixedSize(Arrays.asList(1, 2, 3, 4), 3);
+        System.out.println();
+        subsetsOfFixedSize(Arrays.asList(1, 2, 3, 4), 4);
     }
 }

@@ -77,4 +77,35 @@ public class PowerSet {
             System.out.println(subset);
         }
     }
+
+    /**
+     * Generate all subsets of A of size k
+     * Time : O(N^K)
+     * Space : O(N)
+     *
+     * @param A a list of N integers
+     * @param k integer 0 <= k <= N
+     */
+    public static void subsetsOfFixedSize(List<Integer> A, int k) {
+        List<Boolean> chosen = new ArrayList<>(A.size());
+        for (int i = 0; i < A.size(); i++) chosen.add(false);
+        List<Integer> subset = new ArrayList<>();
+        subsetsOfFixedSizeHelper(A, chosen, subset, k);
+    }
+
+    private static void subsetsOfFixedSizeHelper(List<Integer> A, List<Boolean> choosen, List<Integer> subset, int k) {
+        if (k == 0) {
+            System.out.println(subset.toString());
+            return;
+        }
+        for (int i = 0; i < A.size(); i++) {
+            if (!subset.isEmpty() && subset.get(subset.size() - 1) > A.get(i)) continue;
+            if (choosen.get(i)) continue;
+            choosen.set(i, true);
+            subset.add(A.get(i));
+            subsetsOfFixedSizeHelper(A, choosen, subset, k - 1);
+            subset.remove(subset.size() - 1);
+            choosen.set(i, false);
+        }
+    }
 }
