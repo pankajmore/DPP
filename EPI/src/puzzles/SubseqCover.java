@@ -83,6 +83,14 @@ public class SubseqCover {
         }
 
         @Override
+        public boolean equals(Object o) {
+            if (o == null) return false;
+            if (!(o instanceof SubArray)) return false;
+            SubArray s = (SubArray) o;
+            return Objects.equals(this.start, s.start) && Objects.equals(this.end, s.end);
+        }
+
+        @Override
         public int compareTo(SubArray o) {
             if (this.end - this.start < o.end - o.start) return -1;
             if (this.end - this.start == o.end - o.start) return this.start.compareTo(o.start);
