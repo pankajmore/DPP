@@ -65,6 +65,19 @@ public class MaximumSubArraySum {
      * Space : O(1)
      *
      * @param A a *circular* list of N integers
+     * @return the maximum sub-array sum, the sub-array may wrap around
+     */
+    public static int findMaximumSumSubArrayCircular1(List<Integer> A) {
+        int sum = A.stream().reduce(0, (a, b) -> a + b);
+        return Math.max(findOptimumSubArrayUsingComp(A, new MaximumSubArraySum.MaxComparator()),
+                sum - findOptimumSubArrayUsingComp(A, new MaximumSubArraySum.MinComparator()));
+    }
+
+    /**
+     * Time : O(N)
+     * Space : O(N)
+     *
+     * @param A a *circular* list of N integers
      * @return the maximum sub-array sum that *must* wrap around
      */
     public static int findCircularMaxSubArraySum(List<Integer> A) {
@@ -88,5 +101,32 @@ public class MaximumSubArraySum {
             circularSum = Math.max(circularSum, maxBegin[i] + maxEnd[i]);
         }
         return circularSum;
+    }
+
+    private static int findOptimumSubArrayUsingComp(List<Integer> A, IntegerComparator comp) {
+        int till = 0, overall = 0;
+        for (Integer x : A) {
+            till = comp.compare(till + x, x);
+            overall = comp.compare(overall, till);
+        }
+        return overall;
+    }
+
+    private interface IntegerComparator {
+        Integer compare(Integer o1, Integer o2);
+    }
+
+    private static class MaxComparator implements IntegerComparator {
+        @Override
+        public Integer compare(Integer o1, Integer o2) {
+            return o1 > o2 ? o1 : o2;
+        }
+    }
+
+    private static class MinComparator implements IntegerComparator {
+        @Override
+        public Integer compare(Integer o1, Integer o2) {
+            return o1 < o2 ? o1 : o2;
+        }
     }
 }

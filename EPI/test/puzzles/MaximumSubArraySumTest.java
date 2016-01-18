@@ -6,8 +6,7 @@ import puzzles.SubseqCover.SubArray;
 import java.util.Arrays;
 import java.util.Collections;
 
-import static puzzles.MaximumSubArraySum.findMaximumSumSubArray;
-import static puzzles.MaximumSubArraySum.findMaximumSumSubArrayCircular;
+import static puzzles.MaximumSubArraySum.*;
 
 /**
  * Created by pankaj on 1/16/16.
@@ -31,5 +30,14 @@ public class MaximumSubArraySumTest {
         assert findMaximumSumSubArrayCircular(Arrays.asList(-1, -3, -5)) == 0;
         assert findMaximumSumSubArrayCircular(Arrays.asList(904, 40, 523, 12, -355, -385, -124, 481, -31)) == 1929;
         assert findMaximumSumSubArrayCircular(Arrays.asList(1, -2, 1, 3, -4, 2)) == 5;
+    }
+
+    @Test
+    public void testFindMaximumSumSubArrayCircular1() throws Exception {
+        assert findMaximumSumSubArrayCircular1(Collections.emptyList()) == 0;
+        assert findMaximumSumSubArrayCircular1(Arrays.asList(0, 1, 2)) == 3;
+        assert findMaximumSumSubArrayCircular1(Arrays.asList(-1, -3, -5)) == 0;
+        assert findMaximumSumSubArrayCircular1(Arrays.asList(904, 40, 523, 12, -355, -385, -124, 481, -31)) == 1929;
+        assert findMaximumSumSubArrayCircular1(Arrays.asList(1, -2, 1, 3, -4, 2)) == 5;
     }
 }
