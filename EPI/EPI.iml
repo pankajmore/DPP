@@ -58,7 +58,10 @@
           <root url="file://$USER_HOME$" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/src" />
+          <root url="file://$MODULE_DIR$/test" />
+        </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library">
