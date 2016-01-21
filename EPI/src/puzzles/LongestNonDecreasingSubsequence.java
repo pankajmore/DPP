@@ -2,6 +2,7 @@ package puzzles;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -49,5 +50,38 @@ public class LongestNonDecreasingSubsequence {
         assert longestNonDecreasingSubsequence.size() == longestSequenceSize;
         Collections.reverse(longestNonDecreasingSubsequence);
         return longestNonDecreasingSubsequence;
+    }
+
+    /**
+     * Time : O(N*log(N))
+     * Space : O(N)
+     *
+     * @param sequence a list of N integers
+     * @return size of the largest non-decreasing subsequent
+     */
+    public static int longestNonDecreasingSubSequenceSize(List<Integer> sequence) {
+        int N = sequence.size();
+        List<Integer> subsequence = new ArrayList<>();
+        for (int i = 0; i < N; i++) {
+            int val = sequence.get(i);
+            int index = Collections.binarySearch(subsequence, val, new UpperBoundComparator());
+            assert index < 0;
+            int pos = -index - 1;
+            if (pos < subsequence.size())
+                subsequence.set(pos, val);
+            else {
+                assert pos == subsequence.size();
+                subsequence.add(val);
+            }
+        }
+        return subsequence.size();
+    }
+
+    private static class UpperBoundComparator implements Comparator<Integer> {
+        @Override
+        public int compare(Integer x, Integer y) {
+            if (x.equals(y)) return -1;
+            return Integer.compare(x, y);
+        }
     }
 }
