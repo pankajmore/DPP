@@ -57,6 +57,4 @@ public class FishingTrip {
         assert path.size() == m + n - 1;
         return path;
     }
-
-
 }
