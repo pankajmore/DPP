@@ -1,38 +1,40 @@
 package puzzles;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Random;
 
 /**
  * Created by Pankaj on 7/25/15.
  */
 public class LRUCache {
-    public static long CACHE_SIZE = 100;
-    public static Map<String, Double> _cache = new HashMap<>();
+    private final int _capacity;
+    private final LinkedHashMap<String, Double> _cache;
+
+    public LRUCache(int capacity) {
+        this._capacity = capacity;
+        _cache = new LinkedHashMap<String, Double>(capacity, 1.0f, true) {
+            @Override
+            protected boolean removeEldestEntry(Map.Entry<String, Double> e) {
+                return this.size() > _capacity;
+            }
+        };
+    }
 
     /**
-     * First returns the price of the book from the cache
-     * If not present in cache, it goes and loads it from the disk
-     *
      * @param key The ISBN string for a given key
      * @return The dollar price of the book
      */
-    //TODO: make the cache bounded
-    //TODO: implement LRU cache eviction policy
-    public static double get(String key) {
-        if (!_cache.containsKey(key))
-            _cache.put(key, readFromDisk(key));
+    public double get(String key) {
         return _cache.get(key);
     }
 
     /**
-     * Simulates reading from disk by just generating a random price instead.
+     * Store the value in the cache, evict the least recently used entry if cache is full
      *
-     * @param key the ISB key for a given book
-     * @return the dollar price read outside of cache
+     * @param key   the ISBN string
+     * @param value the dollar price of the book
      */
-    private static double readFromDisk(String key) {
-        return new Random().nextDouble();
+    public void put(String key, double value) {
+        _cache.put(key, value);
     }
 }
