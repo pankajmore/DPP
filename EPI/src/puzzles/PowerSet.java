@@ -108,4 +108,19 @@ public class PowerSet {
             choosen.set(i, false);
         }
     }
+
+    public static List<List<Integer>> subsetsOfFixedSize1(List<Integer> A, int k) {
+        List<List<Integer>> subsets = new ArrayList<>();
+        if(k == 0) {
+            subsets.add(new ArrayList<>());
+            return subsets;
+        }
+        if (A.size() < k) return subsets;
+        subsets.addAll(subsetsOfFixedSize1(A.subList(0, A.size() - 1), k));
+        for (List<Integer> subset : subsetsOfFixedSize1(A.subList(0, A.size() - 1), k - 1)) {
+            subset.add(A.get(A.size() - 1));
+            subsets.add(subset);
+        }
+        return subsets;
+    }
 }

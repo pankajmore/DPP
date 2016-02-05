@@ -49,4 +49,13 @@ public class PowerSetTest {
         System.out.println();
         subsetsOfFixedSize(Arrays.asList(1, 2, 3, 4), 4);
     }
+
+    @Test
+    public void testSubsetsOfFixedSize1() throws Exception {
+        assert subsetsOfFixedSize1(Arrays.asList(1, 2, 3, 4), 0).size() == 1;
+        assert subsetsOfFixedSize1(Arrays.asList(1, 2, 3, 4), 1).size() == 4;
+        assert subsetsOfFixedSize1(Arrays.asList(1, 2, 3, 4), 2).size() == 6;
+        assert subsetsOfFixedSize1(Arrays.asList(1, 2, 3, 4), 3).size() == 4;
+        assert subsetsOfFixedSize1(Arrays.asList(1, 2, 3, 4), 4).size() == 1;
+    }
 }
