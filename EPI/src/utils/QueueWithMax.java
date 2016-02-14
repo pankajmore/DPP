@@ -1,4 +1,4 @@
-package utils.graph;
+package utils;
 
 import java.util.Deque;
 import java.util.LinkedList;
