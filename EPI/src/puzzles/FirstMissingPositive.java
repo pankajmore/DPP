@@ -1,5 +1,7 @@
 package puzzles;
 
+import java.util.Arrays;
+
 /**
  * Created by pankaj on 2/15/16.
  */
@@ -43,5 +45,18 @@ public class FirstMissingPositive {
         }
         for (int i = 0; i <= N; i++) if (B[i] == 0) return i + 1;
         return N + 1;
+    }
+
+    /**
+     * Time : O(NLog(N))
+     * Space : O(1)
+     *
+     * @param A array of size N
+     * @return the first positive integer missing in A
+     */
+    public static int findFirstMissingPositiveEntry2(int[] A) {
+        Arrays.sort(A);
+        for (int i = 0; i < A.length; i++) if (A[i] != i + 1) return i + 1;
+        return A.length + 1;
     }
 }
