@@ -373,6 +373,21 @@ public class BinaryTreeNode {
     }
 
     /**
+     * Time : O(N)
+     * Space : O(H)
+     *
+     * @param x a node in this Binary Tree
+     * @param y another node in this Binary Tree
+     * @return the least common ancestor of x & y
+     */
+    public BinaryTreeNode leastCommonAncestor(BinaryTreeNode x, BinaryTreeNode y) {
+        if (this == x || this == y) return this;
+        BinaryTreeNode left = this.left == null ? null : this.left.leastCommonAncestor(x, y);
+        BinaryTreeNode right = this.right == null ? null : this.right.leastCommonAncestor(x, y);
+        return left == null ? right : right == null ? left : this;
+    }
+
+    /**
      * This must be a distinct binary search tree.
      *
      * @param x a node in this BST

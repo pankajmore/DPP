@@ -108,4 +108,12 @@ public class BinaryTreeNodeTest {
         BinaryTreeNode tree = BinaryTreeExample.constructBookExample();
         assert tree.postOrder().equals(tree.postOrderUsingStack());
     }
+
+    @Test
+    public void testLeastCommonAncestor() throws Exception {
+        BinaryTreeNode root = BinaryTreeExample.constructBookExample();
+        assert root.leastCommonAncestor(root.left, root.right) == root;
+        assert root.leastCommonAncestor(root.left.left.left, root.left.right.right.left) == root.left;
+        assert root.leastCommonAncestor(root.left.right, root.right.left.right) == root;
+    }
 }
