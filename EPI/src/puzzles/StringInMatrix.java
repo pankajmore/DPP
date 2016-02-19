@@ -65,4 +65,35 @@ public class StringInMatrix {
     private static boolean find(boolean[][][] C, int k, int i, int j) {
         return i < 0 || i >= C[0].length || j < 0 || j >= C[0][0].length ? false : C[k][i][j];
     }
+
+    /**
+     * @param board a MxN board of chars
+     * @param word  the string to search for
+     * @return true if the string can be traced in board, a cell may not be repeated in the trace
+     */
+    public static boolean exist(char[][] board, String word) {
+        if (board.length == 0 || board[0].length == 0) return false;
+        int M = board.length;
+        int N = board[0].length;
+        boolean[][] visited = new boolean[M][N];
+        for (int i = 0; i < M; i++) {
+            for (int j = 0; j < N; j++) {
+                if (existHelper(board, word, 0, i, j, visited)) return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean existHelper(char[][] board, String word, int idx, int i, int j, boolean[][] visited) {
+        if (idx == word.length()) return true;
+        if (i < 0 || i >= board.length || j < 0 || j >= board[0].length || visited[i][j] || board[i][j] != word.charAt(idx))
+            return false;
+        visited[i][j] = true;
+        if (existHelper(board, word, idx + 1, i - 1, j, visited)
+                || existHelper(board, word, idx + 1, i + 1, j, visited)
+                || existHelper(board, word, idx + 1, i, j - 1, visited)
+                || existHelper(board, word, idx + 1, i, j + 1, visited)) return true;
+        visited[i][j] = false;
+        return false;
+    }
 }
