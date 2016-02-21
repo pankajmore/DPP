@@ -1,6 +1,6 @@
 package puzzles;
 
-import utils.graph.QueueWithMax;
+import utils.QueueWithMax;
 
 import java.util.ArrayList;
 import java.util.Deque;
