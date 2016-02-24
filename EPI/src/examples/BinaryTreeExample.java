@@ -23,4 +23,9 @@ public class BinaryTreeExample {
     public static BinaryTreeNode symmetricTree() {
         return new BinaryTreeNode(314, new BinaryTreeNode(6, null, new BinaryTreeNode(2, null, new BinaryTreeNode(3, null, null))), new BinaryTreeNode(6, new BinaryTreeNode(2, new BinaryTreeNode(3, null, null), null), null));
     }
+
+    public static BinaryTreeNode almostBST() {
+        return new BinaryTreeNode(17, new BinaryTreeNode(41, null, new BinaryTreeNode(8, new BinaryTreeNode(6, null, null), null)),
+                new BinaryTreeNode(23, new BinaryTreeNode(21, null, null), new BinaryTreeNode(5, new BinaryTreeNode(30, null, null), null)));
+    }
 }

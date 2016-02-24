@@ -12,7 +12,7 @@ import static java.util.stream.Collectors.toList;
 public class BinaryTreeNode {
     public BinaryTreeNode left;
     public BinaryTreeNode right;
-    private int val;
+    public int val;
 
     public BinaryTreeNode(int val, BinaryTreeNode left, BinaryTreeNode right) {
         this.val = val;
