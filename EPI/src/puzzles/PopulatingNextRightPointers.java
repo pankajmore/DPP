@@ -5,6 +5,32 @@ package puzzles;
  */
 public class PopulatingNextRightPointers {
     /**
+     * Time : O(N)
+     * Space: O(1)
+     *
+     * @param root a "general" binary tree of N nodes
+     */
+    public static void populateNextPointerAnyTree(BinaryTreeNode<Integer> root) {
+        BinaryTreeNode<Integer> dummyHead = new BinaryTreeNode<>(0), pre = dummyHead;
+        while (root != null) {
+            if (root.left != null) {
+                pre.next = root.left;
+                pre = pre.next;
+            }
+            if (root.right != null) {
+                pre.next = root.right;
+                pre = pre.next;
+            }
+            root = root.next;
+            if (root == null) {
+                pre = dummyHead;
+                root = dummyHead.next;
+                dummyHead.next = null;
+            }
+        }
+    }
+
+    /**
      * Updates the next field for every node in a perfect binary tree
      * Time : O(n)
      * Space : O(1)
