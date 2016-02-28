@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/DPP.iml" filepath="$PROJECT_DIR$/DPP.iml" />
       <module fileurl="file://$PROJECT_DIR$/EPI/EPI.iml" filepath="$PROJECT_DIR$/EPI/EPI.iml" />
+      <module fileurl="file://$PROJECT_DIR$/InterviewBit/InterviewBit.iml" filepath="$PROJECT_DIR$/InterviewBit/InterviewBit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/design/design.iml" filepath="$PROJECT_DIR$/design/design.iml" />
     </modules>
   </component>
 </project>
