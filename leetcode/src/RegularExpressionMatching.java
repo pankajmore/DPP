@@ -7,7 +7,7 @@ package leetcode;
 public class RegularExpressionMatching {
     /**
      * Time : O(NM)
-     * Space: O(NM)
+     * Space: O(M)
      *
      * @param s string of length N
      * @param p pattern of length M
@@ -15,20 +15,23 @@ public class RegularExpressionMatching {
      */
     public boolean isMatch(String s, String p) {
         int N = s.length(), M = p.length();
-        boolean[][] dp = new boolean[N + 1][M + 1];
-        dp[0][0] = true;
+        boolean[] dp = new boolean[M + 1];
+        dp[0] = true;
         for (int i = 2; i <= M; i += 2)
-            if (p.charAt(i - 1) == '*') dp[0][i] = true;
+            if (p.charAt(i - 1) == '*') dp[i] = true;
             else break;
         for (int i = 1; i <= N; i++) {
+            dp[0] = false;
+            boolean prev = i == 1, temp;
             for (int j = 1; j <= M; j++) {
+                temp = dp[j];
                 char c = p.charAt(j - 1);
-                if (c == '.') dp[i][j] = dp[i - 1][j - 1];
-                else if (c != '*') dp[i][j] = dp[i - 1][j - 1] && c == s.charAt(i - 1);
-                else
-                    dp[i][j] = dp[i][j - 2] || (dp[i - 1][j] && (p.charAt(j - 2) == '.' || p.charAt(j - 2) == s.charAt(i - 1)));
+                if (c == '.') dp[j] = prev;
+                else if (c != '*') dp[j] = prev && c == s.charAt(i - 1);
+                else dp[j] = dp[j - 2] || (dp[j] && (p.charAt(j - 2) == '.' || p.charAt(j - 2) == s.charAt(i - 1)));
+                prev = temp;
             }
         }
-        return dp[N][M];
+        return dp[M];
     }
 }
