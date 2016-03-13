@@ -35,6 +35,27 @@ public class Bonus {
         return bonus;
     }
 
+    /**
+     * Time : O(N)
+     * Space: O(N)
+     *
+     * @param A list of productivity of N employees
+     * @return list of bonus of each employee such that
+     * if a is a neighbour of b and a is more productive than a must get higher bonus
+     */
+    public static List<Integer> calculateBonusFast(List<Integer> A) {
+        int N = A.size();
+        List<Integer> T = new ArrayList<>();
+        for (int i = 0; i < N; i++) T.add(1);
+        for (int i = 1; i < N; i++) {
+            if (A.get(i) > A.get(i - 1)) T.set(i, Math.max(T.get(i), T.get(i - 1) + 1));
+        }
+        for (int i = N - 2; i >= 0; i--) {
+            if (A.get(i) > A.get(i + 1)) T.set(i, Math.max(T.get(i), T.get(i + 1) + 1));
+        }
+        return T;
+    }
+
     private static class EmployeeData implements Comparable<EmployeeData> {
         public final int pos, val;
 
