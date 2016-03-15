@@ -7,13 +7,13 @@ import java.util.List;
  */
 public class MaxSubmatrixRectangle {
     /**
-     * Time : O(M^2N)
-     * Space: O(MN)
+     * Time : O(M^2 * N)
+     * Space: O(M * N)
      *
      * @param A a 2D grid of size M x N containing 0' and 1's
      * @return the area of the largest rectangle containing all 1's
      */
-    public int maxRectangleSubmatrix(List<List<Boolean>> A) {
+    public static int maxRectangleSubmatrix(List<List<Boolean>> A) {
         if (A.size() == 0 || A.get(0).size() == 0) return 0;
         int M = A.size(), N = A.get(0).size();
         int[][] W = buildWidth(A, M, N);
@@ -21,7 +21,7 @@ public class MaxSubmatrixRectangle {
         for (int i = 0; i < M; i++) {
             for (int j = 0; j < N; j++) {
                 int minWidth = W[i][j];
-                for (int r = 0; r < M && A.get(r).get(j); r++) {
+                for (int r = i; r < M && A.get(r).get(j); r++) {
                     minWidth = Math.min(minWidth, W[r][j]);
                     best = Math.max(best, (r - i + 1) * minWidth);
                 }
@@ -30,7 +30,43 @@ public class MaxSubmatrixRectangle {
         return best;
     }
 
-    private int[][] buildWidth(List<List<Boolean>> A, int M, int N) {
+    /**
+     * Time : O(M^3 * N^3)
+     * Space: O(1)
+     *
+     * @param A a 2D grid of size M x N containing 0' and 1's
+     * @return area of the largest rectangle containing all 1's
+     */
+    public static int maxRectangleSubmatrixBruteForce(List<List<Boolean>> A) {
+        if (A.size() == 0 || A.get(0).size() == 0) return 0;
+        int M = A.size(), N = A.size();
+        int maxRectangleArea = 0;
+        for (int i = 0; i < M; i++) {
+            for (int j = 0; j < N; j++) {
+                for (int k = i; k < M; k++) {
+                    for (int l = j; l < M; l++) {
+                        boolean isFeasible = true;
+                        int count = 0;
+                        for (int a = i; a <= k; a++) {
+                            for (int b = j; b <= l; b++) {
+                                if (A.get(a).get(b)) count++;
+                                else {
+                                    count = 0;
+                                    isFeasible = false;
+                                    break;
+                                }
+                            }
+                            if (!isFeasible) break;
+                        }
+                        if (isFeasible) maxRectangleArea = Math.max(maxRectangleArea, count);
+                    }
+                }
+            }
+        }
+        return maxRectangleArea;
+    }
+
+    private static int[][] buildWidth(List<List<Boolean>> A, int M, int N) {
         int[][] W = new int[M][N];
         for (int i = 0; i < M; i++) {
             for (int j = N - 1; j >= 0; j--) {
