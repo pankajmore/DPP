@@ -42,6 +42,34 @@ public class MaxSubMatrixSquare {
     }
 
     /**
+     * Time : O(M * N)
+     * Space: O(N)
+     *
+     * @param A a 2D grid of size M x N containing 0' and 1's
+     * @return area of the largest square in A containing all 1's
+     */
+    public static int maxSquareSubmatrix1(List<List<Boolean>> A) {
+        if (A.size() == 0 || A.get(0).size() == 0) return 0;
+        int M = A.size(), N = A.get(0).size();
+        int maxSquareArea = 0;
+        int[] dp = new int[N + 1];
+        for (int i = 1; i <= M; i++) {
+            int prev = 0;
+            for (int j = 1; j <= N; j++) {
+                int temp = dp[j];
+                if (A.get(i - 1).get(j - 1)) {
+                    dp[j] = Math.min(dp[j], Math.min(dp[j - 1], prev)) + 1;
+                    maxSquareArea = Math.max(maxSquareArea, dp[j] * dp[j]);
+                } else {
+                    dp[j] = 0;
+                }
+                prev = temp;
+            }
+        }
+        return maxSquareArea;
+    }
+
+    /**
      * Time : O(M^2 * N^2 * Min(M, N))
      * Space: O(M * N)
      *
