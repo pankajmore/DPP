@@ -1,11 +1,39 @@
 package puzzles;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import static puzzles.LargestRectangleUnderSkyline.calculateLargestRectangle;
 
 /**
  * Created by pankaj on 3/14/16.
  */
 public class MaxSubmatrixRectangle {
+    /**
+     * Time : O(M * N)
+     * Space: O(N)
+     *
+     * @param A a 2D grid of size M x N containing 0' and 1's
+     * @return the area of the largest rectangle containing all 1's
+     */
+    public static int maxRectangleSubmatrixFast(List<List<Boolean>> A) {
+        if (A.size() == 0 || A.get(0).size() == 0) return 0;
+        int M = A.size(), N = A.get(0).size();
+        List<Integer> skyline = new ArrayList<>();
+        for (int j = 0; j < N; j++) skyline.add(0);
+        int maxRectangleArea = 0;
+        for (int i = 0; i < M; i++) {
+            for (int j = 0; j < N; j++) {
+                if (!A.get(i).get(j)) skyline.set(j, 0);
+                else {
+                    skyline.set(j, i == 0 ? 1 : 1 + skyline.get(j));
+                }
+            }
+            maxRectangleArea = Math.max(maxRectangleArea, calculateLargestRectangle(skyline));
+        }
+        return maxRectangleArea;
+    }
+
     /**
      * Time : O(M^2 * N)
      * Space: O(M * N)
