@@ -3,10 +3,40 @@ package puzzles;
 import java.util.ArrayList;
 import java.util.List;
 
+import static puzzles.ValidPalindrome.isPalindrome;
+
 /**
  * Created by pankaj on 1/31/16.
  */
 public class PalindromicPartitioning {
+    /**
+     * Time : O(N * 2 ^ (N - 1))
+     * Space: O(N * 2 ^ (N - 1))
+     *
+     * @param s input string of size N
+     * @return all possible palindromic decompositions of s
+     */
+    public static List<List<String>> palindromePartitioning(String s) {
+        List<List<String>> list = new ArrayList<>();
+        List<String> partialPartition = new ArrayList<>();
+        palindromePartitioningHelper(list, partialPartition, s, 0);
+        return list;
+    }
+
+    private static void palindromePartitioningHelper(List<List<String>> list, List<String> partialPartition, String s, int offset) {
+        if (offset == s.length()) list.add(new ArrayList<>(partialPartition));
+        else {
+            for (int i = offset + 1; i <= s.length(); i++) {
+                String prefix = s.substring(offset, i);
+                if (isPalindrome(prefix)) {
+                    partialPartition.add(prefix);
+                    palindromePartitioningHelper(list, partialPartition, s, i);
+                    partialPartition.remove(partialPartition.size() - 1);
+                }
+            }
+        }
+    }
+
     /**
      * Time : O(n^2)
      * Space : O(n^2)
