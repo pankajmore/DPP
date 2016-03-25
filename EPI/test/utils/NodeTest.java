@@ -2,6 +2,8 @@ package utils;
 
 import org.junit.Test;
 
+import java.util.Arrays;
+
 public class NodeTest {
 
     @Test
@@ -33,5 +35,12 @@ public class NodeTest {
         assert new Node(new int[]{1, 1}).isPalindrome();
         assert new Node(new int[]{1, 2, 2, 1}).isPalindrome();
         assert !(new Node(new int[]{1, 2, 3, 1}).isPalindrome());
+    }
+
+    @Test
+    public void testReverse() throws Exception {
+        assert new Node(new int[]{1, 2, 3}).reverse(0, 2).toList().equals(Arrays.asList(3, 2, 1));
+        assert new Node(new int[]{1, 2, 3}).reverse(0, 1).toList().equals(Arrays.asList(2, 1, 3));
+        assert new Node(new int[]{1, 2, 3}).reverse(1, 2).toList().equals(Arrays.asList(1, 3, 2));
     }
 }

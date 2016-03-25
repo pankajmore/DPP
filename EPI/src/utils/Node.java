@@ -175,4 +175,30 @@ public class Node {
         }
         return prev;
     }
+
+    /**
+     * Time : O(N)
+     * Space: O(1)
+     *
+     * @param begin the start index
+     * @param end   the end index
+     * @return modified linked list with the sub-list in [begin, end] reversed
+     */
+    public Node reverse(int begin, int end) {
+        Node dummyHead = new Node();
+        dummyHead.next = this;
+        Node curr = dummyHead;
+        for (int i = 0; i < begin; i++) curr = curr.next;
+        Node a = curr, b = a.next, prev = null;
+        curr = b;
+        for (int i = begin; i <= end; i++) {
+            Node next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        a.next = prev;
+        b.next = curr;
+        return dummyHead.next;
+    }
 }
