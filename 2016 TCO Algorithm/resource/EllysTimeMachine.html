@@ -1,0 +1,339 @@
+<html>
+<body bgcolor="#000000" text="#ffffff">
+<table>
+    <tr>
+        <td colspan="2"><h3>Problem Statement</h3></td>
+    </tr>
+    <tr>
+        <td>&#160;&#160;&#160;&#160;</td>
+        <td>Elly has invented a simple time machine!
+            Unfortunately, it cannot change the time by more than several hours.
+            But sometimes several hours is all a person needs...
+            <br></br><br></br>
+
+            The time machine has a wall clock with two hands: a small hand that shows the hour and a large hand that
+            shows the minutes.
+            Both hands move in discrete steps.
+            The minute hand moves to show the correct time whenever the number of minutes reaches a multiple of 5.
+            The hour hand moves to show the correct time each whole hour.
+            This means that at any moment, the hour hand points to one of the numbers 01, 02, 03, ..., 11, and 12.
+            Additionally, at any moment, the minute hand also points to one of those numbers, but we interpret them as
+            minutes: :05, :10, :15, ..., :55, and :00.
+            <br></br><br></br>
+
+            The time machine behaves in a peculiar way: when activated, it jumps to such a time that the two hands on
+            the clock switch positions.
+            For example, suppose the current time is 11:20.
+            On the clock, the hour hand points to 11 and the minute hand points to 04 (that represents :20).
+            As Elly activated the time machine, the hands switched positions: now the hour hand points to 04 and the
+            minute hand points to 11.
+            Thus, the time machine jumped to the time 04:55. See the sample test cases for other examples of how the
+            time machine works.
+            <br></br><br></br>
+
+            You are given the current time in the String <b>time</b> in the format "HH:MM", where HH are the hours (a
+            two-digit number between 01 and 12, inclusive), and MM are the minutes (a two-digit number between 00 and
+            55, inclusive).
+            Compute the new time after the time machine is activated.
+            Return that time in the same format.
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2"><h3>Definition</h3></td>
+    </tr>
+    <tr>
+        <td>&#160;&#160;&#160;&#160;</td>
+        <td>
+            <table>
+                <tr>
+                    <td>Class:</td>
+                    <td>EllysTimeMachine</td>
+                </tr>
+                <tr>
+                    <td>Method:</td>
+                    <td>getTime</td>
+                </tr>
+                <tr>
+                    <td>Parameters:</td>
+                    <td>String</td>
+                </tr>
+                <tr>
+                    <td>Returns:</td>
+                    <td>String</td>
+                </tr>
+                <tr>
+                    <td>Method signature:</td>
+                    <td>String getTime(String time)</td>
+                </tr>
+                <tr>
+                    <td colspan="2">(be sure your method is public)</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2"><h3>Limits</h3></td>
+    </tr>
+    <tr>
+        <td>&#160;&#160;&#160;&#160;</td>
+        <td>
+            <table>
+                <tr>
+                    <td>Time limit (s):</td>
+                    <td>2.000</td>
+                </tr>
+                <tr>
+                    <td>Memory limit (MB):</td>
+                    <td>256</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2"><h3>Notes</h3></td>
+    </tr>
+    <tr>
+        <td align="center" valign="top">-</td>
+        <td>Please note that the required time formatting always requires two digits both for the hour and the minutes
+            (i.e. the numbers are padded with leading zeroes when needed).
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2"><h3>Constraints</h3></td>
+    </tr>
+    <tr>
+        <td align="center" valign="top">-</td>
+        <td><b>time</b> will contain exactly 5 characters and will be formatted as "HH:MM".</td>
+    </tr>
+    <tr>
+        <td align="center" valign="top">-</td>
+        <td>HH will be one of {01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, 12}.</td>
+    </tr>
+    <tr>
+        <td align="center" valign="top">-</td>
+        <td>MM will be one of {00, 05, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55}.</td>
+    </tr>
+    <tr>
+        <td colspan="2"><h3>Examples</h3></td>
+    </tr>
+    <tr>
+        <td align="center" nowrap="true">0)</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>&#160;&#160;&#160;&#160;</td>
+        <td>
+            <table>
+                <tr>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    <pre>&quot;11:20&quot;</pre>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <pre>Returns: &quot;04:55&quot;</pre>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table>
+                            <tr>
+                                <td colspan="2">The example from the problem statement.</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" nowrap="true">1)</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>&#160;&#160;&#160;&#160;</td>
+        <td>
+            <table>
+                <tr>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    <pre>&quot;02:25&quot;</pre>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <pre>Returns: &quot;05:10&quot;</pre>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table>
+                            <tr>
+                                <td colspan="2"></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" nowrap="true">2)</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>&#160;&#160;&#160;&#160;</td>
+        <td>
+            <table>
+                <tr>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    <pre>&quot;06:30&quot;</pre>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <pre>Returns: &quot;06:30&quot;</pre>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table>
+                            <tr>
+                                <td colspan="2"></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" nowrap="true">3)</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>&#160;&#160;&#160;&#160;</td>
+        <td>
+            <table>
+                <tr>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    <pre>&quot;05:55&quot;</pre>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <pre>Returns: &quot;11:25&quot;</pre>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table>
+                            <tr>
+                                <td colspan="2"></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" nowrap="true">4)</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>&#160;&#160;&#160;&#160;</td>
+        <td>
+            <table>
+                <tr>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    <pre>&quot;03:45&quot;</pre>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <pre>Returns: &quot;09:15&quot;</pre>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table>
+                            <tr>
+                                <td colspan="2"></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" nowrap="true">5)</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>&#160;&#160;&#160;&#160;</td>
+        <td>
+            <table>
+                <tr>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    <pre>&quot;01:00&quot;</pre>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <pre>Returns: &quot;12:05&quot;</pre>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table>
+                            <tr>
+                                <td colspan="2"></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<p>This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or
+    reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited.
+    (c)2003, TopCoder, Inc. All rights reserved. </p></body>
+</html>
