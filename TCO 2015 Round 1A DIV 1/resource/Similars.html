@@ -1,0 +1,301 @@
+<html>
+<body bgcolor="#000000" text="#ffffff">
+<table>
+    <tr>
+        <td colspan="2"><h3>Problem Statement</h3></td>
+    </tr>
+    <tr>
+        <td>&#160;&#160;&#160;&#160;</td>
+        <td><p>Given two positive integers x and y, their similarity S(x, y) is defined as follows:
+            To compute S(x, y) we count all d between 0 and 9, inclusive, such that both x and y contain the digit d
+            when written in base 10 (without any leading zeros).
+            For example, S(1123, 220181) = 2 since both numbers contain the digit 1 and both contain the digit 2.</p>
+            <p></p>
+            <p>You are given two ints <b>L</b> and <b>R</b> that define a range.
+                Find two distinct integers in this range that have the largest similarity.
+                Formally, return the maximum of S(a, b) over all a, b such that <b>L</b> &lt;= a &lt; b &lt;= <b>R</b>.
+            </p></td>
+    </tr>
+    <tr>
+        <td colspan="2"><h3>Definition</h3></td>
+    </tr>
+    <tr>
+        <td>&#160;&#160;&#160;&#160;</td>
+        <td>
+            <table>
+                <tr>
+                    <td>Class:</td>
+                    <td>Similars</td>
+                </tr>
+                <tr>
+                    <td>Method:</td>
+                    <td>maxsim</td>
+                </tr>
+                <tr>
+                    <td>Parameters:</td>
+                    <td>int, int</td>
+                </tr>
+                <tr>
+                    <td>Returns:</td>
+                    <td>int</td>
+                </tr>
+                <tr>
+                    <td>Method signature:</td>
+                    <td>int maxsim(int L, int R)</td>
+                </tr>
+                <tr>
+                    <td colspan="2">(be sure your method is public)</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2"><h3>Limits</h3></td>
+    </tr>
+    <tr>
+        <td>&#160;&#160;&#160;&#160;</td>
+        <td>
+            <table>
+                <tr>
+                    <td>Time limit (s):</td>
+                    <td>2.000</td>
+                </tr>
+                <tr>
+                    <td>Memory limit (MB):</td>
+                    <td>256</td>
+                </tr>
+                <tr>
+                    <td>Stack limit (MB):</td>
+                    <td>256</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2"><h3>Constraints</h3></td>
+    </tr>
+    <tr>
+        <td align="center" valign="top">-</td>
+        <td><p><b>R</b> will be between 2 and 100,000, inclusive.</p></td>
+    </tr>
+    <tr>
+        <td align="center" valign="top">-</td>
+        <td><p><b>L</b> will be between 1 and <b>R</b> - 1, inclusive.</p></td>
+    </tr>
+    <tr>
+        <td colspan="2"><h3>Examples</h3></td>
+    </tr>
+    <tr>
+        <td align="center" nowrap="true">0)</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>&#160;&#160;&#160;&#160;</td>
+        <td>
+            <table>
+                <tr>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    <pre>1</pre>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <pre>10</pre>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <pre>Returns: 1</pre>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table>
+                            <tr>
+                                <td colspan="2">We have S(1, 10) = 1 since both numbers contain the digit 1. All other
+                                    pairs of numbers within this range have similarity 0.
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" nowrap="true">1)</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>&#160;&#160;&#160;&#160;</td>
+        <td>
+            <table>
+                <tr>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    <pre>1</pre>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <pre>99</pre>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <pre>Returns: 2</pre>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table>
+                            <tr>
+                                <td colspan="2">There are many pairs with similarity 2, for example pairs (23,32) and
+                                    (38,83).
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" nowrap="true">2)</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>&#160;&#160;&#160;&#160;</td>
+        <td>
+            <table>
+                <tr>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    <pre>99</pre>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <pre>100</pre>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <pre>Returns: 0</pre>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table>
+                            <tr>
+                                <td colspan="2">Here we have only one pair (99, 100) and its similarity is 0.</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" nowrap="true">3)</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>&#160;&#160;&#160;&#160;</td>
+        <td>
+            <table>
+                <tr>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    <pre>1000</pre>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <pre>1010</pre>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <pre>Returns: 2</pre>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table>
+                            <tr>
+                                <td colspan="2"></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" nowrap="true">4)</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>&#160;&#160;&#160;&#160;</td>
+        <td>
+            <table>
+                <tr>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    <pre>444</pre>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <pre>454</pre>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <pre>Returns: 2</pre>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table>
+                            <tr>
+                                <td colspan="2"></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<p>This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or
+    reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited.
+    (c)2003, TopCoder, Inc. All rights reserved. </p></body>
+</html>
