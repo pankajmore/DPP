@@ -1,0 +1,301 @@
+<html>
+<body bgcolor="#000000" text="#ffffff">
+<table>
+    <tr>
+        <td colspan="2"><h3>Problem Statement</h3></td>
+    </tr>
+    <tr>
+        <td>&#160;&#160;&#160;&#160;</td>
+        <td><i>Problem contains images. Plugin users can view them in the applet.</i><br></br>
+            In the city, roads are arranged in a grid pattern. Each point on the grid represents a corner where two
+            blocks meet. The points are connected by line segments which represent the various street blocks. Using the
+            cartesian coordinate system, we can assign a pair of integers to each corner as shown below. <br></br>
+            <br></br>
+            <img src="http://www.topcoder.com/contest/problem/AvoidRoads/AvoidPic1.GIF"></img>
+            <br></br>
+            You are standing at the corner with coordinates 0,0. Your destination is at corner
+            <b>width</b>,<b>height</b>. You will return the number of distinct paths that lead to your destination. Each
+            path must use exactly <b>width+height</b> blocks. In addition, the city has declared certain street blocks
+            untraversable. These blocks may not be a part of any path. You will be given a String[] <b>bad</b>
+            describing which blocks are bad. If (quotes for clarity) &quot;a b c d&quot; is an element of <b>bad</b>, it
+            means the block from corner a,b to corner c,d is untraversable. For example, let's say <pre>
+<b>width</b>  = 6
+<b>length</b> = 6
+<b>bad</b> = {&quot;0 0 0 1&quot;,&quot;6 6 5 6&quot;}</pre>
+            The picture below shows the grid, with untraversable blocks darkened in black. A sample path has been
+            highlighted in red.<br></br>
+            <br></br>
+            <img src="http://www.topcoder.com/contest/problem/AvoidRoads/AvoidPic2.GIF"></img>
+            <br></br></td>
+    </tr>
+    <tr>
+        <td colspan="2"><h3>Definition</h3></td>
+    </tr>
+    <tr>
+        <td>&#160;&#160;&#160;&#160;</td>
+        <td>
+            <table>
+                <tr>
+                    <td>Class:</td>
+                    <td>AvoidRoads</td>
+                </tr>
+                <tr>
+                    <td>Method:</td>
+                    <td>numWays</td>
+                </tr>
+                <tr>
+                    <td>Parameters:</td>
+                    <td>int, int, String[]</td>
+                </tr>
+                <tr>
+                    <td>Returns:</td>
+                    <td>long</td>
+                </tr>
+                <tr>
+                    <td>Method signature:</td>
+                    <td>long numWays(int width, int height, String[] bad)</td>
+                </tr>
+                <tr>
+                    <td colspan="2">(be sure your method is public)</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2"><h3>Limits</h3></td>
+    </tr>
+    <tr>
+        <td>&#160;&#160;&#160;&#160;</td>
+        <td>
+            <table>
+                <tr>
+                    <td>Time limit (s):</td>
+                    <td>2.000</td>
+                </tr>
+                <tr>
+                    <td>Memory limit (MB):</td>
+                    <td>64</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2"><h3>Constraints</h3></td>
+    </tr>
+    <tr>
+        <td align="center" valign="top">-</td>
+        <td><b>width</b> will be between 1 and 100 inclusive.</td>
+    </tr>
+    <tr>
+        <td align="center" valign="top">-</td>
+        <td><b>height</b> will be between 1 and 100 inclusive.</td>
+    </tr>
+    <tr>
+        <td align="center" valign="top">-</td>
+        <td><b>bad</b> will contain between 0 and 50 elements inclusive.</td>
+    </tr>
+    <tr>
+        <td align="center" valign="top">-</td>
+        <td>Each element of <b>bad</b> will contain between 7 and 14 characters inclusive.</td>
+    </tr>
+    <tr>
+        <td align="center" valign="top">-</td>
+        <td>Each element of the bad will be in the format &quot;a b c d&quot; where,
+            <ul>
+                <li> a,b,c,d are integers with no extra leading zeros,</li>
+                <li> a and c are between 0 and <b>width</b> inclusive,</li>
+                <li> b and d are between 0 and <b>height</b> inclusive,</li>
+                <li>and a,b is one block away from c,d.</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" valign="top">-</td>
+        <td>The return value will be between 0 and 2^63-1 inclusive.</td>
+    </tr>
+    <tr>
+        <td colspan="2"><h3>Examples</h3></td>
+    </tr>
+    <tr>
+        <td align="center" nowrap="true">0)</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>&#160;&#160;&#160;&#160;</td>
+        <td>
+            <table>
+                <tr>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    <pre>6</pre>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <pre>6</pre>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <pre>{&quot;0 0 0 1&quot;,&quot;6 6 5 6&quot;}</pre>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <pre>Returns: 252</pre>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table>
+                            <tr>
+                                <td colspan="2">Example from above.</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" nowrap="true">1)</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>&#160;&#160;&#160;&#160;</td>
+        <td>
+            <table>
+                <tr>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    <pre>1</pre>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <pre>1</pre>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <pre>{}</pre>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <pre>Returns: 2</pre>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table>
+                            <tr>
+                                <td colspan="2">Four blocks aranged in a square. Only 2 paths allowed.</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" nowrap="true">2)</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>&#160;&#160;&#160;&#160;</td>
+        <td>
+            <table>
+                <tr>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    <pre>35</pre>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <pre>31</pre>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <pre>{}</pre>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <pre>Returns: 6406484391866534976</pre>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table>
+                            <tr>
+                                <td colspan="2">Big number.</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" nowrap="true">3)</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>&#160;&#160;&#160;&#160;</td>
+        <td>
+            <table>
+                <tr>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    <pre>2</pre>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <pre>2</pre>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <pre>{&quot;0 0 1 0&quot;, &quot;1 2 2 2&quot;, &quot;1 1 2 1&quot;}</pre>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <pre>Returns: 0</pre>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<p>This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or
+    reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited.
+    (c)2003, TopCoder, Inc. All rights reserved. </p></body>
+</html>
