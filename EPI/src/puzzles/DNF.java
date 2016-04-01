@@ -55,21 +55,18 @@ public class DNF {
         uncategorized : A[equal:larger-1]
         larger : A[larger:A.size()-1]
      */
-    //TODO : check the correctness of this solution
     public ArrayList<Integer> dnf1(int x) {
-        int smaller = 0, equal = 0, larger = A.size() - 1;
+        int smaller = 0, equal = 0, larger = A.size();
         while (equal < larger) {
             int curr = A.get(equal);
             if (curr < x) {
                 swap(smaller, equal);
                 smaller++;
                 equal++;
-            }
-            if (curr == x) {
+            } else if (curr == x) {
                 equal++;
-            }
-            if (curr > x) {
-                swap(equal, larger);
+            } else {
+                swap(equal, larger - 1);
                 larger--;
             }
         }
@@ -77,6 +74,7 @@ public class DNF {
     }
 
     private void swap(int i, int j) {
+        if (i == j) return; // swap(i, i) would otherwise set A_i to 0
         A.set(i, A.get(i) ^ A.get(j));
         A.set(j, A.get(i) ^ A.get(j));
         A.set(i, A.get(i) ^ A.get(j));
