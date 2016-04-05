@@ -12,4 +12,17 @@ public class RemoveDuplicatesSortedList {
             if (!l.get(j).equals(l.get(i))) l.set(++j, l.get(i));
         return ++j;
     }
+
+    /**
+     * @param l sorted
+     * @return return the length of the new list, at most 2 duplicates allowed
+     */
+    public static int removeDuplicatesKeepAtMostTwo(List<Integer> l) {
+        int i = 0;
+        for (int n : l) {
+            if (i < 2 || n > l.get(i - 2))
+                l.set(i++, n);
+        }
+        return i;
+    }
 }
