@@ -20,7 +20,7 @@ public class MaxDifferenceKPairsTest {
         for (int k = 0; k < prices.size(); k++) {
             double expected = maxKPairsProfits1(prices, k);
             double actual = maxKPairsProfits(prices, k);
-            assert Math.abs(actual - expected) <= 0.0001 /* .01% tolerance */* actual;
+            assert Math.abs(actual - expected) <= 1E-7;
         }
     }
 }
