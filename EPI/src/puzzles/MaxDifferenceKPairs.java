@@ -41,4 +41,30 @@ public class MaxDifferenceKPairs {
         }
         return maxProfit;
     }
+
+    /**
+     * Time : If k < N/2 then O(k*N) else O(N)
+     * Space: If k < N/2 then O(k), else O(1)
+     *
+     * @param prices list of stock prices for N days
+     * @param k      maximum number of transactions allowed
+     * @return the maximum profit
+     */
+    public static double maxKPairsProfits2(List<Double> prices, int k) {
+        int N = prices.size();
+        k = Math.min(k, N);
+        if (2 * k >= N) {
+            double maxProfit = 0;
+            for (int i = 1; i < N; i++) maxProfit += Math.max(0, prices.get(i) - prices.get(i - 1));
+            return maxProfit;
+        }
+        double[][] maxB = new double[2][k + 1], maxS = new double[2][k + 1];
+        for (int i = 0; i < N; i++) {
+            for (int j = 1; j <= k; j++) {
+                maxB[i % 2][j] = i == 0 ? -prices.get(i) : Math.max(maxB[(i - 1) % 2][j], maxS[(i - 1) % 2][j - 1] - prices.get(i));
+                maxS[i % 2][j] = i == 0 ? 0 : Math.max(maxS[(i - 1) % 2][j], maxB[(i - 1) % 2][j] + prices.get(i));
+            }
+        }
+        return maxS[(N - 1) % 2][k];
+    }
 }
