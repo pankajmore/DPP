@@ -11,14 +11,16 @@ public class PrimeSieveTest {
     public void testGeneratePrimes() throws Exception {
         int N = 1000000;
         Set<Integer> primes = new HashSet<>(PrimeSieve.generatePrimes(N));
-        for (int i = 0; i <= N; i++)
-            if (primes.contains(i)) assert isPrime(i);
-            else assert !isPrime(i);
+        for (int i = 0; i <= N; i++) {
+            boolean expected = isPrime(i);
+            boolean actual = primes.contains(i);
+            assert expected == actual;
+        }
     }
 
     private boolean isPrime(int n) {
         if (n < 2) return false;
-        for (int i = 2; i <= Math.sqrt(n); i++) if (n % i == 0) return false;
+        for (int i = 2; i * i >= i && i * i <= n; i++) if (n % i == 0) return false;
         return true;
     }
 }
