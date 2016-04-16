@@ -10,14 +10,15 @@ import java.util.List;
 public class PrimeSieve {
     public static List<Integer> generatePrimes(int n) {
         List<Integer> primes = new ArrayList<>();
-        List<Boolean> isPrime = new ArrayList<>(Collections.nCopies(n + 1, true));
-        isPrime.set(0, false);
-        isPrime.set(1, false);
-        for (int i = 2; i <= n; i++) {
-            if (!isPrime.get(i))
+        int kSize = (n - 3) / 2 + 1;
+        List<Boolean> isPrime = new ArrayList<>(Collections.nCopies(kSize, true));
+        primes.add(2);
+        for (long i = 0; i < kSize; i++) {
+            if (!isPrime.get((int) i))
                 continue;
-            primes.add(i);
-            for (long j = (long) i * (long) i; j <= n; j += i) isPrime.set((int) j, false);
+            long p = 2 * i + 3;
+            primes.add((int) p);
+            for (long j = 2 * i * i + 6 * i + 3; j < kSize; j += p) isPrime.set((int) j, false);
         }
         return primes;
     }
