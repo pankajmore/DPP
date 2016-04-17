@@ -57,6 +57,28 @@ public class Permutations {
         return permutation;
     }
 
+    /**
+     * Time : O(N)
+     * Space: O(N)
+     *
+     * @param permutation input sequence of size N
+     * @return the prev permutation in the order of permutation rank
+     * else null if it is the first permutation
+     */
+    public static List<Integer> prevPermutation(List<Integer> permutation) {
+        permutation = new ArrayList<>(permutation);
+        int i, j, N = permutation.size();
+        for (i = N - 2; i >= 0; i--) if (permutation.get(i) > permutation.get(i + 1)) break;
+        if (i < 0) return null;
+        for (j = N - 1; j >= i; j--) if (permutation.get(j) < permutation.get(i)) break;
+        assert j >= i;
+        swap(permutation, i, j);
+        j = N - 1;
+        i += 1;
+        while (i < j) swap(permutation, i++, j--);
+        return permutation;
+    }
+
     private static void swap(List<Integer> permutation, int i, int j) {
         Integer temp = permutation.get(i);
         permutation.set(i, permutation.get(j));
