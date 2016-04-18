@@ -6,6 +6,7 @@ import org.junit.contrib.theories.Theories;
 import org.junit.contrib.theories.Theory;
 import org.junit.runner.RunWith;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -59,6 +60,16 @@ public class PermutationsTest {
         assert prevPermutation(Arrays.asList(2, 3, 1)).equals(Arrays.asList(2, 1, 3));
         assert prevPermutation(Arrays.asList(3, 1, 2)).equals(Arrays.asList(2, 3, 1));
         assert prevPermutation(Arrays.asList(3, 2, 1)).equals(Arrays.asList(3, 1, 2));
+    }
+
+    @Test
+    public void testKthPermutation() throws Exception {
+        List<Integer> sorted = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        List<Integer> curr = new ArrayList<>(sorted);
+        for (int k = 1; k <= 3628800; k++) {
+            assert kthPermutation(sorted, k).equals(curr);
+            curr = nextPermutation(curr);
+        }
     }
 
     @Test

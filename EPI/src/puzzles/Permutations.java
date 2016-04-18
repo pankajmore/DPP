@@ -79,6 +79,46 @@ public class Permutations {
         return permutation;
     }
 
+    /**
+     * Time : O(N * N) (can be improved to NlogN by using order-statistic-trees)
+     * Space: O(N)
+     *
+     * @param permutation input sequence of size N
+     * @return the kth permutation sequence
+     */
+    public static List<Integer> kthPermutation(List<Integer> permutation, int k) {
+        List<Integer> sorted = new ArrayList<>(permutation);
+        Collections.sort(sorted);
+        int N = permutation.size();
+        int[] factorial = computeFactorials(N);
+        if (k < 0 || k > factorial[N]) throw new IllegalArgumentException("invalid k");
+        k--;
+        List<Integer> output = new ArrayList<>();
+        for (int i = 0; i < N; i++) {
+            output.add(searchAndRemove(sorted, k / factorial[N - 1 - i]));
+            k %= factorial[N - 1 - i];
+        }
+        return output;
+    }
+
+    private static int searchAndRemove(List<Integer> sorted, int k) {
+        int i = 0;
+        while (k > 0 || sorted.get(i) == null) {
+            if (sorted.get(i) != null) k--;
+            i++;
+        }
+        int elem = sorted.get(i);
+        sorted.set(i, null);
+        return elem;
+    }
+
+    private static int[] computeFactorials(int N) {
+        int[] factorial = new int[N + 1];
+        factorial[0] = 1;
+        for (int i = 1; i <= N; i++) factorial[i] = factorial[i - 1] * i;
+        return factorial;
+    }
+
     private static void swap(List<Integer> permutation, int i, int j) {
         Integer temp = permutation.get(i);
         permutation.set(i, permutation.get(j));
