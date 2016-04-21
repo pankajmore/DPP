@@ -13,6 +13,7 @@ import static java.lang.StrictMath.ceil;
  */
 public class Spiral2DArray {
     public static ArrayList<Integer> spiral(int[][] A) {
+        if (A.length == 0 || A[0].length == 0) return new ArrayList<>();
         int M = A.length;
         int N = A[0].length;
         int i;
@@ -23,10 +24,33 @@ public class Spiral2DArray {
         return S;
     }
 
+    public static ArrayList<Integer> spiral1(int[][] A) {
+        if (A.length == 0 || A[0].length == 0) return new ArrayList<>();
+        int M = A.length;
+        int N = A[0].length;
+        ArrayList<Integer> list = new ArrayList<>();
+        int top = 0, bottom = M - 1, left = 0, right = N - 1;
+        while (top <= bottom && left <= right) {
+            for (int c = left; c <= right; c++) list.add(A[top][c]);
+            top++;
+            for (int r = top; r <= bottom; r++) list.add(A[r][right]);
+            right--;
+            if (top <= bottom) for (int c = right; c >= left; c--) list.add(A[bottom][c]);
+            bottom--;
+            if (left <= right) for (int r = bottom; r >= top; r--) list.add(A[r][left]);
+            left++;
+        }
+        return list;
+    }
+
     private static ArrayList<Integer> cycle(int[][] A, int x) {
         int M = A.length;
         int N = A[0].length;
         ArrayList<Integer> l = new ArrayList<Integer>();
+        if (x == N - 1 - x) {
+            l.add(A[x][x]);
+            return l;
+        }
         for (int i = x; i < N - 1 - x; i++)
             l.add(A[x][i]);
         for (int i = x; i < M - 1 - x; i++)
