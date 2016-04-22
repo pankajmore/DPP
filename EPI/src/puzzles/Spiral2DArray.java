@@ -43,6 +43,30 @@ public class Spiral2DArray {
         return list;
     }
 
+    /**
+     * Time : O(N^2)
+     * Space: O(N^2)
+     *
+     * @param N > 0
+     * @return a square matrix of size NxN with values [1,N^2] filled spirally
+     */
+    public static int[][] generateSpiralMatrix(int N) {
+        int[][] A = new int[N][N];
+        if (N == 0) return A;
+        int v = 1;
+        for (int x = 0; x <= N / 2; x++) {
+            if (x == N - 1 - x) {
+                A[x][x] = v++;
+                break;
+            }
+            for (int i = x; i < N - 1 - x; i++) A[x][i] = v++;
+            for (int i = x; i < N - 1 - x; i++) A[i][N - 1 - x] = v++;
+            for (int i = N - 1 - x; i > x; i--) A[N - 1 - x][i] = v++;
+            for (int i = N - 1 - x; i > x; i--) A[i][x] = v++;
+        }
+        return A;
+    }
+
     private static ArrayList<Integer> cycle(int[][] A, int x) {
         int M = A.length;
         int N = A[0].length;
