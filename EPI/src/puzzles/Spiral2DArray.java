@@ -3,6 +3,7 @@ package puzzles;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
 
 import static java.lang.Math.min;
@@ -63,6 +64,28 @@ public class Spiral2DArray {
             for (int i = x; i < N - 1 - x; i++) A[i][N - 1 - x] = v++;
             for (int i = N - 1 - x; i > x; i--) A[N - 1 - x][i] = v++;
             for (int i = N - 1 - x; i > x; i--) A[i][x] = v++;
+        }
+        return A;
+    }
+
+    /**
+     * @param L a list of size N * N
+     * @return a spiral square matrix with values filled from L
+     */
+    public static int[][] generateSpiralMatrix1(List<Integer> L) {
+        int N = (int) Math.sqrt(L.size());
+        if (N * N != L.size()) throw new IllegalArgumentException("list's length should be a perfect square!");
+        int[][] A = new int[N][N];
+        int idx = 0;
+        for (int x = 0; x <= N / 2; x++) {
+            if (x == N - 1 - x) {
+                A[x][x] = L.get(idx++);
+                break;
+            }
+            for (int i = x; i < N - 1 - x; i++) A[x][i] = L.get(idx++);
+            for (int i = x; i < N - 1 - x; i++) A[i][N - 1 - x] = L.get(idx++);
+            for (int i = N - 1 - x; i > x; i--) A[N - 1 - x][i] = L.get(idx++);
+            for (int i = N - 1 - x; i > x; i--) A[i][x] = L.get(idx++);
         }
         return A;
     }
