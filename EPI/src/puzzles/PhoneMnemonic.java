@@ -10,7 +10,7 @@ public class PhoneMnemonic {
     private static final Map<Integer, char[]> _keypad;
 
     static {
-        _keypad = new HashMap<Integer, char[]>();
+        _keypad = new HashMap<>();
         _keypad.put(2, "ABC".toCharArray());
         _keypad.put(3, "DEF".toCharArray());
         _keypad.put(4, "GHI".toCharArray());
@@ -26,16 +26,13 @@ public class PhoneMnemonic {
         PrintStream out = new PrintStream(System.out);
         String s = in.nextLine();
         ArrayList<char[]> mnemonics = mnemonics(s.toCharArray());
-        for (char[] mnemonic : mnemonics) {
-            out.println(mnemonic);
-        }
-
+        mnemonics.forEach(out::println);
     }
 
     private static ArrayList<char[]> mnemonics(char[] s) {
         int N = s.length;
-        ArrayList<char[]> curr = new ArrayList<char[]>();
-        ArrayList<char[]> old = new ArrayList<char[]>();
+        ArrayList<char[]> curr = new ArrayList<>();
+        ArrayList<char[]> old = new ArrayList<>();
         for (char ch : _keypad.get(s[0] - '0')) {
             char[] t = new char[N];
             t[0] = ch;
@@ -43,9 +40,7 @@ public class PhoneMnemonic {
         }
         for (int i = 1; i < N; i++) {
             old.clear();
-            for (char[] c : curr) {
-                old.add(c);
-            }
+            old.addAll(curr);
             curr.clear();
             for (char[] cs : old) {
                 for (char ch : _keypad.get(s[i] - '0')) {
