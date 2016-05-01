@@ -8,6 +8,12 @@ public class RomanToIntegerTest {
 
     @Test
     public void testRomanToInteger() throws Exception {
+        assert 1 == romanToInteger("I");
+        assert 2 == romanToInteger("II");
+        assert 3 == romanToInteger("III");
+        assert 4 == romanToInteger("IV");
+        assert 5 == romanToInteger("V");
+        assert 6 == romanToInteger("VI");
         assert 7 == romanToInteger("VII");
         assert 184 == romanToInteger("CLXXXIV");
         assert 9 == romanToInteger("IX");
