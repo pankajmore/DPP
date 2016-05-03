@@ -10,20 +10,17 @@ public class RunLengthEncoding {
         int count = 1;
         for (int i = 1; i < s.length(); i++) {
             if (s.charAt(i) != s.charAt(i - 1)) {
-                sb.append(count);
-                sb.append(s.charAt(i - 1));
+                sb.append(count).append(s.charAt(i - 1));
                 count = 1;
             } else {
                 count++;
             }
         }
-        sb.append(count);
-        sb.append(s.charAt(s.length() - 1));
+        sb.append(count).append(s.charAt(s.length() - 1));
         return sb.toString();
     }
 
     public static String decode(String s) {
-        if (s.isEmpty()) return "";
         StringBuilder sb = new StringBuilder();
         int count = 0;
         for (int i = 0; i < s.length(); i++) {
