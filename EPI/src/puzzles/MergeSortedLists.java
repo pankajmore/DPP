@@ -27,31 +27,19 @@ public class MergeSortedLists {
     }
 
     public static Node mergeSortedLists(Node l, Node r) {
-        Node cl = l, cr = r, head, curr;
-        if (l.val < r.val) {
-            head = l;
-            cl = cl.next;
-        } else {
-            head = r;
-            cr = cr.next;
-        }
-        curr = head;
-        while (cl != null && cr != null) {
-            if (cl.val < cr.val) {
-                curr.next = cl;
-                cl = cl.next;
+        Node dummyHead = new Node(), curr = dummyHead;
+        while (l != null && r != null) {
+            if (l.val < r.val) {
+                curr.next = l;
+                l = l.next;
             } else {
-                curr.next = cr;
-                cr = cr.next;
+                curr.next = r;
+                r = r.next;
             }
             curr = curr.next;
         }
-        if (cl == null) {
-            curr.next = cr;
-        } else {
-            curr.next = cl;
-        }
-        return head;
+        curr.next = l == null ? r : l;
+        return dummyHead.next;
     }
 
     public static void main(String[] args) throws Exception {
