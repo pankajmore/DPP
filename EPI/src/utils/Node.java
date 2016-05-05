@@ -201,4 +201,30 @@ public class Node {
         b.next = curr;
         return dummyHead.next;
     }
+
+    public Node reverse(int k) {
+        Node dummyHead = new Node();
+        dummyHead.next = this;
+        Node prevTail = dummyHead, head = this, nextHead;
+        while (head != null) {
+            Node curr = head;
+            for (int i = 1; i < k; i++) {
+                if (curr == null) {
+                    prevTail.next = head;
+                    return dummyHead.next;
+                }
+                curr = curr.next;
+            }
+            if (curr == null) {
+                prevTail.next = head;
+                return dummyHead.next;
+            }
+            nextHead = curr.next;
+            curr.next = null;
+            prevTail.next = head.reverse();
+            prevTail = head;
+            head = nextHead;
+        }
+        return dummyHead.next;
+    }
 }
