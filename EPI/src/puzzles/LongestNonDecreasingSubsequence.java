@@ -53,7 +53,7 @@ public class LongestNonDecreasingSubsequence {
     }
 
     /**
-     * Time : O(N*log(N))
+     * Time : O(Nlog(N))
      * Space : O(N)
      *
      * @param sequence a list of N integers
