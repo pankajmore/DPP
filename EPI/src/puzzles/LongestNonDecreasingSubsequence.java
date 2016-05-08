@@ -9,7 +9,7 @@ import java.util.List;
  * Created by pankaj on 1/19/16.
  * Find longest non-decreasing subsequents
  */
-public class LongestNonDecreasingSubsequence {
+class LongestNonDecreasingSubsequence {
     /**
      * Time : O(N^2)
      * Space : O(N)
