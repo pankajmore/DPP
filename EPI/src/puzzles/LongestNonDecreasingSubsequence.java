@@ -17,7 +17,7 @@ public class LongestNonDecreasingSubsequence {
      * @param sequence a list of N integers
      * @return a non-decreasing subsequent of largest size
      */
-    public static List<Integer> longestNonDecreasingSubSequence(List<Integer> sequence) {
+    static List<Integer> longestNonDecreasingSubSequence(List<Integer> sequence) {
         int N = sequence.size();
         int[] sequenceSize = new int[N], prev = new int[N];
         sequenceSize[0] = 1;
