@@ -4,7 +4,7 @@ package puzzles;
  * Created by Pankaj on 10/1/15.
  */
 public class ReverseWords {
-    public static char[] reverseWords(char[] s) {
+    static char[] reverseWords(char[] s) {
         int i = 0, j = 0, N = s.length;
         reverse(s, i, N - 1);
         while (j < N) {
