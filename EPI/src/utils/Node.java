@@ -135,9 +135,9 @@ public class Node {
             fast = fast.next;
             if (slow == null || fast == null || fast.next == null) return null;
             fast = fast.next;
-            if (slow.equals(fast)) {
+            if (slow == fast) {
                 slow = this;
-                while (!fast.equals(slow)) {
+                while (fast != slow) {
                     slow = slow.next;
                     fast = fast.next;
                 }
