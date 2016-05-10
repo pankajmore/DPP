@@ -53,4 +53,12 @@ public class NodeTest {
         assert new Node(new int[]{1, 2, 3, 4, 5, 6}).reverse(3).toList().equals(Arrays.asList(3, 2, 1, 6, 5, 4));
         assert new Node(new int[]{1, 2, 3, 4, 5}).reverse(2).toList().equals(Arrays.asList(2, 1, 4, 3, 5));
     }
+
+    @Test
+    public void testCheckCycle() throws Exception {
+        Node head = new Node(new int[]{1, 2, 3, 4, 5});
+        assert head.checkCycle() == null;
+        head.introduceCycle(2);
+        assert head.checkCycle() == head.next;
+    }
 }
