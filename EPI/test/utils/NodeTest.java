@@ -56,9 +56,12 @@ public class NodeTest {
 
     @Test
     public void testCheckCycle() throws Exception {
-        Node head = new Node(new int[]{1, 2, 3, 4, 5});
-        assert head.checkCycle() == null;
-        head.introduceCycle(2);
-        assert head.checkCycle() == head.next;
+        Node node = new Node(new int[]{1, 2, 3, 4, 5});
+        for(int i = 1; i <= 5; i++) {
+            assert node.checkCycle() == null;
+            node.introduceCycle(i);
+            assert node.checkCycle().val == i;
+            node.breakCycle();
+        }
     }
 }

@@ -128,13 +128,23 @@ public class Node {
         return this;
     }
 
+    public Node breakCycle() throws Exception {
+        Node start = checkCycle();
+        if (start == null) return this;
+        Node end = start;
+        while (end.next != start) {
+            end = end.next;
+            assert end != null;
+        }
+        end.next = null;
+        return this;
+    }
+
     public Node checkCycle() {
         Node slow = this, fast = this;
-        while (true) {
+        while (fast != null && fast.next != null) {
             slow = slow.next;
-            fast = fast.next;
-            if (slow == null || fast == null || fast.next == null) return null;
-            fast = fast.next;
+            fast = fast.next.next;
             if (slow == fast) {
                 slow = this;
                 while (fast != slow) {
@@ -144,6 +154,7 @@ public class Node {
                 return slow;
             }
         }
+        return null;
     }
 
     /**
