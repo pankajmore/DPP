@@ -162,7 +162,7 @@ public class Node {
      *
      * @return true if the given linked list is a palindrome else false
      */
-    public boolean isPalindrome() {
+    public synchronized boolean isPalindrome() {
         int size = this.length();
         Node x = this;
         Node y = this.kthNext((size - 1) / 2);
