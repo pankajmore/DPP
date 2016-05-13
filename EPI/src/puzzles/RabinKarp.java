@@ -4,7 +4,7 @@ package puzzles;
  * Created by Pankaj on 11/24/15.
  */
 public class RabinKarp {
-    public static int kBase = 26, kMod = 997;
+    public static final int kBase = 26, kMod = 997;
 
     public static int rabinKarp(String t, String s) {
         if (s.length() > t.length()) return -1;
