@@ -57,11 +57,18 @@ public class NodeTest {
     @Test
     public void testCheckCycle() throws Exception {
         Node node = new Node(new int[]{1, 2, 3, 4, 5});
-        for(int i = 1; i <= 5; i++) {
+        for (int i = 1; i <= 5; i++) {
             assert node.checkCycle() == null;
             node.introduceCycle(i);
             assert node.checkCycle().val == i;
             node.breakCycle();
         }
+    }
+
+    @Test
+    public void testRemoveDuplicates() throws Exception {
+        Node l = new Node(new int[]{2, 3, 5, 5, 7, 11, 11, 11, 13});
+        l.removeDuplicates();
+        assert l.toList().equals(Arrays.asList(2, 3, 5, 7, 11, 13));
     }
 }
