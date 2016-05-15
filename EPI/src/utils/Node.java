@@ -238,4 +238,26 @@ public class Node {
         }
         return dummyHead.next;
     }
+
+    /**
+     * Time: O(N)
+     * Space: O(1)
+     * <p>
+     * Assumes the list is sorted, behaviour is undefined for "unsorted" lists
+     *
+     * @return removes the duplicate nodes
+     */
+    public Node removeDuplicates() {
+        Node prev = this, curr = this.next;
+        while (curr != null) {
+            if (prev.val == curr.val) {
+                prev.next = curr.next;
+                curr = curr.next;
+            } else {
+                prev = curr;
+                curr = curr.next;
+            }
+        }
+        return this;
+    }
 }
