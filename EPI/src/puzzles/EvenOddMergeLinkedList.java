@@ -12,20 +12,20 @@ public class EvenOddMergeLinkedList {
         if (l == null) return null;
 
         Node oddHead = l.next;
-        Node evenIter = l, oddIter = oddHead;
+        Node even = l, odd = oddHead;
 
-        while (oddIter != null) {
-            evenIter.next = oddIter.next;
-            if (evenIter.next == null) {
-                evenIter.next = oddHead;
+        while (odd != null) {
+            even.next = odd.next;
+            if (even.next == null) {
+                even.next = oddHead;
                 return l;
             } else {
-                evenIter = evenIter.next;
-                oddIter.next = evenIter.next;
-                oddIter = oddIter.next;
+                even = even.next;
+                odd.next = even.next;
+                odd = odd.next;
             }
         }
-        if (evenIter.next == null) evenIter.next = oddHead;
+        if (even.next == null) even.next = oddHead;
         return l;
     }
 
