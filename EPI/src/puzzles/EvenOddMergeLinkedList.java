@@ -1,5 +1,6 @@
 package puzzles;
 
+import com.sun.istack.internal.NotNull;
 import utils.Node;
 
 import java.util.List;
@@ -29,7 +30,7 @@ public class EvenOddMergeLinkedList {
         return l;
     }
 
-    public static Node evenOddMerge1(Node l) throws Exception {
+    public static Node evenOddMerge1(@NotNull Node l) throws Exception {
         List<Integer> A = l.toList();
         int[] B = new int[A.size()];
         for (int i = 0; i < A.size(); i++) {
