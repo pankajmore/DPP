@@ -9,8 +9,7 @@ import java.util.List;
  * Created by Pankaj on 11/25/15.
  */
 public class EvenOddMergeLinkedList {
-    public static Node evenOddMerge(Node l) {
-        if (l == null) return null;
+    public static Node evenOddMerge(@NotNull Node l) {
 
         Node oddHead = l.next;
         Node even = l, odd = oddHead;
