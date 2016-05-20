@@ -28,6 +28,6 @@ public class EvenOddMergeLinkedListTest {
     @Theory
     public void compareEvenOddMerge(@ForAll int[] A) throws Exception {
         if(A.length == 0) return;
-        Assert.assertEquals(evenOddMerge(new Node(A)).toList(), evenOddMerge1(new Node(A)).toList());
+        Assert.assertEquals(evenOddMerge(new Node(A)), evenOddMerge1(new Node(A)));
     }
 }
