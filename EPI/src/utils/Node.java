@@ -260,4 +260,17 @@ public class Node {
         }
         return this;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if(o == null || !(o instanceof Node)) return false;
+        Node x = (Node)o;
+        Node y = this;
+        while(x != null && y != null) {
+            if(x.val != y.val) return false;
+            x = x.next;
+            y = y.next;
+        }
+        return x == null && y == null;
+    }
 }
