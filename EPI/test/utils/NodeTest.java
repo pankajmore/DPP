@@ -14,7 +14,6 @@ public class NodeTest {
         assert n.kthLast(1).val == 3;
         assert n.kthLast(2).val == 2;
         assert n.kthLast(3).val == 1;
-        //n.kthLast(4);
     }
 
     @Test
