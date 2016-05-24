@@ -29,6 +29,6 @@ public class ZippingListTest {
     @Theory
     public void compare(@ForAll int[] A) throws Exception {
         if (A.length == 0) return;
-        Assert.assertEquals(zip(new Node(A)), zip1(new Node(A)));
+        Assert.assertEquals(zip(new Node(A)), new Node(zip1(A)));
     }
 }

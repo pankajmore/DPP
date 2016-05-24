@@ -1,31 +1,42 @@
 package puzzles;
 
+import com.sun.istack.internal.NotNull;
 import utils.Node;
-
-import java.util.List;
 
 /**
  * Created by Pankaj on 12/28/15.
  */
 public class ZippingList {
-    public static Node zip(Node l) {
+    /**
+     * Time: O(N)
+     * Space: O(1)
+     *
+     * @param l linked list of size N
+     * @return zipped version of l
+     */
+    @NotNull public static Node zip(@NotNull Node l) {
         if (l == null || l.next == null) return l;
         return merge(l, reverse(breakAtMid(l)));
     }
 
-    public static Node zip1(Node l) throws Exception {
-        if (l == null || l.next == null) return l;
-        List<Integer> A = l.toList();
-        int[] B = new int[A.size()];
-        int idx = 0, i = 0, j = A.size() - 1;
+    /**
+     * Time: O(N)
+     * Space: O(N)
+     *
+     * @param A an array of size N
+     * @return zipped version of A
+     */
+    @NotNull public static int[] zip1(@NotNull int[] A) {
+        int[] B = new int[A.length];
+        int idx = 0, i = 0, j = A.length - 1;
         while (i < j) {
-            B[idx++] = A.get(i);
-            B[idx++] = A.get(j);
+            B[idx++] = A[i];
+            B[idx++] = A[j];
             i++;
             j--;
         }
-        if (i == j) B[idx] = A.get(i);
-        return new Node(B);
+        if (i == j) B[idx] = A[i];
+        return B;
     }
 
     private static Node merge(Node a, Node b) {
