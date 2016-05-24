@@ -22,6 +22,7 @@ public class ZippingList {
     /**
      * Time: O(N)
      * Space: O(N)
+     * TODO: Do in O(1) space
      *
      * @param A an array of size N
      * @return zipped version of A
