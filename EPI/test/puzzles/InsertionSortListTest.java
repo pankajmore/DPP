@@ -1,6 +1,7 @@
 package puzzles;
 
 import com.pholser.junit.quickcheck.ForAll;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.contrib.theories.Theories;
 import org.junit.contrib.theories.Theory;
@@ -26,13 +27,13 @@ public class InsertionSortListTest {
         Node head = new Node(A);
         Node sortedHead = insertionSortList(head);
         Collections.sort(l);
-        assert sortedHead.toList().equals(l);
+        Assert.assertEquals(l, sortedHead.toList());
     }
 
     @Test
     public void testInsertionSortList() throws Exception {
         Node head = new Node(new int[]{4, 3, 2, 2, 5});
         Node sortedHead = insertionSortList(head);
-        assert sortedHead.toList().equals(Arrays.asList(2, 2, 3, 4, 5));
+        Assert.assertEquals(Arrays.asList(2, 2, 3, 4, 5), sortedHead.toList());
     }
 }
