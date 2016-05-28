@@ -2,7 +2,6 @@ package utils;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Created by Pankaj on 6/10/15.
@@ -12,6 +11,10 @@ public class Node {
     public Node next;
 
     public Node() {
+    }
+
+    public Node(int x) {
+        this.val = x;
     }
 
     public Node(int[] A) throws Exception {
