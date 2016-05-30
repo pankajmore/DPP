@@ -11,7 +11,7 @@ public class StackWithMax1Test {
     @Test
     public void testMax() throws Exception {
         StackWithMax1<Integer> s = new StackWithMax1<>();
-        s.push(new Integer(1));
+        s.push(new Integer(1)); //because auto (un)boxing has subtle bugs with == due to caching
         assertEquals(new Integer(1), s.max());
         s.push(new Integer(2));
         assertEquals(new Integer(2), s.max());
