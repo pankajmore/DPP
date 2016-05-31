@@ -1,17 +1,16 @@
 package utils;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
+import java.util.Stack;
 
 /**
  * Created by pankaj on 4/23/16.
  */
 public class StackWithMaxForPositiveNumbers {
-    private Deque<Integer> _stack;
+    private java.util.Stack<Integer> _stack;
     private Integer _max;
 
     public StackWithMaxForPositiveNumbers() {
-        _stack = new ArrayDeque<>();
+        _stack = new Stack<>();
         _max = null;
     }
 
@@ -19,17 +18,17 @@ public class StackWithMaxForPositiveNumbers {
         if (x <= 0) throw new IllegalArgumentException("Non-positive numbers not supported!");
         if (_max == null || x >= _max) {
             _max = x;
-            _stack.addLast(x);
+            _stack.add(x);
         } else {
-            _stack.addLast(x - _max);
+            _stack.add(x - _max);
         }
     }
 
     public int pop() {
         if (isEmpty()) throw new RuntimeException("empty stack");
-        int x = _stack.removeLast();
+        int x = _stack.pop();
         if (x < 0) x += _max;
-        _max = isEmpty() ? null : _stack.getLast() > 0 ? _stack.getLast() : _max;
+        _max = isEmpty() ? null : _stack.peek() > 0 ? _stack.peek() : _max;
         return x;
     }
 
