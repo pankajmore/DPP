@@ -1,8 +1,8 @@
 package puzzles;
 
+import org.junit.Assert;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
 import static puzzles.LongestValidParentheses.longestValidParentheses;
 import static puzzles.LongestValidParentheses.longestValidParenthesesUsingStack;
 
@@ -13,22 +13,29 @@ public class LongestValidParenthesesTest {
 
     @Test
     public void testLongestValidParentheses() throws Exception {
-        assert longestValidParentheses("))((").equals("");
-        assert longestValidParentheses("((()))").equals("((()))");
-        assert longestValidParentheses("((())()(()(").equals("(())()");
+        Assert.assertEquals("", longestValidParentheses("))(("));
+        Assert.assertEquals("((()))", longestValidParentheses("((()))"));
+        Assert.assertEquals("(())()", longestValidParentheses("((())()(()("));
 
-        assert longestValidParentheses(")(((())()(()(").equals("(())()");
-        assert longestValidParentheses("((())()(()(").equals("(())()");
-        assert longestValidParentheses(")(").equals("");
-        assert longestValidParentheses("()").equals("()");
-        assert longestValidParentheses("").equals("");
-        assert longestValidParentheses("()()())").equals("()()()");
+        Assert.assertEquals("(())()", longestValidParentheses(")(((())()(()("));
+        Assert.assertEquals("(())()", longestValidParentheses("((())()(()("));
+        Assert.assertEquals("", longestValidParentheses(")("));
+        Assert.assertEquals("()", longestValidParentheses("()"));
+        Assert.assertEquals("", longestValidParentheses(""));
+        Assert.assertEquals("()()()", longestValidParentheses("()()())"));
     }
 
     @Test
     public void testLongestValidParenthesesUsingStack() throws Exception {
-        assert longestValidParenthesesUsingStack("))((").equals("");
-        assert longestValidParenthesesUsingStack("((()))").equals("((()))");
-        assert longestValidParenthesesUsingStack("((())()(()(").equals("(())()");
+        Assert.assertEquals("", longestValidParenthesesUsingStack("))(("));
+        Assert.assertEquals("((()))", longestValidParenthesesUsingStack("((()))"));
+        Assert.assertEquals("(())()", longestValidParenthesesUsingStack("((())()(()("));
+
+        Assert.assertEquals("(())()", longestValidParenthesesUsingStack(")(((())()(()("));
+        Assert.assertEquals("(())()", longestValidParenthesesUsingStack("((())()(()("));
+        Assert.assertEquals("", longestValidParenthesesUsingStack(")("));
+        Assert.assertEquals("()", longestValidParenthesesUsingStack("()"));
+        Assert.assertEquals("", longestValidParenthesesUsingStack(""));
+//        Assert.assertEquals("()()()", longestValidParenthesesUsingStack("()()())")); TODO: fix
     }
 }
