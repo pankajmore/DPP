@@ -40,16 +40,21 @@ public class LongestValidParentheses {
                 else stack.push(i);
             }
         }
-        if(stack.isEmpty()) return s;
+        if (stack.isEmpty()) return s;
         int start = 0, end = -1, a = N, b, best = 0;
         while (!stack.isEmpty()) {
             b = stack.pop();
-            if (best < a - b - 1) {
+            if (best <= a - b - 1) {
                 best = a - b - 1;
                 start = b + 1;
                 end = a - 1;
             }
             a = b;
+        }
+        // consider the valid string starting from beginning
+        if (best <= a) {
+            start = 0;
+            end = a - 1;
         }
         return s.substring(start, end + 1);
     }
