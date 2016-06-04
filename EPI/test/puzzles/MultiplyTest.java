@@ -1,5 +1,6 @@
 package puzzles;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import static puzzles.Multiply.multiply;
@@ -11,8 +12,8 @@ public class MultiplyTest {
 
     @Test
     public void testMultiply() throws Exception {
-        assert multiply(1, 1) == 1;
-        assert multiply(3, 4) == 12;
-        assert multiply(65535, 65535) == 65535 * 65535;
+        Assert.assertEquals(1, multiply(1, 1));
+        Assert.assertEquals(12, multiply(3, 4));
+        Assert.assertEquals(65535 * 65535, multiply(65535, 65535));
     }
 }
