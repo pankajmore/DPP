@@ -1,6 +1,7 @@
 package utils;
 
 import examples.BinaryTreeExample;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -95,6 +96,13 @@ public class BinaryTreeNodeTest {
         BinaryTreeNode y = root.left().right().right();
         BinaryTreeNode l = root.left();
         assert l.equals(root.leastCommonAncestorDistinctBST(x, y));
+    }
+
+    @Test
+    public void testInOrderUsingStack() throws Exception {
+        BinaryTreeNode tree = BinaryTreeExample.constructBookExample();
+        Assert.assertEquals(tree.inOrder(), tree.inOrderUsingStack());
+        Assert.assertEquals(tree.inOrder(), tree.inOrderUsingStack1());
     }
 
     @Test

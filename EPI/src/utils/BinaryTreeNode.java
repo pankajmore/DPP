@@ -148,6 +148,45 @@ public class BinaryTreeNode {
         return ls;
     }
 
+    public List<BinaryTreeNode> inOrderUsingStack() {
+        List<BinaryTreeNode> ls = new ArrayList<>();
+        Stack<BinaryTreeNode> stack = new Stack<>();
+        BinaryTreeNode curr = this;
+        while (!stack.isEmpty() || curr != null) {
+            if (curr != null) {
+                stack.push(curr);
+                curr = curr.left;
+            } else {
+                final BinaryTreeNode n = stack.pop();
+                ls.add(n);
+                curr = n.right;
+            }
+        }
+        return ls;
+    }
+
+    public List<BinaryTreeNode> inOrderUsingStack1() {
+        List<BinaryTreeNode> ls = new ArrayList<>();
+        Stack<BinaryTreeNode> stack = new Stack<>();
+        Stack<BinaryTreeNode> visited = new Stack<>();
+        stack.push(this);
+        while (!stack.isEmpty()) {
+            if (!visited.isEmpty() && visited.peek() == stack.peek()) {
+                ls.add(stack.pop());
+                visited.pop();
+            } else {
+                BinaryTreeNode n = stack.pop();
+                visited.push(n);
+                if (n.right != null)
+                    stack.push(n.right);
+                stack.push(n);
+                if (n.left != null)
+                    stack.push(n.left);
+            }
+        }
+        return ls;
+    }
+
     public List<BinaryTreeNode> preOrderUsingStack() {
         List<BinaryTreeNode> ls = new ArrayList<>();
         Stack<BinaryTreeNode> stack = new Stack<>();
@@ -325,8 +364,7 @@ public class BinaryTreeNode {
     public boolean isBSTRangeImpl(int min, int max) {
         if (this.val() < min || this.val() > max) return false;
         if (this.left() != null && !this.left().isBSTRangeImpl(min, this.val)) return false;
-        if (this.right() != null && !this.right().isBSTRangeImpl(this.val, max)) return false;
-        return true;
+        return !(this.right() != null && !this.right().isBSTRangeImpl(this.val, max));
     }
 
     public BinaryTreeNode successor(int k) {
