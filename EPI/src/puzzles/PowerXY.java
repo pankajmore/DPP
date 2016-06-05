@@ -4,7 +4,8 @@ package puzzles;
  * Created by pankajm on 5/6/15.
  */
 public class PowerXY {
-    public double recPow(double x, long y) {
+    public static double recPow(double x, long y) {
+        if (y == 0) return 1;
         if (y % 2 == 0) {
             return recPow(x * x, y / 2);
         } else {
@@ -12,15 +13,14 @@ public class PowerXY {
         }
     }
 
-    public double iterPow(double x, long y) {
+    public static double iterPow(double x, long y) {
         double res = 1;
-        while (y > 1) {
-            res *= x * x;
-            y /= 2;
-            if (y % 2 == 1)
+        while (y > 0) {
+            if ((y & 1) == 1)
                 res *= x;
+            x *= x;
+            y >>>= 1;
         }
-        res *= x;
         return res;
     }
 }
