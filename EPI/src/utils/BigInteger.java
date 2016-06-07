@@ -68,6 +68,26 @@ public class BigInteger {
         return new BigInteger(negative, sb.reverse().toString());
     }
 
+    /**
+     * Time: O((nlog(x))^2)
+     * Space: O(nlog(x))
+     *
+     * @param n the exponent
+     * @return this^n
+     */
+    public BigInteger pow(int n) {
+        BigInteger x = this;
+        BigInteger res = new BigInteger("1");
+        if (n < 0) throw new IllegalArgumentException("Negative exponent: " + n);
+        if (n == 0) return res;
+        while (n > 1) {
+            if ((n & 1) == 1) res = res.multiply(x);
+            x = x.multiply(x);
+            n >>>= 1;
+        }
+        return res.multiply(x);
+    }
+
     public BigInteger add(BigInteger o) {
         boolean negative = this.negative || o.negative;
         final StringBuilder sb = new StringBuilder();
