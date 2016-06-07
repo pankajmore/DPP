@@ -3,7 +3,6 @@ package puzzles;
 /**
  * Created by pankajm on 5/6/15.
  */
-// TODO: Check for overflows
 public class PowerXY {
     public static double recPow(double x, long y) {
         if (y < 0) return 1 / recPow(x, -y);
@@ -21,8 +20,8 @@ public class PowerXY {
         if (m <= 0) throw new IllegalArgumentException("Non-positive modulus: " + m);
         if (n == 0) return 1 % m;
         long temp = recPow(a, n >>> 1, m);
-        if ((n & 1) == 0) return (temp * temp) % m;
-        else return (a * (temp * temp) % m) % m;
+        if ((n & 1) == 0) return Math.multiplyExact(temp, temp) % m;
+        else return (Math.multiplyExact(a, Math.multiplyExact(temp, temp) % m)) % m;
     }
 
     public static double iterPow(double x, long y) {
@@ -43,8 +42,8 @@ public class PowerXY {
         long res = 1;
         while (n > 0) {
             if ((n & 1) == 1)
-                res = (res * a) % m;
-            a = (a * a) % m;
+                res = Math.multiplyExact(res, a) % m;
+            a = Math.multiplyExact(a, a) % m;
             n >>>= 1;
         }
         return res % m;
