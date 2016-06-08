@@ -1,6 +1,7 @@
 package puzzles;
 
 import com.pholser.junit.quickcheck.ForAll;
+import com.pholser.junit.quickcheck.generator.InRange;
 import org.junit.Assert;
 import org.junit.contrib.theories.Theories;
 import org.junit.contrib.theories.Theory;
@@ -17,10 +18,11 @@ import static puzzles.PowerXY.recPow;
 @RunWith(Theories.class)
 public class PowerXYTest {
     @Theory
-    public void compare(@ForAll double a, @ForAll int n) {
+    public void compare(@ForAll @InRange(minDouble = 0, maxDouble = 10.0) double a,
+                        @ForAll @InRange(minInt = -100, maxInt = 100) int n) {
         final double expected = Math.pow(a, n);
-        Assert.assertEquals(expected, recPow(a, n), Math.abs(expected) / 1E5);
-        Assert.assertEquals(expected, iterPow(a, n), Math.abs(expected / 1E5));
+        Assert.assertEquals(expected, recPow(a, n), Math.abs(expected) / 1e10);
+        Assert.assertEquals(expected, iterPow(a, n), Math.abs(expected) / 1e10);
     }
 
     @Theory
