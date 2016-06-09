@@ -27,25 +27,27 @@ public class PowerXY {
     public static double iterPow(double x, long y) {
         if (y < 0) return 1 / iterPow(x, -y);
         double res = 1;
-        while (y > 0) {
+        if (y == 0) return 1;
+        while (y > 1) {
             if ((y & 1) == 1)
                 res *= x;
             x *= x;
             y >>>= 1;
         }
-        return res;
+        return res * x;
     }
 
     public static long iterPow(long a, long n, long m) {
         if (n < 0) throw new IllegalArgumentException("Negative Exponent: " + n);
         if (m <= 0) throw new IllegalArgumentException("Non-positive modulus: " + m);
         long res = 1;
-        while (n > 0) {
+        if (n == 0) return 1 % m;
+        while (n > 1) {
             if ((n & 1) == 1)
                 res = Math.multiplyExact(res, a) % m;
             a = Math.multiplyExact(a, a) % m;
             n >>>= 1;
         }
-        return res % m;
+        return (res * a) % m;
     }
 }
