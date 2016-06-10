@@ -1,6 +1,7 @@
 package utils;
 
 import examples.BinaryTreeExample;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -21,6 +22,14 @@ public class BinaryTreeNodeWithParentTest {
         int[] actual = bookExample.inOrder().stream().mapToInt(BinaryTreeNodeWithParent::val).toArray();
         int[] expected = BinaryTreeExample.constructBookExample().inOrder().stream().mapToInt(BinaryTreeNode::val).toArray();
         assert Arrays.equals(actual, expected);
+    }
+
+    @Test
+    public void testPreOrder() throws Exception {
+        BinaryTreeNodeWithParent bookExample = new BinaryTreeNodeWithParent(BinaryTreeExample.constructBookExample());
+        int[] actual = bookExample.preOrder().stream().mapToInt(BinaryTreeNodeWithParent::val).toArray();
+        int[] expected = BinaryTreeExample.constructBookExample().preOrder().stream().mapToInt(BinaryTreeNode::val).toArray();
+        Assert.assertArrayEquals(expected, actual);
     }
 
     @Test
