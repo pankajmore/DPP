@@ -64,7 +64,7 @@ public class BinaryTreeNodeWithParent {
         return !isLeftChild();
     }
 
-    public BinaryTreeNodeWithParent successor() {
+    public BinaryTreeNodeWithParent inOrderSuccessor() {
         BinaryTreeNodeWithParent n = this;
         if (n._right != null) return n._right.leftMost();
         if (n.isLeftChild()) return n._parent;
@@ -74,13 +74,35 @@ public class BinaryTreeNodeWithParent {
         }
     }
 
-    //TODO: Implement preOrder and postOrder in O(1) space
+    public BinaryTreeNodeWithParent preOrderSuccessor() {
+        BinaryTreeNodeWithParent n = this;
+        if (n._left != null) return n._left;
+        if (n._right != null) return n._right;
+        while (n._parent != null) {
+            if (n.isLeftChild() && n._parent._right != null)
+                return n._parent._right;
+            n = n._parent;
+        }
+        return null;
+    }
+
+    public List<BinaryTreeNodeWithParent> preOrder() {
+        List<BinaryTreeNodeWithParent> ls = new ArrayList<>();
+        BinaryTreeNodeWithParent n = this;
+        while (n != null) {
+            ls.add(n);
+            n = n.preOrderSuccessor();
+        }
+        return ls;
+    }
+
+    //TODO: Implement postOrder in O(1) space
     public List<BinaryTreeNodeWithParent> inOrder() {
         List<BinaryTreeNodeWithParent> ls = new ArrayList<>();
         BinaryTreeNodeWithParent n = this.leftMost();
         while (n != null) {
             ls.add(n);
-            n = n.successor();
+            n = n.inOrderSuccessor();
         }
         return ls;
     }
