@@ -33,6 +33,14 @@ public class BinaryTreeNodeWithParentTest {
     }
 
     @Test
+    public void testPostOrder() throws Exception {
+        BinaryTreeNodeWithParent bookExample = new BinaryTreeNodeWithParent(BinaryTreeExample.constructBookExample());
+        int[] actual = bookExample.postOrder().stream().mapToInt(BinaryTreeNodeWithParent::val).toArray();
+        int[] expected = BinaryTreeExample.constructBookExample().postOrder().stream().mapToInt(BinaryTreeNode::val).toArray();
+        Assert.assertArrayEquals(expected, actual);
+    }
+
+    @Test
     public void testLeastCommonAncestor() {
         BinaryTreeNodeWithParent root = new BinaryTreeNodeWithParent(BinaryTreeExample.constructBSTExample());
         BinaryTreeNodeWithParent x = root.left().left();

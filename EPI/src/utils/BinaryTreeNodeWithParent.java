@@ -1,9 +1,6 @@
 package utils;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static java.lang.Math.abs;
 
@@ -86,6 +83,18 @@ public class BinaryTreeNodeWithParent {
         return null;
     }
 
+    public BinaryTreeNodeWithParent postOrderPredecessor() {
+        BinaryTreeNodeWithParent n = this;
+        if (n._right != null) return n._right;
+        if (n._left != null) return n._left;
+        while (n._parent != null) {
+            if (n.isRightChild() && n._parent._left != null)
+                return n._parent._left;
+            n = n._parent;
+        }
+        return null;
+    }
+
     public List<BinaryTreeNodeWithParent> preOrder() {
         List<BinaryTreeNodeWithParent> ls = new ArrayList<>();
         BinaryTreeNodeWithParent n = this;
@@ -96,7 +105,17 @@ public class BinaryTreeNodeWithParent {
         return ls;
     }
 
-    //TODO: Implement postOrder in O(1) space
+    public List<BinaryTreeNodeWithParent> postOrder() {
+        List<BinaryTreeNodeWithParent> ls = new ArrayList<>();
+        BinaryTreeNodeWithParent n = this;
+        while (n != null) {
+            ls.add(n);
+            n = n.postOrderPredecessor();
+        }
+        Collections.reverse(ls);
+        return ls;
+    }
+
     public List<BinaryTreeNodeWithParent> inOrder() {
         List<BinaryTreeNodeWithParent> ls = new ArrayList<>();
         BinaryTreeNodeWithParent n = this.leftMost();
