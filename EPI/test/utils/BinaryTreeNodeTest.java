@@ -18,17 +18,14 @@ public class BinaryTreeNodeTest {
     public void testLevelOrderByDepth() throws Exception {
         BinaryTreeNode root = BinaryTreeExample.constructBookExample();
         List<List<Integer>> ls = root.levelOrderByDepth();
-        List<List<Integer>> es = new ArrayList<List<Integer>>();
-        es = Arrays.asList(
+        List<List<Integer>> es = Arrays.asList(
                 Arrays.asList(314),
                 Arrays.asList(6, 6),
                 Arrays.asList(271, 561, 2, 271),
                 Arrays.asList(28, 0, 3, 1, 28),
                 Arrays.asList(17, 401, 257),
-                Arrays.asList(641)
-        );
-        assert (ls.equals(es));
-
+                Arrays.asList(641));
+        Assert.assertEquals(es, ls);
     }
 
     @Test
@@ -50,10 +47,10 @@ public class BinaryTreeNodeTest {
     @Test
     public void testisBST() {
         BinaryTreeNode tree = BinaryTreeExample.constructBSTExample();
-        assert (tree.isBinarySearchTree());
-        assert (tree.isBSTPostOrderImpl().second());
-        assert (tree.isBSTInOrderImpl().second());
-        assert (tree.isBSTRange());
+        Assert.assertTrue(tree.isBinarySearchTree());
+        Assert.assertTrue(tree.isBSTPostOrderImpl().second());
+        Assert.assertTrue(tree.isBSTInOrderImpl().second());
+        Assert.assertTrue(tree.isBSTRange());
 
         BinaryTreeNode notBST = BinaryTreeExample.constructBookExample();
         List<Integer> inOrder = notBST.inOrder().stream().map(x -> x.val()).collect(Collectors.toList());
@@ -69,15 +66,15 @@ public class BinaryTreeNodeTest {
     @Test
     public void testSuccessor() {
         BinaryTreeNode tree = BinaryTreeExample.constructBSTExample();
-        assert (tree.successor(23) != null);
-        assert (tree.successor(23).val() == 29);
-        assert (tree.successor(32) == null);
+        Assert.assertNotNull(tree.successor(23));
+        Assert.assertEquals(29, tree.successor(23).val());
+        Assert.assertNull(tree.successor(32));
 
     }
 
     @Test
     public void testIsSymmetric() throws Exception {
-        assert BinaryTreeExample.symmetricTree().isSymmetric();
+        Assert.assertTrue(BinaryTreeExample.symmetricTree().isSymmetric());
     }
 
     @Test
@@ -85,8 +82,8 @@ public class BinaryTreeNodeTest {
         BinaryTreeNode tree = BinaryTreeExample.constructBSTExample();
         BinaryTreeNode derivedFromPreOrder = BinaryTreeNode.construct(tree.inOrderVals(), tree.preOrderVals());
         BinaryTreeNode derivedFromPostOrder = BinaryTreeNode.construct(tree.inOrderVals(), tree.postOrderVals());
-        assert tree.equals(derivedFromPreOrder);
-        assert tree.equals(derivedFromPostOrder);
+        Assert.assertEquals(tree, derivedFromPreOrder);
+        Assert.assertEquals(tree, derivedFromPostOrder);
     }
 
     @Test
@@ -95,7 +92,7 @@ public class BinaryTreeNodeTest {
         BinaryTreeNode x = root.left().left();
         BinaryTreeNode y = root.left().right().right();
         BinaryTreeNode l = root.left();
-        assert l.equals(root.leastCommonAncestorDistinctBST(x, y));
+        Assert.assertEquals(l, root.leastCommonAncestorDistinctBST(x, y));
     }
 
     @Test
@@ -108,20 +105,20 @@ public class BinaryTreeNodeTest {
     @Test
     public void testPreOrderUsingStack() throws Exception {
         BinaryTreeNode tree = BinaryTreeExample.constructBookExample();
-        assert tree.preOrder().equals(tree.preOrderUsingStack());
+        Assert.assertEquals(tree.preOrder(), tree.preOrderUsingStack());
     }
 
     @Test
     public void testPostOrderUsingStack() throws Exception {
         BinaryTreeNode tree = BinaryTreeExample.constructBookExample();
-        assert tree.postOrder().equals(tree.postOrderUsingStack());
+        Assert.assertEquals(tree.postOrder(), tree.postOrderUsingStack());
     }
 
     @Test
     public void testLeastCommonAncestor() throws Exception {
         BinaryTreeNode root = BinaryTreeExample.constructBookExample();
-        assert root.leastCommonAncestor(root.left, root.right) == root;
-        assert root.leastCommonAncestor(root.left.left.left, root.left.right.right.left) == root.left;
-        assert root.leastCommonAncestor(root.left.right, root.right.left.right) == root;
+        Assert.assertEquals(root, root.leastCommonAncestor(root.left, root.right));
+        Assert.assertEquals(root.left, root.leastCommonAncestor(root.left.left.left, root.left.right.right.left));
+        Assert.assertEquals(root, root.leastCommonAncestor(root.left.right, root.right.left.right));
     }
 }
