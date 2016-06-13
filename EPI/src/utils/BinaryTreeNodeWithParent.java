@@ -65,10 +65,8 @@ public class BinaryTreeNodeWithParent {
         BinaryTreeNodeWithParent n = this;
         if (n._right != null) return n._right.leftMost();
         if (n.isLeftChild()) return n._parent;
-        else {
-            while (n.isRightChild() && n._parent != null) n = n._parent;
-            return n._parent;
-        }
+        while (n.isRightChild() && n._parent != null) n = n._parent;
+        return n._parent;
     }
 
     public BinaryTreeNodeWithParent preOrderSuccessor() {
