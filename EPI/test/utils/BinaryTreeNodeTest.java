@@ -76,6 +76,7 @@ public class BinaryTreeNodeTest {
     @Test
     public void testIsSymmetric() throws Exception {
         Assert.assertTrue(BinaryTreeExample.symmetricTree().isSymmetric());
+        Assert.assertFalse(BinaryTreeExample.constructBookExample().isSymmetric());
     }
 
     @Test
