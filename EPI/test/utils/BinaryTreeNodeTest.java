@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static junit.framework.TestCase.assertFalse;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class BinaryTreeNodeTest {
@@ -31,8 +32,8 @@ public class BinaryTreeNodeTest {
     @Test
     public void testHeight() throws Exception {
         BinaryTreeNode n = new BinaryTreeNode(1, null, null);
-        assertTrue(n.height() == 0);
-        assertTrue(BinaryTreeExample.constructBookExample().height() == 5);
+        assertEquals(0, n.height());
+        assertEquals(5, BinaryTreeExample.constructBookExample().height());
     }
 
     @Test
