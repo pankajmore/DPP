@@ -10,10 +10,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static junit.framework.TestCase.assertFalse;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
 public class BinaryTreeNodeTest {
     @Test
     public void testLevelOrderByDepth() throws Exception {
@@ -32,17 +28,17 @@ public class BinaryTreeNodeTest {
     @Test
     public void testHeight() throws Exception {
         BinaryTreeNode n = new BinaryTreeNode(1, null, null);
-        assertEquals(0, n.height());
-        assertEquals(5, BinaryTreeExample.constructBookExample().height());
+        Assert.assertEquals(0, n.height());
+        Assert.assertEquals(5, BinaryTreeExample.constructBookExample().height());
     }
 
     @Test
     public void testIsBalanced() throws Exception {
-        assertTrue(!BinaryTreeExample.constructBookExample().isBalancedSlow());
-        assertTrue(!BinaryTreeExample.constructBookExample().isBalanced());
+        Assert.assertTrue(!BinaryTreeExample.constructBookExample().isBalancedSlow());
+        Assert.assertTrue(!BinaryTreeExample.constructBookExample().isBalanced());
         BinaryTreeNode balancedTree = new BinaryTreeNode(1, new BinaryTreeNode(2, new BinaryTreeNode(3, new BinaryTreeNode(4, new BinaryTreeNode(5, null, null), new BinaryTreeNode(6, null, null)), new BinaryTreeNode(7, null, null)), new BinaryTreeNode(8, new BinaryTreeNode(9, null, null), new BinaryTreeNode(10, null, null))), new BinaryTreeNode(11, new BinaryTreeNode(12, new BinaryTreeNode(13, null, null), new BinaryTreeNode(14, null, null)), new BinaryTreeNode(15, null, null)));
-        assertTrue(balancedTree.isBalancedSlow());
-        assertTrue(balancedTree.isBalanced());
+        Assert.assertTrue(balancedTree.isBalancedSlow());
+        Assert.assertTrue(balancedTree.isBalanced());
     }
 
     @Test
@@ -54,14 +50,14 @@ public class BinaryTreeNodeTest {
         Assert.assertTrue(tree.isBSTRange());
 
         BinaryTreeNode notBST = BinaryTreeExample.constructBookExample();
-        List<Integer> inOrder = notBST.inOrder().stream().map(x -> x.val()).collect(Collectors.toList());
+        List<Integer> inOrder = notBST.inOrder().stream().map(BinaryTreeNode::val).collect(Collectors.toList());
         List<Integer> inOrderSorted = new ArrayList<>(inOrder);
         Collections.sort(inOrderSorted);
-        assertFalse(inOrder.equals(inOrderSorted));
-        assertFalse(notBST.isBinarySearchTree());
-        assertFalse(notBST.isBSTPostOrderImpl().second());
-        assertFalse(notBST.isBSTInOrderImpl().second());
-        assertFalse(notBST.isBSTRange());
+        Assert.assertFalse(inOrder.equals(inOrderSorted));
+        Assert.assertFalse(notBST.isBinarySearchTree());
+        Assert.assertFalse(notBST.isBSTPostOrderImpl().second());
+        Assert.assertFalse(notBST.isBSTInOrderImpl().second());
+        Assert.assertFalse(notBST.isBSTRange());
     }
 
     @Test
