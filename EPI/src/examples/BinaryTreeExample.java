@@ -28,4 +28,10 @@ public class BinaryTreeExample {
         return new BinaryTreeNode(17, new BinaryTreeNode(41, null, new BinaryTreeNode(8, new BinaryTreeNode(6, null, null), null)),
                 new BinaryTreeNode(23, new BinaryTreeNode(21, null, null), new BinaryTreeNode(5, new BinaryTreeNode(30, null, null), null)));
     }
+
+    public static BinaryTreeNode threadedExample() {
+        return new BinaryTreeNode(6, new BinaryTreeNode(2, new BinaryTreeNode(1, null, null), new BinaryTreeNode(4,
+                new BinaryTreeNode(3, null, null), new BinaryTreeNode(5, null, null))), new BinaryTreeNode(7, null,
+                new BinaryTreeNode(9, new BinaryTreeNode(8, null, null), null)));
+    }
 }
