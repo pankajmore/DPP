@@ -105,4 +105,46 @@ public class ThreadedBinaryTree {
             return curr;
         }
     }
+
+    /**
+     * Time: O(N)
+     * Space: O(Height)
+     *
+     * @param root of the BinaryTree containing this
+     * @return parent of this
+     */
+    public ThreadedBinaryTree parent(@NotNull ThreadedBinaryTree root) {
+        if (root == null) return null;
+        if (!root.leftThreaded) {
+            if (root.left == this)
+                return root;
+            ThreadedBinaryTree parent = parent(root.left);
+            if (parent != null) return parent;
+        }
+        if (!root.rightThreaded) {
+            if (root.right == this)
+                return root;
+            ThreadedBinaryTree parent = parent(root.right);
+            if (parent != null) return parent;
+        }
+        return null;
+    }
+
+    /**
+     * Time: O(Height)
+     * Space: O(1)
+     *
+     * @return parent of this
+     */
+    public ThreadedBinaryTree parentMorris() {
+        ThreadedBinaryTree curr = this;
+        while (curr.left != null && !curr.leftThreaded) curr = curr.left;
+        curr = curr.left;
+        if (curr != null && curr.right == this) return curr;
+        curr = this;
+        while (curr.right != null && !curr.rightThreaded) curr = curr.right;
+        curr = curr.right;
+        if (curr != null && curr.left == this) return curr;
+        return null;
+    }
 }

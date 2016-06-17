@@ -19,4 +19,16 @@ public class ThreadedBinaryTreeTest {
         Collections.reverse(inOrder);
         Assert.assertEquals(n.inOrder(), inOrder);
     }
+
+    @Test
+    public void parent() {
+        ThreadedBinaryTree n = ThreadedBinaryTree.construct(BinaryTreeExample.threadedExample());
+        for (ThreadedBinaryTree node : n.inOrderMorris()) {
+            final ThreadedBinaryTree expected = node.parent(n);
+            final ThreadedBinaryTree actual = node.parentMorris();
+            Assert.assertEquals(expected, actual);
+            if(actual != null)
+                Assert.assertTrue(actual.left == node || actual.right == node);
+        }
+    }
 }
