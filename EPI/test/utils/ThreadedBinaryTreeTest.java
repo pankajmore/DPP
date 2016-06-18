@@ -21,7 +21,7 @@ public class ThreadedBinaryTreeTest {
     }
 
     @Test
-    public void parent() {
+    public void testParentMorris() {
         ThreadedBinaryTree n = ThreadedBinaryTree.construct(BinaryTreeExample.threadedExample());
         for (ThreadedBinaryTree node : n.inOrderMorris()) {
             final ThreadedBinaryTree expected = node.parent(n);
