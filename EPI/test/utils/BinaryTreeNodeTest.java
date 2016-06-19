@@ -107,6 +107,12 @@ public class BinaryTreeNodeTest {
     }
 
     @Test
+    public void testInOrderMorris() throws Exception {
+        BinaryTreeNode tree = BinaryTreeExample.constructBookExample();
+        Assert.assertEquals(tree.inOrder().stream().map(BinaryTreeNode::val).collect(Collectors.toList()), tree.inOrderMorris().stream().map(BinaryTreeNode::val).collect(Collectors.toList()));
+    }
+
+    @Test
     public void testPostOrderUsingStack() throws Exception {
         BinaryTreeNode tree = BinaryTreeExample.constructBookExample();
         Assert.assertEquals(tree.postOrder(), tree.postOrderUsingStack());
