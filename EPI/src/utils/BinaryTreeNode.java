@@ -236,9 +236,22 @@ public class BinaryTreeNode {
         return vals;
     }
 
-    //TODO: implement morris traversal
+    //TODO: recover the original tree
     public List<BinaryTreeNode> inOrderMorris() {
-        return inOrder();
+        List<BinaryTreeNode> ls = new ArrayList<>();
+        BinaryTreeNode curr = this;
+        while (curr != null) {
+            if (curr.left == null) {
+                ls.add(curr);
+                curr = curr.right;
+            } else {
+                BinaryTreeNode left = curr.left;
+                curr.left.rightMost().right = curr;
+                curr.left = null;
+                curr = left;
+            }
+        }
+        return ls;
     }
 
     public List<BinaryTreeNode> preOrder() {
@@ -440,6 +453,12 @@ public class BinaryTreeNode {
             while (t.val() > y.val()) t = t.left();
         }
         return t;
+    }
+
+    public BinaryTreeNode rightMost() {
+        BinaryTreeNode curr = this;
+        while (curr.right != null) curr = curr.right;
+        return curr;
     }
 
     public boolean equals(Object other) {
