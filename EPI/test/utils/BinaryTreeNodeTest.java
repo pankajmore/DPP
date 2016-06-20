@@ -109,7 +109,7 @@ public class BinaryTreeNodeTest {
     @Test
     public void testInOrderMorris() throws Exception {
         BinaryTreeNode tree = BinaryTreeExample.constructBookExample();
-        Assert.assertEquals(tree.inOrder().stream().map(BinaryTreeNode::val).collect(Collectors.toList()), tree.inOrderMorris().stream().map(BinaryTreeNode::val).collect(Collectors.toList()));
+        Assert.assertEquals(tree.inOrder(), tree.inOrderMorris());
     }
 
     @Test

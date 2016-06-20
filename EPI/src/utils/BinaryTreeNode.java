@@ -236,8 +236,7 @@ public class BinaryTreeNode {
         return vals;
     }
 
-    //TODO: recover the original tree
-    public List<BinaryTreeNode> inOrderMorris() {
+    public synchronized List<BinaryTreeNode> inOrderMorris() {
         List<BinaryTreeNode> ls = new ArrayList<>();
         BinaryTreeNode curr = this;
         while (curr != null) {
@@ -245,10 +244,16 @@ public class BinaryTreeNode {
                 ls.add(curr);
                 curr = curr.right;
             } else {
-                BinaryTreeNode left = curr.left;
-                curr.left.rightMost().right = curr;
-                curr.left = null;
-                curr = left;
+                BinaryTreeNode pre = curr.left;
+                while (pre.right != null && pre.right != curr) pre = pre.right;
+                if (pre.right == null) {
+                    pre.right = curr;
+                    curr = curr.left;
+                } else {
+                    pre.right = null;
+                    ls.add(curr);
+                    curr = curr.right;
+                }
             }
         }
         return ls;
