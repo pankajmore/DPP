@@ -4,8 +4,6 @@ import org.scalacheck.Gen
 import org.scalatest.FlatSpec
 import org.scalatest.prop.GeneratorDrivenPropertyChecks._
 
-import scala.IterativeFibonacci.{ClosedFormFibonacci1, ClosedFormFibonacci2, MatrixFibonacci}
-
 /**
   * Created by pankaj on 6/21/16.
   */

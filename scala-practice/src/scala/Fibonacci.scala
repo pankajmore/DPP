@@ -6,7 +6,9 @@ import scala.annotation.tailrec
 /**
   * Created by pankaj on 6/20/16.
   */
-object RecursiveFibonacci {
+trait Fibonacci
+
+case object RecursiveFibonacci extends Fibonacci {
   def apply(n: Int): BigInt = {
     require(n >= 0)
     if (n < 2) return n
@@ -14,7 +16,7 @@ object RecursiveFibonacci {
   }
 }
 
-object TailRecursiveFibonacci {
+case object TailRecursiveFibonacci extends Fibonacci {
   def apply(n: Int): BigInt = {
     require(n >= 0)
     if (n < 2) return n
@@ -28,7 +30,7 @@ object TailRecursiveFibonacci {
   }
 }
 
-object IterativeFibonacci {
+case object IterativeFibonacci extends Fibonacci {
   def apply(n: Int): BigInt = {
     require(n >= 0)
     if (n < 2) return n
@@ -41,58 +43,57 @@ object IterativeFibonacci {
     }
     b
   }
+}
 
-  object ClosedFormFibonacci1 {
-    val phi: BigDecimal = (1 + Math.sqrt(5)) / 2
-    val psi: BigDecimal = 1 - phi
+case object ClosedFormFibonacci1 extends Fibonacci {
+  private val phi: BigDecimal = (1 + Math.sqrt(5)) / 2
+  private val psi: BigDecimal = 1 - phi
 
-    def apply(n: Int): BigInt = {
-      require(n >= 0)
-      ((phi.pow(n) - psi.pow(n)) / Math.sqrt(5)).rounded.toBigInt()
-    }
+  def apply(n: Int): BigInt = {
+    require(n >= 0)
+    ((phi.pow(n) - psi.pow(n)) / Math.sqrt(5)).rounded.toBigInt()
+  }
+}
+
+case object ClosedFormFibonacci2 extends Fibonacci {
+  private val phi: BigDecimal = (1 + Math.sqrt(5)) / 2
+
+  def apply(n: Int): BigInt = {
+    require(n >= 0)
+    (phi.pow(n) / Math.sqrt(5)).rounded.toBigInt()
+  }
+}
+
+case object MatrixFibonacci extends Fibonacci {
+  private type SqMatrix = Array[Array[BigInt]]
+  private val I: SqMatrix = Array(Array(1, 0), Array(0, 1))
+  private val A: SqMatrix = Array(Array(1, 1), Array(1, 0))
+
+  /*
+  * F[n]     = | 1 1 |  F[n - 1]
+  * F[n - 1] = | 1 0 |  F[n - 2]
+  *
+  * F[n]     = | 1 1 |^(n - 1) |1|
+  * F[n - 1] = | 1 0 |         |0|
+  * */
+  def apply(n: Int): BigInt = {
+    require(n >= 0)
+    pow(A, n - 1)(0)(0)
   }
 
-  object ClosedFormFibonacci2 {
-    val phi: BigDecimal = ClosedFormFibonacci1.phi
-
-    def apply(n: Int): BigInt = {
-      require(n >= 0)
-      (phi.pow(n) / Math.sqrt(5)).rounded.toBigInt()
+  private def pow(A: SqMatrix, n: Int): SqMatrix = {
+    assume(n >= 0)
+    @tailrec
+    def pow(A: SqMatrix, n: Int, acc: SqMatrix): SqMatrix = {
+      if (n == 0) return acc
+      if ((n & 1) == 1) pow(multiply(A, A), n >>> 1, multiply(acc, A))
+      else pow(multiply(A, A), n >>> 1, acc)
     }
+    pow(A, n, I)
   }
 
-  object MatrixFibonacci {
-    private type SqMatrix = Array[Array[BigInt]]
-    private val I: SqMatrix = Array(Array(1, 0), Array(0, 1))
-    private val A: SqMatrix = Array(Array(1, 1), Array(1, 0))
-
-    /*
-    * F[n]     = | 1 1 |  F[n - 1]
-    * F[n - 1] = | 1 0 |  F[n - 2]
-    *
-    * F[n]     = | 1 1 |^(n - 1) |1|
-    * F[n - 1] = | 1 0 |         |0|
-    * */
-    def apply(n: Int): BigInt = {
-      require(n >= 0)
-      pow(A, n - 1)(0)(0)
-    }
-
-    private def pow(A: SqMatrix, n: Int): SqMatrix = {
-      assume(n >= 0)
-      @tailrec
-      def pow(A: SqMatrix, n: Int, acc: SqMatrix): SqMatrix = {
-        if (n == 0) return acc
-        if ((n & 1) == 1) pow(multiply(A, A), n >>> 1, multiply(acc, A))
-        else pow(multiply(A, A), n >>> 1, acc)
-      }
-      pow(A, n, I)
-    }
-
-    def multiply(A: SqMatrix, B: SqMatrix): SqMatrix = {
-      Array(Array(A(0)(0) * B(0)(0) + A(0)(1) * B(1)(0), A(0)(0) * B(0)(1) + A(0)(1) * B(1)(1)),
-        Array(A(1)(0) * B(0)(0) + A(1)(1) * B(1)(0), A(1)(0) * B(0)(1) + A(1)(1) * B(1)(1)))
-    }
+  private def multiply(A: SqMatrix, B: SqMatrix): SqMatrix = {
+    Array(Array(A(0)(0) * B(0)(0) + A(0)(1) * B(1)(0), A(0)(0) * B(0)(1) + A(0)(1) * B(1)(1)),
+      Array(A(1)(0) * B(0)(0) + A(1)(1) * B(1)(0), A(1)(0) * B(0)(1) + A(1)(1) * B(1)(1)))
   }
-
 }
