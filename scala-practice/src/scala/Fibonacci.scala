@@ -78,16 +78,15 @@ object IterativeFibonacci {
       pow(A, n - 1)(0)(0)
     }
 
-    private def pow(A: SqMatrix, nn: Int): SqMatrix = {
-      var res = I
-      var X = A
-      var n = nn
-      while (n > 0) {
-        if (n % 2 == 1) res = multiply(res, X)
-        X = multiply(X, X)
-        n >>>= 1
+    private def pow(A: SqMatrix, n: Int): SqMatrix = {
+      assume(n >= 0)
+      @tailrec
+      def pow(A: SqMatrix, n: Int, acc: SqMatrix): SqMatrix = {
+        if (n == 0) return acc
+        if ((n & 1) == 1) pow(multiply(A, A), n >>> 1, multiply(acc, A))
+        else pow(multiply(A, A), n >>> 1, acc)
       }
-      res
+      pow(A, n, I)
     }
 
     def multiply(A: SqMatrix, B: SqMatrix): SqMatrix = {
