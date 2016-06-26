@@ -23,7 +23,19 @@ object Main {
   /**
     * Exercise 2
     */
-  def balance(chars: List[Char]): Boolean = ???
+  def balance(chars: List[Char]): Boolean = {
+    @tailrec
+    def balance(chars: List[Char], extra: Int): Boolean = {
+      if (extra < 0) false
+      else if (chars.isEmpty) extra == 0
+      else chars.head match {
+        case '(' => balance(chars.tail, extra + 1)
+        case ')' => balance(chars.tail, extra - 1)
+        case _ => balance(chars.tail, extra)
+      }
+    }
+    balance(chars, 0)
+  }
 
   /**x9
     * Exercise 3
