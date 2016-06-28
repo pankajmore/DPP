@@ -24,6 +24,7 @@ object Main {
     * Exercise 2
     */
   def balance(chars: List[Char]): Boolean = {
+
     @tailrec
     def balance(chars: List[Char], extra: Int): Boolean = {
       if (extra < 0) false
@@ -34,6 +35,7 @@ object Main {
         case _ => balance(chars.tail, extra)
       }
     }
+
     balance(chars, 0)
   }
 
