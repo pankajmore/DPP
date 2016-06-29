@@ -1,6 +1,7 @@
 package scala
 
 import scala.annotation.tailrec
+import scala.math.BigDecimal.RoundingMode
 
 
 /**
@@ -45,22 +46,29 @@ case object IterativeFibonacci extends Fibonacci {
   }
 }
 
-case object ClosedFormFibonacci1 extends Fibonacci {
-  private val phi: BigDecimal = (1 + Math.sqrt(5)) / 2
+case object ClosedFormFibonacci extends Fibonacci {
+  private val phi: BigDecimal = BigDecimal("1.61803398874989484820458683436563811772030917980576")
+  /*
+      (1 + Math.sqrt(5)) / 2
+  */
   private val psi: BigDecimal = 1 - phi
+
+  private val sqrt5: BigDecimal =
+    BigDecimal("2.23606797749978969640917366873127623544061835961152572427089")
 
   def apply(n: Int): BigInt = {
     require(n >= 0)
-    ((phi.pow(n) - psi.pow(n)) / Math.sqrt(5)).rounded.toBigInt()
+    ((phi.pow(n) - psi.pow(n)) / sqrt5).setScale(0, RoundingMode.UP).toBigInt
   }
 }
 
-case object ClosedFormFibonacci2 extends Fibonacci {
-  private val phi: BigDecimal = (1 + Math.sqrt(5)) / 2
+case object ClosedFormFibonacci1 extends Fibonacci {
+  private val phi: BigDecimal = BigDecimal("1.61803398874989484820458683436563811772030917980576")
+  private val sqrt5: BigDecimal = BigDecimal("2.23606797749978969640917366873127623544061835961152572427089")
 
   def apply(n: Int): BigInt = {
     require(n >= 0)
-    (phi.pow(n) / Math.sqrt(5)).rounded.toBigInt()
+    (phi.pow(n) / sqrt5).setScale(0, RoundingMode.UP).toBigInt
   }
 }
 
