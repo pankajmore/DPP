@@ -17,8 +17,9 @@ class FibonacciSpec extends FlatSpec {
       assertResult(IterativeFibonacci(n)) {
         IterativeFibonacci(n - 1) + IterativeFibonacci(n - 2)
       }
-      //      assert(ClosedFormFibonacci1(n) - ClosedFormFibonacci1(n - 1) - ClosedFormFibonacci1(n - 2) <= ???)
-      //      assert(ClosedFormFibonacci2(n) - ClosedFormFibonacci2(n - 1) - ClosedFormFibonacci2(n - 2) <= ???)
+      assertResult(ClosedFormFibonacci(n)) {
+        ClosedFormFibonacci(n - 1) + ClosedFormFibonacci(n - 2)
+      }
       assertResult(MatrixFibonacci(n)) {
         MatrixFibonacci(n - 1) + MatrixFibonacci(n - 2)
       }
@@ -29,8 +30,8 @@ class FibonacciSpec extends FlatSpec {
     forAll(gen) { (n) =>
       val expected = IterativeFibonacci(n)
       assert(expected === TailRecursiveFibonacci(n))
+      assert(expected === ClosedFormFibonacci(n))
       assert(expected - ClosedFormFibonacci1(n) <= 1)
-      assert(expected - ClosedFormFibonacci2(n) <= 1)
       assert(expected === MatrixFibonacci(n))
     }
   }
