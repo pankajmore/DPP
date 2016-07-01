@@ -48,7 +48,6 @@ case object IterativeFibonacci extends Fibonacci {
 }
 
 case object ClosedFormFibonacci extends Fibonacci {
-
   val sqrt5 = sqrt(BigDecimal(5, mc), 1 << 10)
   val phi: BigDecimal = (BigDecimal(1, mc) + sqrt5) / BigDecimal(2, mc)
   private val mc = new MathContext(1 << 15)
