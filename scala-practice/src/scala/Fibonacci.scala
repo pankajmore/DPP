@@ -101,7 +101,7 @@ case object MatrixFibonacci extends Fibonacci {
   }
 
   private def pow(A: SqMatrix, n: Int): SqMatrix = {
-    assume(n >= 0)
+    require(n >= 0)
     @tailrec
     def pow(A: SqMatrix, n: Int, acc: SqMatrix): SqMatrix = {
       if (n == 0) return acc
