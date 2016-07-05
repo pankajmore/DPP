@@ -8,7 +8,9 @@ import org.scalatest.prop.GeneratorDrivenPropertyChecks._
   * Created by pankaj on 6/21/16.
   */
 class FibonacciSpec extends FlatSpec {
+
   val gen = Gen.choose[Int](2, 100000)
+
   "Sum of F(n) + F(n + 1)" should "equal F(n + 2)" in {
     forAll(gen) { (n) =>
       assertResult(TailRecursiveFibonacci(n)) {
