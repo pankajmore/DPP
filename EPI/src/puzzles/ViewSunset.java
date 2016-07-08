@@ -21,7 +21,7 @@ public class ViewSunset {
         return buildingsWithSunset;
     }
 
-    static class BuildingWithHeight {
+    public static class BuildingWithHeight {
         int id;
         int height;
 
