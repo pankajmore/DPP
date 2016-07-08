@@ -12,7 +12,6 @@ public class ViewSunset {
         Deque<BuildingWithHeight> buildingsWithSunset = new LinkedList<>();
         int id = 0;
         while (heights.hasNext()) {
-            id++;
             int currHeight = heights.next();
             while (!buildingsWithSunset.isEmpty() && buildingsWithSunset.peek().height <= currHeight) {
                 buildingsWithSunset.pop();
