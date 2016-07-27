@@ -96,6 +96,7 @@ class FunSetSuite extends FunSuite {
         * the test fails. This helps identifying which assertion failed.
         */
       assert(contains(s1, 1), "Singleton")
+      assert(forall(s1, (x) => x == 1))
     }
   }
 
