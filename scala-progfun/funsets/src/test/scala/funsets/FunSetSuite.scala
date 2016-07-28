@@ -150,7 +150,7 @@ class FunSetSuite extends FunSuite {
     }
   }
 
-  ignore("map") {
+  test("map") {
     new TestSets {
       val u = union(s1, union(s2, s3))
       val u2 = map(u, (x) => 2 * x)
@@ -160,8 +160,8 @@ class FunSetSuite extends FunSuite {
       assert(contains(u2, 4))
       assert(!contains(u2, 5))
       assert(contains(u2, 6))
-      assert(forall(u, (x) => x % 2 == 0))
-      assert(!exists(u, (x) => x % 2 == 1))
+      assert(forall(u2, (x) => x % 2 == 0))
+      assert(!exists(u2, (x) => x % 2 == 1))
     }
   }
 }
