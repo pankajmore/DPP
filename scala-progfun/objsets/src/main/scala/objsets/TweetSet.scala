@@ -65,6 +65,8 @@ abstract class TweetSet {
     */
   def mostRetweeted: Tweet
 
+  def mostRetweetedAcc(acc: Tweet): Tweet
+
   /**
     * Returns a list containing all tweets of this set, sorted by retweet count
     * in descending order. In other words, the head of the resulting list should
@@ -115,6 +117,8 @@ class Empty extends TweetSet {
 
   def mostRetweeted: Tweet = throw new java.util.NoSuchElementException("empty set")
 
+  def mostRetweetedAcc(acc: Tweet): Tweet = acc
+
   /**
     * The following methods are already implemented
     */
@@ -138,22 +142,14 @@ class NonEmpty(elem: Tweet, left: TweetSet, right: TweetSet) extends TweetSet {
 
   def union(that: TweetSet): TweetSet = left union (right union that) incl elem
 
-  def mostRetweeted: Tweet =
-    if (left.isInstanceOf[Empty] && right.isInstanceOf[Empty]) elem
-    else if (left.isInstanceOf[Empty] && right.isInstanceOf[NonEmpty]) {
-      val rightBest = right.mostRetweeted
-      if (elem.retweets > rightBest.retweets) elem else rightBest
-    } else if (left.isInstanceOf[NonEmpty] && right.isInstanceOf[Empty]) {
-      val leftBest = left.mostRetweeted
-      if (elem.retweets > leftBest.retweets) elem else leftBest
-    } else {
-      val leftBest = left.mostRetweeted
-      val rightBest = right.mostRetweeted
-      if (elem.retweets > leftBest.retweets) {
-        if (elem.retweets > rightBest.retweets) elem else rightBest
-      } else if (elem.retweets > rightBest.retweets) leftBest
-      else if (leftBest.retweets > rightBest.retweets) leftBest else rightBest
-    }
+  def mostRetweeted: Tweet = mostRetweetedAcc(elem)
+
+  def mostRetweetedAcc(acc: Tweet): Tweet = {
+    val newAcc = if (elem.retweets > acc.retweets) elem else acc
+    val leftBest = left.mostRetweetedAcc(newAcc)
+    val rightBest = right.mostRetweetedAcc(newAcc)
+    if (leftBest.retweets > rightBest.retweets) leftBest else rightBest
+  }
 
   def descendingByRetweetAcc(acc: TweetList): TweetList = {
     val mostRetweeted = this.mostRetweeted
