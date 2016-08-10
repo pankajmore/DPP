@@ -155,5 +155,16 @@ object Anagrams {
     *
     * Note: There is only one anagram of an empty sentence.
     */
-  def sentenceAnagrams(sentence: Sentence): List[Sentence] = ???
+  def sentenceAnagrams(sentence: Sentence): List[Sentence] = {
+    def toWord(c: Char, n: Int): Word = List.fill(n)(c).mkString
+    def occurrenceToWord(occurrences: Occurrences): Word =
+      (occurrences map (p => toWord(p._1, p._2))).mkString
+    val xs = sentenceOccurrences(sentence)
+    val cs: List[Occurrences] = combinations(xs).filterNot(p => p == Nil)
+    cs.flatMap(ls => {
+      val rest: List[Sentence] = sentenceAnagrams(List(occurrenceToWord(subtract(xs, ls))))
+      val words: List[Word] = wordAnagrams(occurrenceToWord(ls))
+      words flatMap (w => rest map (s => w :: s))
+    })
+  }
 }
