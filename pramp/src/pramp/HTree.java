@@ -1,3 +1,5 @@
+package pramp;
+
 import java.awt.*;
 
 /**
