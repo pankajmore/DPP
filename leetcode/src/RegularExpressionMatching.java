@@ -1,5 +1,3 @@
-package leetcode;
-
 /**
  * https://leetcode.com/problems/regular-expression-matching/
  * Created by pankaj on 3/8/16.
