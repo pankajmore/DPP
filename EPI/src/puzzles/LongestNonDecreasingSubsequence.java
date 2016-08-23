@@ -59,7 +59,7 @@ class LongestNonDecreasingSubsequence {
      * @param sequence a list of N integers
      * @return size of the largest non-decreasing subsequent
      */
-    public static List<Integer> longestNonDecreasingSubSequence1(List<Integer> sequence) {
+    public static int longestNonDecreasingSubSequenceLength(List<Integer> sequence) {
         int N = sequence.size();
         List<Integer> subsequence = new ArrayList<>();
         for (int i = 0; i < N; i++) {
@@ -74,7 +74,7 @@ class LongestNonDecreasingSubsequence {
                 subsequence.add(val);
             }
         }
-        return subsequence;
+        return subsequence.size();
     }
 
     private static class UpperBoundComparator implements Comparator<Integer> {
