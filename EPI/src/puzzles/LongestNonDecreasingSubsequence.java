@@ -1,9 +1,6 @@
 package puzzles;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by pankaj on 1/19/16.
@@ -18,6 +15,7 @@ class LongestNonDecreasingSubsequence {
      * @return a non-decreasing subsequent of largest size
      */
     static List<Integer> longestNonDecreasingSubSequence(List<Integer> sequence) {
+        if(sequence.size() == 0) return sequence;
         int N = sequence.size();
         int[] sequenceSize = new int[N], prev = new int[N];
         sequenceSize[0] = 1;
@@ -60,6 +58,7 @@ class LongestNonDecreasingSubsequence {
      * @return size of the largest non-decreasing subsequent
      */
     public static int longestNonDecreasingSubSequenceLength(List<Integer> sequence) {
+        if(sequence.size() == 0) return 0;
         int N = sequence.size();
         List<Integer> subsequence = new ArrayList<>();
         for (int i = 0; i < N; i++) {
@@ -75,6 +74,55 @@ class LongestNonDecreasingSubsequence {
             }
         }
         return subsequence.size();
+    }
+
+    /**
+     * Time : O(Nlog(N))
+     * Space : O(N)
+     *
+     * @param sequence a list of N integers
+     * @return size of the largest non-decreasing subsequent
+     */
+    public static List<Integer> longestNonDecreasingSubSequenceEfficient(List<Integer> sequence) {
+        if(sequence.size() == 0) return sequence;
+        int N = sequence.size();
+        int[] prev = new int[N];
+        List<Integer> subsequence = new ArrayList<>();
+        for (int i = 0; i < N; i++) {
+            int val = sequence.get(i);
+            int pos = binarySearch(subsequence, sequence, val);
+            if (pos < subsequence.size()) {
+                subsequence.set(pos, i);
+            }
+            else {
+                assert pos == subsequence.size();
+                subsequence.add(i);
+            }
+            prev[i] = pos == 0 ? -1 : subsequence.get(pos - 1);
+        }
+        List<Integer> longestSubsequence = new ArrayList<>();
+        int lastIdx = subsequence.get(subsequence.size() - 1);
+        while(lastIdx != -1) {
+            longestSubsequence.add(sequence.get(lastIdx));
+            lastIdx = prev[lastIdx];
+        }
+        Collections.reverse(longestSubsequence);
+        return longestSubsequence;
+    }
+
+    /**
+     * @param idx
+     * @param x
+     * @return pos s.t A[pos] > x and forall i < pos A[i] <= x
+     */
+    private static int binarySearch(List<Integer> idx, List<Integer> A, int x) {
+        int lo = 0, hi = idx.size();
+        while(lo < hi) {
+            int mid = lo + (hi - lo) / 2;
+            if(A.get(idx.get(mid)) <= x) lo = mid + 1;
+            else hi = mid;
+        }
+        return hi;
     }
 
     private static class UpperBoundComparator implements Comparator<Integer> {
