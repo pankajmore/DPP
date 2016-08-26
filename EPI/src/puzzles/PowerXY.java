@@ -25,7 +25,7 @@ public class PowerXY {
     }
 
     public static double iterPow(double x, long y) {
-        if (y < 0) return 1 / iterPow(x, -y);
+        if (y < 0) return 1 / iterPow(x, Math.subtractExact(0, y));
         double res = 1;
         if (y == 0) return 1;
         while (y > 1) {
