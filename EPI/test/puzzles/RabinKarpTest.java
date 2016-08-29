@@ -1,10 +1,27 @@
 package puzzles;
 
+import com.pholser.junit.quickcheck.ForAll;
+import org.junit.Assert;
 import org.junit.Test;
+import org.junit.contrib.theories.Theories;
+import org.junit.contrib.theories.Theory;
+import org.junit.runner.RunWith;
+
+import java.util.Random;
 
 import static puzzles.RabinKarp.rabinKarp;
 
+@RunWith(Theories.class)
 public class RabinKarpTest {
+
+    @Theory
+    public void compare(@ForAll String t) {
+        int N = t.length();
+        if(N == 0) return;
+        int idx = new Random().nextInt(N);
+        String s = t.substring(idx, idx + new Random().nextInt(t.length() - idx));
+        Assert.assertEquals(t.indexOf(s), rabinKarp(t, s));
+    }
 
     @Test
     public void testRabinKarp() throws Exception {
