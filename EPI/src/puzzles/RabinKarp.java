@@ -18,11 +18,11 @@ public class RabinKarp {
             sHash = (sHash * kBase + s.charAt(i)) % kMod;
         }
 
-        for (int i = s.length(); i < t.length(); i++) {
-            if (tHash == sHash && t.substring(i - s.length(), i).equals(s)) return i - s.length();
-            tHash -= (powerS * t.charAt(i - s.length())) % kMod;
+        for (int i = 0; i < t.length() - s.length(); i++) {
+            if (tHash == sHash && t.substring(i, i + s.length()).equals(s)) return i;
+            tHash -= (powerS * t.charAt(i)) % kMod;
             if (tHash < 0) tHash += kMod;
-            tHash = (tHash * kBase + t.charAt(i)) % kMod;
+            tHash = (tHash * kBase + t.charAt(i + s.length())) % kMod;
         }
         if (tHash == sHash && t.substring(t.length() - s.length()).equals(s)) return t.length() - s.length();
         return -1;
