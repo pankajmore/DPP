@@ -16,4 +16,11 @@ public class SqrtX {
         }
         return (int) ans;
     }
+
+    public static int mySqrt1(int x) {
+        long r = x;
+        while (r * r > x)
+            r = (r + x / r) / 2;
+        return (int) r;
+    }
 }

@@ -7,7 +7,10 @@ import org.testng.annotations.Test;
 public class SqrtXTest {
     @Test
     public void testMySqrt() throws Exception {
-        for (int i = 0; i <= Integer.MAX_VALUE; i++)
-            Assert.assertEquals((int) Math.sqrt(i), SqrtX.mySqrt(i));
+        for (int i = 0; i >= 0; i++) {
+            int expected = (int) Math.sqrt(i);
+            Assert.assertEquals(expected, SqrtX.mySqrt(i));
+            Assert.assertEquals(expected, SqrtX.mySqrt1(i));
+        }
     }
 }
