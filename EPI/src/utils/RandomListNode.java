@@ -16,16 +16,16 @@ public class RandomListNode {
     }
 
     public static void jumpFirstOrderRecursive(RandomListNode n) {
-        jumpFirstOrderHelper(n, new int[]{0});
+        jumpFirstOrderHelper(n, 0);
     }
 
-    private static void jumpFirstOrderHelper(RandomListNode n, int[] order) {
-        if (n == null) return;
-        if (n.order == -1) {
-            n.order = order[0]++;
-            jumpFirstOrderHelper(n.random, order);
-            jumpFirstOrderHelper(n.next, order);
+    private static int jumpFirstOrderHelper(RandomListNode n, int order) {
+        if (n != null && n.order == -1) {
+            n.order = order++;
+            order = jumpFirstOrderHelper(n.random, order);
+            order = jumpFirstOrderHelper(n.next, order);
         }
+        return order;
     }
 
     public static void jumpFirstOrderIterative(RandomListNode n) {
