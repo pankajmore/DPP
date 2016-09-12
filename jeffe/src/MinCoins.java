@@ -4,6 +4,8 @@ import java.util.Collections;
 import java.util.List;
 
 /**
+ * http://jeffe.cs.illinois.edu/teaching/algorithms/notes/05-dynprog.pdf
+ * Page - 18, Q1
  * Created by pankaj on 9/11/16.
  */
 public class MinCoins {
