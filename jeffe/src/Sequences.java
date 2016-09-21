@@ -26,4 +26,38 @@ public class Sequences {
     public static <T> int editDistance(List<T> A, List<T> B) {
         return A.size() + B.size() - 2 * longestCommonSubsequence(A, B);
     }
+
+    public static <T extends Comparable<T>> int longestMonotonicSubsequence(List<T> A, boolean increasing) {
+        int N = A.size();
+        int[] dp = new int[N];
+        int max = 0;
+        for (int i = 1; i < N; i++) {
+            for (int j = 0; j < i; j++) {
+                if (dp[j] + 1 > dp[i] && A.get(j).compareTo(A.get(i)) < 0 == increasing) dp[i] = dp[j] + 1;
+            }
+            max = Math.max(max, dp[i]);
+        }
+        return max;
+    }
+
+    public static <T extends Comparable<T>> int longestBitonicSubsequence(List<T> A) {
+        int N = A.size();
+        int[] left = new int[N];
+        int[] right = new int[N];
+        int max = 0;
+        for (int i = 0; i < N; i++) {
+            int k = N - 1 - i;
+            for (int j = 0; j < i; j++) {
+                int l = N - 1 - j;
+                if (left[j] + 1 > left[i] && A.get(j).compareTo(A.get(i)) < 0)
+                    left[i] = left[j] + 1;
+                if (right[l] + 1 > right[k] && A.get(j).compareTo(A.get(i)) < 0)
+                    right[k] = right[l] + 1;
+            }
+        }
+        for (int i = 1; i < N - 1; i++) {
+            max = Math.max(max, left[i] + right[i]);
+        }
+        return max;
+    }
 }
