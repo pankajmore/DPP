@@ -18,4 +18,12 @@ public class Sequences {
         }
         return dp[M][N];
     }
+
+    public static <T> int shortestCommonSupersequence(List<T> A, List<T> B) {
+        return A.size() + B.size() - longestCommonSubsequence(A, B);
+    }
+
+    public static <T> int editDistance(List<T> A, List<T> B) {
+        return A.size() + B.size() - 2 * longestCommonSubsequence(A, B);
+    }
 }
