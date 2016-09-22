@@ -42,6 +42,7 @@ public class Sequences {
 
     public static <T extends Comparable<T>> int longestBitonicSubsequence(List<T> A) {
         int N = A.size();
+        if (N < 3) return 0;
         int[] left = new int[N];
         int[] right = new int[N];
         int max = 0;
