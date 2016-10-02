@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -58,6 +59,27 @@ public class Sequences {
         }
         for (int i = 1; i < N - 1; i++) {
             max = Math.max(max, left[i] + right[i]);
+        }
+        return max;
+    }
+
+    public static <T extends Comparable<T>> int longestOscillatingSubsequence(List<T> A) {
+        int N = A.size();
+        int[] odd = new int[N];
+        int[] even = new int[N];
+        Arrays.fill(odd, 1);
+        Arrays.fill(even, 1);
+        int max = 0;
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < i; j++) {
+                int cmp = A.get(i).compareTo(A.get(j));
+                if (cmp > 0) {
+                    even[i] = Math.max(even[i], odd[j] + 1);
+                } else if (cmp < 0) {
+                    odd[i] = Math.max(odd[i], even[j] + 1);
+                }
+            }
+            max = Math.max(even[i], odd[i]);
         }
         return max;
     }
