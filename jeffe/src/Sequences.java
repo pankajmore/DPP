@@ -1,3 +1,5 @@
+import com.sun.istack.internal.NotNull;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -84,7 +86,7 @@ public class Sequences {
         return max;
     }
 
-    public static <T extends Comparable<T>> int shortestOscillatingSupersequence(List<T> A) {
+    public static <T extends Comparable<T>> int shortestOscillatingSupersequence(@NotNull List<T> A) {
         boolean even = true;
         int N = A.size(), cnt = N;
         for (int i = 0; i < N - 1; i++) {
