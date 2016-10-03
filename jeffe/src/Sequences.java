@@ -83,4 +83,18 @@ public class Sequences {
         }
         return max;
     }
+
+    public static <T extends Comparable<T>> int shortestOscillatingSupersequence(List<T> A) {
+        boolean even = true;
+        int N = A.size(), cnt = N;
+        for (int i = 0; i < N - 1; i++) {
+            int cmp = A.get(i).compareTo(A.get(i + 1));
+            if ((even && cmp > 0) || (!even && cmp < 0)) {
+                even ^= true;
+            } else if ((even && cmp <= 0) || (!even && cmp >= 0)) {
+                cnt++;
+            }
+        }
+        return cnt;
+    }
 }

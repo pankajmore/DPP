@@ -8,6 +8,11 @@ import java.util.Arrays;
  */
 public class SequencesTest {
     @Test
+    public void shortestOscillatingSupersequence() throws Exception {
+        Assert.assertEquals(5, Sequences.shortestOscillatingSupersequence(Arrays.asList(1, 2, 3)));
+    }
+
+    @Test
     public void testLongestOscillatingSubsequence() throws Exception {
         Assert.assertEquals(2, Sequences.longestOscillatingSubsequence(Arrays.asList(1, 2, 3, 4, 5)));
         Assert.assertEquals(4, Sequences.longestOscillatingSubsequence(Arrays.asList(1, 5, 3, 2, 4)));
