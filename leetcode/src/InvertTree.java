@@ -1,3 +1,5 @@
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.Stack;
 
 /**
@@ -23,6 +25,20 @@ public class InvertTree {
             curr.right = left;
             if (curr.left != null) stack.push(curr.left);
             if (curr.right != null) stack.push(curr.right);
+        }
+        return root;
+    }
+
+    public TreeNode invertTreeUsingQueue(TreeNode root) {
+        Deque<TreeNode> queue = new LinkedList<>();
+        if (root != null) queue.push(root);
+        while (!queue.isEmpty()) {
+            TreeNode curr = queue.remove();
+            TreeNode left = curr.left, right = curr.right;
+            curr.left = right;
+            curr.right = left;
+            if (left != null) queue.add(left);
+            if (right != null) queue.add(right);
         }
         return root;
     }
