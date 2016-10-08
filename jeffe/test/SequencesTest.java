@@ -26,4 +26,9 @@ public class SequencesTest {
         Assert.assertEquals(4, Sequences.longestOscillatingSubsequence(Arrays.asList(1, 5, 3, 2, 4)));
         Assert.assertEquals(5, Sequences.longestOscillatingSubsequence(Arrays.asList(5, 3, 4, 1, 2)));
     }
+
+    @Test
+    public void testLongestConvexSubsequence() throws Exception {
+        Assert.assertEquals(5, Sequences.longestConvexSubsequence(Arrays.asList(1, 2, -1, 0, 3, 8, 5)));
+    }
 }

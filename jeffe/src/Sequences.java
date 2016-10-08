@@ -99,4 +99,30 @@ public class Sequences {
         }
         return cnt;
     }
+
+    /**
+     * Time: O(N^3)
+     * Space: O(N^2)
+     *
+     * @param A list of N integers
+     * @return the length of longest convex susbsequence of A
+     */
+    public static int longestConvexSubsequence(@NotNull List<Integer> A) {
+        int N = A.size();
+        if (N < 3) return N;
+        int max = 0;
+        int[][] dp = new int[N][N];
+        dp[0][0] = 1;
+        for (int i = 1; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                dp[i][j] = 2;
+                for (int k = 0; k < j; k++) {
+                    if (dp[j][k] + 1 > dp[i][j] && A.get(i) - A.get(j) > A.get(j) - A.get(k))
+                        dp[i][j] = dp[j][k] + 1;
+                }
+                max = Math.max(max, dp[i][j]);
+            }
+        }
+        return max;
+    }
 }
