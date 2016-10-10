@@ -31,4 +31,18 @@ public class PartitionEqualSubsetSum {
         Arrays.stream(nums).forEach((n) -> new ArrayList<>(visited).stream().forEach((s) -> visited.add(s + n)));
         return visited.contains(sum / 2);
     }
+
+    public boolean canPartition2(int[] nums) {
+        final int sum = Arrays.stream(nums).sum();
+        if (nums.length == 1 || sum % 2 == 1) return false;
+        return backtrack(nums, 0, sum >>> 1);
+    }
+
+    private boolean backtrack(int[] nums, int start, int target) {
+        if (target <= 0) return target == 0;
+        for (int i = start; i < nums.length; i++) {
+            if (backtrack(nums, i + 1, target - nums[i])) return true;
+        }
+        return false;
+    }
 }
