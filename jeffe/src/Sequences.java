@@ -1,5 +1,6 @@
 import com.sun.istack.internal.NotNull;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -114,7 +115,7 @@ public class Sequences {
         int[][] dp = new int[N][N];
         dp[0][0] = 1;
         for (int i = 1; i < N; i++) {
-            for (int j = 0; j < N; j++) {
+            for (int j = 0; j < i; j++) {
                 dp[i][j] = 2;
                 for (int k = 0; k < j; k++) {
                     if (dp[j][k] + 1 > dp[i][j] && A.get(i) - A.get(j) > A.get(j) - A.get(k))
@@ -124,5 +125,39 @@ public class Sequences {
             }
         }
         return max;
+    }
+
+    public static int longestConvexSubsequenceSlow(@NotNull List<Integer> A) {
+        int N = A.size();
+        if (N < 3) return N;
+        if (N > 32) throw new IllegalArgumentException("array size is too large : " + N);
+        int max = 2;
+        for (int i = 0; i < 1 << N; i++) {
+            List<Integer> subset = subset(A, i);
+            if (isConvex(subset)) max = Math.max(max, subset.size());
+        }
+        return max;
+    }
+
+    private static List<Integer> subset(@NotNull List<Integer> A, int bitmask) {
+        List<Integer> l = new ArrayList<>();
+        int idx = 0;
+        while (bitmask != 0) {
+            if ((bitmask & 1) == 1) {
+                l.add(A.get(idx));
+            }
+            ++idx;
+            bitmask >>>= 1;
+        }
+        return l;
+    }
+
+    private static boolean isConvex(@NotNull List<Integer> A) {
+        int N = A.size();
+        for (int i = 1; i < N - 1; i++) {
+            if (A.get(i + 1) - A.get(i) <= A.get(i) - A.get(i - 1))
+                return false;
+        }
+        return true;
     }
 }

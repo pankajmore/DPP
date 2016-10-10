@@ -1,5 +1,9 @@
+import com.pholser.junit.quickcheck.ForAll;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.contrib.theories.Theories;
+import org.junit.contrib.theories.Theory;
+import org.junit.runner.RunWith;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -8,6 +12,7 @@ import java.util.List;
 /**
  * Created by pankaj on 10/2/16.
  */
+@RunWith(Theories.class)
 public class SequencesTest {
     @Test
     public void shortestOscillatingSupersequence() throws Exception {
@@ -30,5 +35,14 @@ public class SequencesTest {
     @Test
     public void testLongestConvexSubsequence() throws Exception {
         Assert.assertEquals(5, Sequences.longestConvexSubsequence(Arrays.asList(1, 2, -1, 0, 3, 8, 5)));
+    }
+
+    @Theory
+    public void compareLongestConvexSubsequence(@ForAll List<Integer> A) {
+        if (A.size() < 20) {
+            int expected = Sequences.longestConvexSubsequenceSlow(A);
+            int actual = Sequences.longestConvexSubsequence(A);
+            Assert.assertEquals(expected, actual);
+        }
     }
 }
