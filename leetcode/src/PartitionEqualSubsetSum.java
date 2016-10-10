@@ -1,3 +1,8 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * https://leetcode.com/problems/partition-equal-subset-sum/
  * Created by pankaj on 10/9/16.
@@ -16,5 +21,14 @@ public class PartitionEqualSubsetSum {
             }
         }
         return dp[sum];
+    }
+
+    public boolean canPartition1(int[] nums) {
+        int sum = Arrays.stream(nums).sum();
+        if (sum % 2 == 1) return false;
+        Set<Integer> visited = new HashSet<>();
+        visited.add(0);
+        Arrays.stream(nums).forEach((n) -> new ArrayList<>(visited).stream().forEach((s) -> visited.add(s + n)));
+        return visited.contains(sum / 2);
     }
 }
