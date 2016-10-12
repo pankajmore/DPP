@@ -130,7 +130,6 @@ public class Sequences {
     public static int longestConvexSubsequenceSlow(@NotNull List<Integer> A) {
         int N = A.size();
         if (N < 3) return N;
-        if (N > 32) throw new IllegalArgumentException("array size is too large : " + N);
         int max = 2;
         for (int i = 0; i < 1 << N; i++) {
             List<Integer> subset = subset(A, i);
