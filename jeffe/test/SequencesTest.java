@@ -45,4 +45,13 @@ public class SequencesTest {
             Assert.assertEquals(expected, actual);
         }
     }
+
+    @Theory
+    public void compareLongestWeaklyIncreasingSubsequence(@ForAll List<Integer> A) {
+        if (A.size() < 20) {
+            int expected = Sequences.longestWeaklyIncreasingSubsequenceSlow(A);
+            int actual = Sequences.longestWeaklyIncreasingSubsequence(A);
+            Assert.assertEquals(expected, actual);
+        }
+    }
 }

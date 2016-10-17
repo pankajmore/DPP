@@ -159,4 +159,43 @@ public class Sequences {
         }
         return true;
     }
+
+    public static int longestWeaklyIncreasingSubsequence(@NotNull List<Integer> A) {
+        int N = A.size();
+        if (N < 3) return N;
+        int max = 0;
+        int[][] dp = new int[N][N];
+        dp[0][0] = 1;
+        for (int i = 1; i < N; i++) {
+            for (int j = 0; j < i; j++) {
+                dp[i][j] = 2;
+                for (int k = 0; k < j; k++) {
+                    if (dp[j][k] + 1 > dp[i][j] && A.get(i) - A.get(j) > A.get(k) - A.get(i)) {
+                        dp[i][j] = dp[j][k] + 1;
+                    }
+                }
+                max = Math.max(max, dp[i][j]);
+            }
+        }
+        return max;
+    }
+
+    public static int longestWeaklyIncreasingSubsequenceSlow(@NotNull List<Integer> A) {
+        int N = A.size();
+        if (N < 3) return N;
+        int max = 2;
+        for (int i = 0; i < 1 << N; i++) {
+            List<Integer> subset = subset(A, i);
+            if (isWeaklyIncreasing(subset)) max = Math.max(max, subset.size());
+        }
+        return max;
+    }
+
+    private static boolean isWeaklyIncreasing(@NotNull List<Integer> A) {
+        for (int i = 2; i < A.size(); i++) {
+            if (A.get(i) - A.get(i - 1) <= A.get(i - 2) - A.get(i))
+                return false;
+        }
+        return true;
+    }
 }
