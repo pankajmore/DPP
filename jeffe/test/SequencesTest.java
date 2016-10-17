@@ -54,4 +54,13 @@ public class SequencesTest {
             Assert.assertEquals(expected, actual);
         }
     }
+
+    @Theory
+    public void compareLongestDoubleIncreasingSubsequence(@ForAll List<Integer> A) {
+        if (A.size() < 20) {
+            int expected = Sequences.longestDoubleIncreasingSubsequenceSlow(A);
+            int actual = Sequences.longestDoubleIncreasingSubsequence(A);
+            Assert.assertEquals(expected, actual);
+        }
+    }
 }
