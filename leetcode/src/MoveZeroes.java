@@ -5,11 +5,11 @@
 public class MoveZeroes {
     public void moveZeroes(int[] nums) {
         int i, idx, N = nums.length;
-        for(i = 0, idx = 0; i < N; i++) {
-            if(nums[i] != 0) {
+        for (i = 0, idx = 0; i < N; i++) {
+            if (nums[i] != 0) {
                 nums[idx++] = nums[i];
             }
         }
-        for(; idx < N; idx++) nums[idx] = 0;
+        for (; idx < N; idx++) nums[idx] = 0;
     }
 }
