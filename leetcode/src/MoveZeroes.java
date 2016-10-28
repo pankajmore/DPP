@@ -7,9 +7,10 @@ public class MoveZeroes {
         int i, idx, N = nums.length;
         for (i = 0, idx = 0; i < N; i++) {
             if (nums[i] != 0) {
+                int tmp = nums[idx];
                 nums[idx++] = nums[i];
+                nums[i] = tmp;
             }
         }
-        for (; idx < N; idx++) nums[idx] = 0;
     }
 }
