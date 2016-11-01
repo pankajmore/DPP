@@ -11,4 +11,8 @@ public class ArrangingCoins {
         }
         return i - 1;
     }
+
+    public int arrangeCoins1(int n) {
+        return (int) ((Math.sqrt(1 + 8 * (long) n) - 1.0) / 2.0);
+    }
 }
