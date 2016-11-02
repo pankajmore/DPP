@@ -238,4 +238,54 @@ public class Sequences {
         return true;
     }
 
+    /**
+     * Time : O(m^2 * n^2)
+     * Space: O(m * n)
+     */
+    public static int longestCommonIncreasingSubsequence(@NotNull List<Integer> A, @NotNull List<Integer> B) {
+        int M = A.size(), N = B.size();
+        int[][] dp = new int[M][N];
+        int max = 0;
+        for (int i = 0; i < M; i++) {
+            for (int j = 0; j < N; j++) {
+                if (A.get(i).equals(B.get(j))) {
+                    dp[i][j] = 1;
+                    for (int k = 0; k < i; k++) {
+                        for (int l = 0; l < j; l++) {
+                            if (dp[k][l] + 1 > dp[i][j] && A.get(i) > A.get(k)) {
+                                dp[i][j] = dp[k][l] + 1;
+                            }
+                        }
+                    }
+                }
+                max = Math.max(max, dp[i][j]);
+            }
+        }
+        return max;
+    }
+
+    /**
+     * Time: O(2^(m + n) * max(m,n))
+     * Space: O(max(m,n))
+     */
+    public static int longestCommonIncreasingSubsequenceSlow(@NotNull List<Integer> A, @NotNull List<Integer> B) {
+        int max = 0, M = A.size(), N = B.size();
+        for (int i = 0; i < 1 << M; i++) {
+            List<Integer> subA = subset(A, i);
+            for (int j = 0; j < 1 << N; j++) {
+                List<Integer> subB = subset(B, j);
+                if (subA.equals(subB) && isStrictlyIncreasing(subA)) {
+                    max = Math.max(max, subA.size());
+                }
+            }
+        }
+        return max;
+    }
+
+    private static boolean isStrictlyIncreasing(@NotNull List<Integer> A) {
+        for (int i = 1; i < A.size(); i++) {
+            if (A.get(i) <= A.get(i - 1)) return false;
+        }
+        return true;
+    }
 }

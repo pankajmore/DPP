@@ -1,4 +1,5 @@
 import com.pholser.junit.quickcheck.ForAll;
+import com.pholser.junit.quickcheck.generator.InRange;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.contrib.theories.Theories;
@@ -60,6 +61,16 @@ public class SequencesTest {
         if (A.size() < 20) {
             int expected = Sequences.longestDoubleIncreasingSubsequenceSlow(A);
             int actual = Sequences.longestDoubleIncreasingSubsequence(A);
+            Assert.assertEquals(expected, actual);
+        }
+    }
+
+    @Theory
+    public void compareLongestCommonIncreasingSubsequence(@ForAll @InRange(minInt = 0, maxInt = 10) List<Integer> A,
+                                                          @ForAll @InRange(minInt = 0, maxInt = 10) List<Integer> B) {
+        if (A.size() <= 10 && B.size() <= 10) {
+            int expected = Sequences.longestCommonIncreasingSubsequenceSlow(A, B);
+            int actual = Sequences.longestCommonIncreasingSubsequence(A, B);
             Assert.assertEquals(expected, actual);
         }
     }
