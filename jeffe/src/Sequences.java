@@ -1,8 +1,6 @@
 import com.sun.istack.internal.NotNull;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * http://jeffe.cs.illinois.edu/teaching/algorithms/notes/05-dynprog.pdf
@@ -262,6 +260,32 @@ public class Sequences {
             }
         }
         return max;
+    }
+
+    /**
+     * Time : O(m^2 * n)
+     * Space: O(m^2 * n)
+     */
+    public static int longestCommonIncreasingSubsequence1(@NotNull List<Integer> A, @NotNull List<Integer> B) {
+        List<Integer> C = new ArrayList<>(new HashSet<>(A.size() < B.size() ? A : B));
+        Collections.sort(C);
+        return longestCommonSubsequence(A, B, C);
+    }
+
+    private static int longestCommonSubsequence(List<Integer> A, List<Integer> B, List<Integer> C) {
+        int[][][] dp = new int[A.size() + 1][B.size() + 1][C.size() + 1];
+        for (int i = 1; i <= A.size(); i++) {
+            for (int j = 1; j <= B.size(); j++) {
+                for (int k = 1; k <= C.size(); k++) {
+                    if (A.get(i - 1).equals(B.get(j - 1)) && B.get(j - 1).equals(C.get(k - 1))) {
+                        dp[i][j][k] = dp[i - 1][j - 1][k - 1] + 1;
+                    } else {
+                        dp[i][j][k] = Math.max(dp[i - 1][j][k], Math.max(dp[i][j - 1][k], dp[i][j][k - 1]));
+                    }
+                }
+            }
+        }
+        return dp[A.size()][B.size()][C.size()];
     }
 
     /**

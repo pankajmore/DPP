@@ -73,5 +73,8 @@ public class SequencesTest {
             int actual = Sequences.longestCommonIncreasingSubsequence(A, B);
             Assert.assertEquals(expected, actual);
         }
+        int expected = Sequences.longestCommonIncreasingSubsequence(A, B);
+        int actual = Sequences.longestCommonIncreasingSubsequence1(A, B);
+        Assert.assertEquals(expected, actual);
     }
 }
