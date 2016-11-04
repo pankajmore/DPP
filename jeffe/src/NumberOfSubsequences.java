@@ -8,6 +8,14 @@ import java.util.List;
  * Created by pankaj on 11/4/16.
  */
 public class NumberOfSubsequences {
+    /**
+     * Time: O(N * K)
+     * Space: O(K)
+     *
+     * @param A a sequence of length N
+     * @param B a sequence of length M
+     * @return the number of times B occurs as a sub-sequence in A
+     */
     public static int numberOfSubsequences(@NotNull List<Integer> A, @NotNull List<Integer> B) {
         int N = A.size(), K = B.size();
         int[] dp = new int[K + 1];
