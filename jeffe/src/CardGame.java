@@ -3,6 +3,8 @@ import com.sun.istack.internal.NotNull;
 import java.util.List;
 
 /**
+ * http://jeffe.cs.illinois.edu/teaching/algorithms/notes/05-dynprog.pdf
+ * Page - 20, Q5
  * Created by pankaj on 11/4/16.
  */
 public class CardGame {
