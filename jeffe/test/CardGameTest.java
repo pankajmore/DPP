@@ -28,6 +28,7 @@ public class CardGameTest {
         long expected = CardGame.maxScore(A);
         long actual = CardGame.maxScoreDP(A);
         Assert.assertEquals(expected, actual);
+        Assert.assertEquals(expected, CardGame.maxScoreDP1(A));
     }
 
     @Theory

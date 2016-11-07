@@ -39,6 +39,26 @@ public class CardGame {
     }
 
     /**
+     * Time : O(N^2)
+     * Space: O(N)
+     */
+    public static long maxScoreDP1(@NotNull List<Integer> A) {
+        int N = A.size();
+        if (N == 0) return 0;
+        long[][] dp = new long[3][N];
+        for (int d = 0; d < N; d++) {
+            for (int i = 0, j = d; j < N; i++, j++) {
+                int ii = d - 2 >= 0 ? (d - 2) % 3 : 3 + (d - 2) % 3;
+                long u = dp[ii][j];
+                long v = j - 1 < 0 ? 0 : dp[ii][j - 1];
+                long w = j - 2 < 0 ? 0 : dp[ii][j - 2];
+                dp[d % 3][j] = Math.max(A.get(i) + Math.min(u, v), A.get(j) + Math.min(v, w));
+            }
+        }
+        return dp[(N - 1) % 3][N - 1];
+    }
+
+    /**
      * Time: O(N^2)
      * Space: O(N^2)
      */
