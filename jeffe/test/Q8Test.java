@@ -15,5 +15,6 @@ public class Q8Test {
         Assert.assertEquals(3, Q8.longestPalindromicSubsequence("abab"));
         Assert.assertEquals(4, Q8.longestPalindromicSubsequence("abbaa"));
         Assert.assertEquals(4, Q8.longestPalindromicSubsequence("aabba"));
+        Assert.assertEquals(11, Q8.longestPalindromicSubsequence("MAHDYNAMICPROGRAMZLETMESHOWYOUTHEM"));
     }
 }
