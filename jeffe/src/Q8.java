@@ -1,5 +1,7 @@
 import com.sun.istack.internal.NotNull;
 
+import java.util.Arrays;
+
 /**
  * http://jeffe.cs.illinois.edu/teaching/algorithms/notes/05-dynprog.pdf
  * Page - 21, Q8
@@ -71,6 +73,39 @@ public class Q8 {
      */
     public static int shortestPalindromicSupersequence(@NotNull String s) {
         return 2 * s.length() - longestPalindromicSubsequence(s);
+    }
+
+    /**
+     * Time: O(N^2)
+     * Space: O(N^2)
+     */
+    public static int minimumPalindromicDecomposition(@NotNull String s) {
+        int N = s.length();
+        if (N == 0) return 0;
+        boolean[][] isPalindrome = palindromicSubstrings(s);
+        int[] dp = new int[N];
+        Arrays.fill(dp, Integer.MAX_VALUE);
+        dp[0] = 1;
+        for (int i = 1; i < N; i++) {
+            for (int j = 0; j <= i; j++) {
+                dp[i] = Math.min(dp[i], isPalindrome[j][i] ? (j - 1 < 0 ? 0 : dp[j - 1]) + 1 : Integer.MAX_VALUE);
+            }
+        }
+        return dp[N - 1];
+    }
+
+    private static boolean[][] palindromicSubstrings(@NotNull String s) {
+        int N = s.length();
+        boolean[][] dp = new boolean[N][N];
+        for (int m = 0; m < N; m++) {
+            for (int i = m, j = m; i >= 0 && j < N && s.charAt(i) == s.charAt(j); i--, j++) {
+                dp[i][j] = true;
+            }
+            for (int i = m, j = m + 1; i >= 0 && j < N && s.charAt(i) == s.charAt(j); i--, j++) {
+                dp[i][j] = true;
+            }
+        }
+        return dp;
     }
 
     private static int find(String s, int begin, int end) {

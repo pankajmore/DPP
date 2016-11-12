@@ -30,4 +30,17 @@ public class Q8Test {
         Assert.assertEquals(6, Q8.shortestPalindromicSupersequence("aabba"));
         Assert.assertEquals(13, Q8.shortestPalindromicSupersequence("TWENTYONE"));
     }
+
+    @Test
+    public void minimumPalindromicDecomposition() throws Exception {
+        Assert.assertEquals(0, Q8.minimumPalindromicDecomposition(""));
+        Assert.assertEquals(1, Q8.minimumPalindromicDecomposition("a"));
+        Assert.assertEquals(2, Q8.minimumPalindromicDecomposition("ab"));
+        Assert.assertEquals(1, Q8.minimumPalindromicDecomposition("aba"));
+        Assert.assertEquals(1, Q8.minimumPalindromicDecomposition("abba"));
+        Assert.assertEquals(2, Q8.minimumPalindromicDecomposition("abab"));
+        Assert.assertEquals(2, Q8.minimumPalindromicDecomposition("abbaa"));
+        Assert.assertEquals(2, Q8.minimumPalindromicDecomposition("aabba"));
+        Assert.assertEquals(3, Q8.minimumPalindromicDecomposition("BUBBASEESABANANA"));
+    }
 }
