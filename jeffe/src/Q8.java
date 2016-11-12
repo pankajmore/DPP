@@ -2,7 +2,7 @@ import com.sun.istack.internal.NotNull;
 
 /**
  * http://jeffe.cs.illinois.edu/teaching/algorithms/notes/05-dynprog.pdf
- * Page - 21, Q6
+ * Page - 21, Q8
  * Created by pankaj on 11/11/16.
  */
 public class Q8 {
@@ -63,6 +63,14 @@ public class Q8 {
             }
         }
         return dp[0][N - 1];
+    }
+
+    /**
+     * Time: O(N^2)
+     * Space: O(N^2)
+     */
+    public static int shortestPalindromicSupersequence(@NotNull String s) {
+        return 2 * s.length() - longestPalindromicSubsequence(s);
     }
 
     private static int find(String s, int begin, int end) {

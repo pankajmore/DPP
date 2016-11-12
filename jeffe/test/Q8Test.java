@@ -17,4 +17,17 @@ public class Q8Test {
         Assert.assertEquals(4, Q8.longestPalindromicSubsequence("aabba"));
         Assert.assertEquals(11, Q8.longestPalindromicSubsequence("MAHDYNAMICPROGRAMZLETMESHOWYOUTHEM"));
     }
+
+    @Test
+    public void shortestPalindromicSupersequence() throws Exception {
+        Assert.assertEquals(0, Q8.shortestPalindromicSupersequence(""));
+        Assert.assertEquals(1, Q8.shortestPalindromicSupersequence("a"));
+        Assert.assertEquals(3, Q8.shortestPalindromicSupersequence("ab"));
+        Assert.assertEquals(3, Q8.shortestPalindromicSupersequence("aba"));
+        Assert.assertEquals(4, Q8.shortestPalindromicSupersequence("abba"));
+        Assert.assertEquals(5, Q8.shortestPalindromicSupersequence("abab"));
+        Assert.assertEquals(6, Q8.shortestPalindromicSupersequence("abbaa"));
+        Assert.assertEquals(6, Q8.shortestPalindromicSupersequence("aabba"));
+        Assert.assertEquals(13, Q8.shortestPalindromicSupersequence("TWENTYONE"));
+    }
 }
