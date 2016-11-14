@@ -7,11 +7,10 @@ import java.util.Map;
  */
 public class FourSumII {
     public int fourSumCount(int[] A, int[] B, int[] C, int[] D) {
-        int N = A.length;
         Map<Integer, Integer> map = new HashMap<>();
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N; j++) {
-                map.put(A[i] + B[j], map.getOrDefault(A[i] + B[j], 0) + 1);
+        for (int x : A) {
+            for (int y : B) {
+                map.put(x + y, map.getOrDefault(x + y, 0) + 1);
             }
         }
         int cnt = 0;
