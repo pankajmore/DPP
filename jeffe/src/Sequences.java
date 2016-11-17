@@ -33,7 +33,8 @@ public class Sequences {
         int N = A.size();
         int[] dp = new int[N];
         int max = 0;
-        for (int i = 1; i < N; i++) {
+        for (int i = 0; i < N; i++) {
+            dp[i] = 1;
             for (int j = 0; j < i; j++) {
                 if (dp[j] + 1 > dp[i] && A.get(j).compareTo(A.get(i)) < 0 == increasing) dp[i] = dp[j] + 1;
             }
@@ -136,7 +137,7 @@ public class Sequences {
         return max;
     }
 
-    private static List<Integer> subset(@NotNull List<Integer> A, int bitmask) {
+    public static List<Integer> subset(@NotNull List<Integer> A, int bitmask) {
         List<Integer> l = new ArrayList<>();
         int idx = 0;
         while (bitmask != 0) {
