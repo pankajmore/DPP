@@ -17,7 +17,7 @@ public class Q10 {
             map.put(B.get(i), A.get(i));
         }
         Collections.sort(B, Comparator.comparing(map::get));
-        return Sequences.longestMonotonicSubsequence(B, true);
+        return Q3.longestMonotonicSubsequence(B, true);
     }
 
     public static int largestIntersectingSubset(@NotNull List<Integer> A, @NotNull List<Integer> B) {
