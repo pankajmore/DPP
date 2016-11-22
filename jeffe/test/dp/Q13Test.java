@@ -1,3 +1,5 @@
+package dp;
+
 import com.pholser.junit.quickcheck.ForAll;
 import com.pholser.junit.quickcheck.generator.InRange;
 import org.junit.Assert;

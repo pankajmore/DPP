@@ -4,8 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/EPI/EPI.iml" filepath="$PROJECT_DIR$/EPI/EPI.iml" />
       <module fileurl="file://$PROJECT_DIR$/InterviewBit/InterviewBit.iml" filepath="$PROJECT_DIR$/InterviewBit/InterviewBit.iml" />
-      <module fileurl="file://$PROJECT_DIR$/design/design.iml" filepath="$PROJECT_DIR$/design/design.iml" />
-      <module fileurl="file://$PROJECT_DIR$/scala-practice/scala-practice.iml" filepath="$PROJECT_DIR$/scala-practice/scala-practice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jeffe/jeffe.iml" filepath="$PROJECT_DIR$/jeffe/jeffe.iml" />
+      <module fileurl="file://$PROJECT_DIR$/leetcode/leetcode.iml" filepath="$PROJECT_DIR$/leetcode/leetcode.iml" />
     </modules>
   </component>
 </project>
