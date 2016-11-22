@@ -7,7 +7,7 @@ import java.util.List;
  * Page - 18, Q2
  * Created by pankaj on 9/15/16.
  */
-public class MaximumSubArrayOp {
+public class Q2 {
     public static double maximumSubArraySum(List<Double> A) {
         double max = 0, maxEndingHere = 0;
         for (double x : A) {

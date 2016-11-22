@@ -9,7 +9,7 @@ import java.util.List;
  * Page - 20, Q5
  * Created by pankaj on 11/4/16.
  */
-public class CardGame {
+public class Q5 {
     public static long maxScore(@NotNull List<Integer> A) {
         return maxScoreHelper(A, 0, A.size() - 1, 0, true);
     }

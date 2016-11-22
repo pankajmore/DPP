@@ -9,7 +9,7 @@ import java.util.*;
  * Page - 19, Q3
  * Created by pankaj on 9/20/16.
  */
-public class Sequences {
+public class Q3 {
     public static <T> int longestCommonSubsequence(List<T> A, List<T> B) {
         int M = A.size();
         int N = B.size();

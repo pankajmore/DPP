@@ -9,7 +9,7 @@ import java.util.List;
  * Page - 20, Q4
  * Created by pankaj on 11/4/16.
  */
-public class NumberOfSubsequences {
+public class Q4 {
     /**
      * Time: O(N * K)
      * Space: O(K)
@@ -37,7 +37,7 @@ public class NumberOfSubsequences {
         int cnt = 0, N = A.size();
         for (int i = 0; i < 1 << N; i++) {
             if (Integer.bitCount(i) != B.size()) continue;
-            List<Integer> subSeq = Sequences.subset(A, i);
+            List<Integer> subSeq = Q3.subset(A, i);
             if (subSeq.equals(B)) cnt++;
         }
         return cnt;

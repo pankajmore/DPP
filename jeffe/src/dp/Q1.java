@@ -10,7 +10,7 @@ import java.util.List;
  * Page - 18, Q1
  * Created by pankaj on 9/11/16.
  */
-public class MinCoins {
+public class Q1 {
     public static List<Integer> minCoins(List<Integer> coins, int k) {
         if (k < 0) return null;
         if (k == 0) return new ArrayList<>();
