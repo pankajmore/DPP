@@ -18,5 +18,6 @@ public class Q17Test {
         assertEquals(-1, Q17.maxScoreA(singletonList(singletonList(-1))));
         assertEquals(2, Q17.maxScoreA(singletonList(asList(-1, 2))));
         assertEquals(3, Q17.maxScoreA(singletonList(asList(1, 2))));
+        assertEquals(3, Q17.maxScoreA(asList(singletonList(1), singletonList(2))));
     }
 }
