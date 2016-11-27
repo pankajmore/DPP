@@ -15,7 +15,7 @@ public class Q17 {
      * Space: O(M * N)
      */
     public static int maxScoreASlow(@NotNull List<List<Integer>> A) {
-        if (A.size() == 0 || A.get(0).size() == 0) return Integer.MIN_VALUE;
+        if (A.size() == 0 || A.get(0).size() == 0) return 0;
         if (!isMatrix(A)) throw new IllegalArgumentException("Not a rectangular grid!");
         int M = A.size(), N = A.get(0).size();
         int[][] dp = new int[M][N];
@@ -40,7 +40,7 @@ public class Q17 {
      * Space: O(min(M, N))
      */
     public static int maxScoreA(@NotNull List<List<Integer>> A) {
-        if (A.size() == 0 || A.get(0).size() == 0) return Integer.MIN_VALUE;
+        if (A.size() == 0 || A.get(0).size() == 0) return 0;
         if (!isMatrix(A)) throw new IllegalArgumentException("Not a rectangular grid!");
         int M = A.size(), N = A.get(0).size();
         int[] dp = new int[Math.min(M, N)];
