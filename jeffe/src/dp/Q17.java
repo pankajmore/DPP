@@ -57,6 +57,6 @@ public class Q17 {
     }
 
     static boolean isMatrix(List<List<Integer>> A) {
-        return A.stream().map(List::size).distinct().count() <= 1;
+        return A.stream().map(List::size).distinct().count() == 1;
     }
 }
