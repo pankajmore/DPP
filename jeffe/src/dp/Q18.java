@@ -26,8 +26,8 @@ public class Q18 {
             for (int j = 0; j < N; j++) {
                 for (int k = i, l = j; k < M && l < N; k++, l++) {
                     int s = k - i + 1;
-                    if (V[k][l] - (i == 0 || j == 0 ? 0 : V[i - 1][j - 1]) == s
-                            && H[k][l] - (i == 0 || j == 0 ? 0 : H[i - 1][j - 1]) == s) {
+                    if (V[k][l] - (i == 0 ? 0 : V[i - 1][l]) == s
+                            && H[k][l] - (j == 0 ? 0 : H[k][j - 1]) == s) {
                         max = Math.max(max, s * s);
                     } else break;
                 }
