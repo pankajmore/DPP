@@ -10,6 +10,10 @@ import java.util.List;
  * Created by pankaj on 29/11/16.
  */
 public class Q18 {
+    /**
+     * Time: O(M * N * Min(M, N))
+     * Space: O(M * N)
+     */
     public static int largestSquare(@NotNull List<List<Integer>> A) {
         if (A.size() == 0 || A.get(0).size() == 0) return 0;
         if (!isMatrix(A)) throw new IllegalArgumentException("Not a rectangular grid!");
@@ -36,6 +40,10 @@ public class Q18 {
         return max;
     }
 
+    /**
+     * Time: O(M^2 * N^2 * Min(M, N))
+     * Space: O(1)
+     */
     public static int largestSquareSlow(@NotNull List<List<Integer>> A) {
         if (A.size() == 0 || A.get(0).size() == 0) return 0;
         if (!isMatrix(A)) throw new IllegalArgumentException("Not a rectangular grid!");
