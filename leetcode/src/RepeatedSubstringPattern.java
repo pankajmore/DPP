@@ -22,4 +22,8 @@ public class RepeatedSubstringPattern {
     public boolean repeatedSubstringPattern1(String str) {
         return (str + str).substring(1, 2 * str.length() - 1).contains(str);
     }
+
+    public boolean repeatedSubstringPatternRegEX(String str) {
+        return str.matches("(.+)\\1+");
+    }
 }
