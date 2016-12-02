@@ -71,7 +71,7 @@ public class Q18 {
         return true;
     }
 
-    public static boolean isMatrix(@NotNull List<List<Integer>> A) {
+    static boolean isMatrix(@NotNull List<List<Integer>> A) {
         return A.stream().map(List::size).distinct().count() == 1;
     }
 }
