@@ -31,7 +31,7 @@ public class RepeatedSubstringPattern {
         }
         return false;
     }
-    2
+
     public boolean repeatedSubstringPatternRegEX(String str) {
         return str.matches("(.+)\\1+");
     }
