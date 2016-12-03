@@ -23,6 +23,15 @@ public class RepeatedSubstringPattern {
         return (str + str).substring(1, 2 * str.length() - 1).contains(str);
     }
 
+    public boolean repeatedSubstringPattern2(String str) {
+        int N = str.length();
+        for (int d = 1; d <= N / 2; d++) {
+            if (N % d == 0 && str.startsWith(str.substring(d)))
+                return true;
+        }
+        return false;
+    }
+    2
     public boolean repeatedSubstringPatternRegEX(String str) {
         return str.matches("(.+)\\1+");
     }
