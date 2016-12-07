@@ -11,10 +11,34 @@ import java.util.List;
  */
 public class Q18 {
     /**
+     * Time: O(M * N)
+     * Space: O(N)
+     */
+    public static int largestSquare(@NotNull List<List<Integer>> A) {
+        if (A.size() == 0 || A.get(0).size() == 0) return 0;
+        if (!isMatrix(A)) throw new IllegalArgumentException("Not a rectangular grid!");
+        int M = A.size(), N = A.get(0).size();
+        int[] dp = new int[N], H = new int[N];
+        int max = 0;
+        for (int i = 0; i < M; i++) {
+            int prev = 0, w = 0;
+            for (int j = 0; j < N; j++) {
+                int tmp = dp[j];
+                w = A.get(i).get(j) == 0 ? 0 : 1 + w;
+                H[j] = A.get(i).get(j) == 0 ? 0 : 1 + H[j];
+                dp[j] = Math.min(prev + 1, Math.min(H[j], w));
+                prev = tmp;
+                max = Math.max(max, dp[j]);
+            }
+        }
+        return max * max;
+    }
+
+    /**
      * Time: O(M * N * Min(M, N))
      * Space: O(M * N)
      */
-    public static int largestSquare(@NotNull List<List<Integer>> A) {
+    public static int largestSquareSlow(@NotNull List<List<Integer>> A) {
         if (A.size() == 0 || A.get(0).size() == 0) return 0;
         if (!isMatrix(A)) throw new IllegalArgumentException("Not a rectangular grid!");
         int M = A.size(), N = A.get(0).size();
@@ -32,43 +56,12 @@ public class Q18 {
                     int s = k - i + 1;
                     if (V[k][l] - (i == 0 ? 0 : V[i - 1][l]) == s
                             && H[k][l] - (j == 0 ? 0 : H[k][j - 1]) == s) {
-                        max = Math.max(max, s * s);
+                        max = Math.max(max, s);
                     } else break;
                 }
             }
         }
-        return max;
-    }
-
-    /**
-     * Time: O(M^2 * N^2 * Min(M, N))
-     * Space: O(1)
-     */
-    public static int largestSquareSlow(@NotNull List<List<Integer>> A) {
-        if (A.size() == 0 || A.get(0).size() == 0) return 0;
-        if (!isMatrix(A)) throw new IllegalArgumentException("Not a rectangular grid!");
-        int M = A.size(), N = A.get(0).size();
-        int max = 0;
-        for (int i = 0; i < M; i++) {
-            for (int j = 0; j < N; j++) {
-                for (int k = i, l = j; k < M && l < N; k++, l++) {
-                    int s = k - i + 1;
-                    if (isSolid(A, i, j, k, l)) {
-                        max = Math.max(max, s * s);
-                    } else break;
-                }
-            }
-        }
-        return max;
-    }
-
-    private static boolean isSolid(List<List<Integer>> A, int x1, int y1, int x2, int y2) {
-        for (int i = x1; i <= x2; i++) {
-            for (int j = y1; j <= y2; j++) {
-                if (A.get(i).get(j) != 1) return false;
-            }
-        }
-        return true;
+        return max * max;
     }
 
     static boolean isMatrix(@NotNull List<List<Integer>> A) {
