@@ -1,10 +1,14 @@
 /**
- * #434
+ * https://leetcode.com/problems/number-of-segments-in-a-string/
  * Created by pankaj on 04/12/16.
  */
 public class NumberOfSegmentsInAString {
     public int countSegments(String s) {
-        String[] words = s.split("\\s+");
-        return words.length == 0 ? 0 : words[0].isEmpty() ? words.length - 1 : words.length;
+        int cnt = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) != ' ' && (i == 0 || s.charAt(i - 1) == ' '))
+                cnt++;
+        }
+        return cnt;
     }
 }
