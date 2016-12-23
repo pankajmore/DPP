@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -8,13 +7,17 @@ import java.util.List;
  */
 public class FindAllNumbersDisappearedInAnArray {
     public List<Integer> findDisappearedNumbers(int[] nums) {
+        List<Integer> disappeared = new ArrayList<>();
         int N = nums.length;
-        List<Integer> l = new ArrayList<>();
-        HashSet<Integer> set = new HashSet<>();
-        for (int x : nums) set.add(x);
-        for (int x = 1; x <= N; x++) {
-            if (!set.contains(x)) l.add(x);
+        for (int i = 0; i < N; i++) {
+            int idx = Math.abs(nums[i]) - 1;
+            if (nums[idx] > 0) {
+                nums[idx] = -nums[idx];
+            }
         }
-        return l;
+        for (int i = 0; i < N; i++) {
+            if (nums[i] > 0) disappeared.add(i + 1);
+        }
+        return disappeared;
     }
 }
