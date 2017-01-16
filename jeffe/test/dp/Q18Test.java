@@ -41,4 +41,13 @@ public class Q18Test {
             assertEquals(expected, actual);
         }
     }
+
+    @Theory
+    public void compareMaximumSumRectangle(@ForAll @InRange(minInt = -10, maxInt = 10) List<List<Integer>> A) {
+        if (Q18.isMatrix(A)) {
+            int expected = Q18.maximumSumRectangleSlow(A);
+            int actual = Q18.maximumSumRectangle(A);
+            assertEquals(expected, actual);
+        }
+    }
 }

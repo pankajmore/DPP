@@ -67,4 +67,61 @@ public class Q18 {
     static boolean isMatrix(@NotNull List<List<Integer>> A) {
         return A.stream().map(List::size).distinct().count() == 1;
     }
+
+    /**
+     * Time: O(M^2 * N^2)
+     * Space: O(M * N)
+     */
+    public static int maximumSumRectangleSlow(@NotNull List<List<Integer>> A) {
+        if (A.size() == 0 || A.get(0).size() == 0) return 0;
+        if (!isMatrix(A)) throw new IllegalArgumentException("Not a rectangular grid!");
+        int M = A.size(), N = A.get(0).size();
+        int maxSum = 0;
+        int[][] V = new int[M][N];
+        for (int i = 0; i < M; i++) {
+            for (int j = 0; j < N; j++) {
+                V[i][j] = (i == 0 ? 0 : V[i - 1][j]) + A.get(i).get(j);
+            }
+        }
+        for (int i = 0; i < M; i++) {
+            for (int j = 0; j < N; j++) {
+                for (int k = i; k < M; k++) {
+                    int sum = 0;
+                    for (int l = j; l < M; l++) {
+                        sum += V[k][l] - (i == 0 ? 0 : V[i - 1][l]);
+                        maxSum = Math.max(maxSum, sum);
+                    }
+                }
+            }
+        }
+        return maxSum;
+    }
+
+    /**
+     * Time: O(M^2 * N)
+     * Space: O(M * N)
+     */
+    public static int maximumSumRectangle(@NotNull List<List<Integer>> A) {
+        if (A.size() == 0 || A.get(0).size() == 0) return 0;
+        if (!isMatrix(A)) throw new IllegalArgumentException("Not a rectangular grid!");
+        int M = A.size(), N = A.get(0).size();
+        int maxSum = 0;
+        int[][] V = new int[M][N];
+        for (int i = 0; i < M; i++) {
+            for (int j = 0; j < N; j++) {
+                V[i][j] = (i == 0 ? 0 : V[i - 1][j]) + A.get(i).get(j);
+            }
+        }
+        for (int i = 0; i < M; i++) {
+            for (int k = i; k < M; k++) {
+                int maxEndingHere = 0;
+                for (int j = 0; j < N; j++) {
+                    int colSum = V[k][j] - (i == 0 ? 0 : V[i - 1][j]);
+                    maxEndingHere = Math.max(maxEndingHere + colSum, colSum);
+                    maxSum = Math.max(maxSum, maxEndingHere);
+                }
+            }
+        }
+        return maxSum;
+    }
 }
