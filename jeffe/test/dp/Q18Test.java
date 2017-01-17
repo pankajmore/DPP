@@ -42,6 +42,16 @@ public class Q18Test {
         }
     }
 
+    @Test
+    public void maximumSumRectangle() throws Exception {
+        assertEquals(0, Q18.maximumSumRectangle(emptyList()));
+        assertEquals(0, Q18.maximumSumRectangle(singletonList(emptyList())));
+        assertEquals(0, Q18.maximumSumRectangle(singletonList(singletonList(0))));
+        assertEquals(-1, Q18.maximumSumRectangle(singletonList(singletonList(-1))));
+        assertEquals(-1, Q18.maximumSumRectangle(singletonList(asList(-1, -2))));
+        assertEquals(2, Q18.maximumSumRectangle(singletonList(asList(-1, 2))));
+    }
+
     @Theory
     public void compareMaximumSumRectangle(@ForAll @InRange(minInt = -10, maxInt = 10) List<List<Integer>> A) {
         if (Q18.isMatrix(A)) {

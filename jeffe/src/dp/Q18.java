@@ -76,7 +76,7 @@ public class Q18 {
         if (A.size() == 0 || A.get(0).size() == 0) return 0;
         if (!isMatrix(A)) throw new IllegalArgumentException("Not a rectangular grid!");
         int M = A.size(), N = A.get(0).size();
-        int maxSum = 0;
+        int maxSum = Integer.MIN_VALUE;
         int[][] V = new int[M][N];
         for (int i = 0; i < M; i++) {
             for (int j = 0; j < N; j++) {
@@ -105,7 +105,7 @@ public class Q18 {
         if (A.size() == 0 || A.get(0).size() == 0) return 0;
         if (!isMatrix(A)) throw new IllegalArgumentException("Not a rectangular grid!");
         int M = A.size(), N = A.get(0).size();
-        int maxSum = 0;
+        int maxSum = Integer.MIN_VALUE;
         int[][] V = new int[M][N];
         for (int i = 0; i < M; i++) {
             for (int j = 0; j < N; j++) {
