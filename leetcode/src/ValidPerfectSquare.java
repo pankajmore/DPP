@@ -14,4 +14,12 @@ public class ValidPerfectSquare {
         }
         return false;
     }
+
+    public boolean isPerfectSquare1(int num) {
+        long r = num;
+        while (r * r > num) {
+            r = (r + num / r) / 2;
+        }
+        return r * r == num;
+    }
 }
