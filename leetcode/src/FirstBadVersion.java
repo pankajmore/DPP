@@ -1,5 +1,3 @@
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 /**
  * https://leetcode.com/problems/first-bad-version/
  * Created by pankaj on 17/02/17.
@@ -19,7 +17,7 @@ public class FirstBadVersion {
 
     class VersionControl {
         boolean isBadVersion(int version) {
-            throw new NotImplementedException();
+            throw new UnsupportedOperationException();
         }
     }
 }
