@@ -5,12 +5,11 @@
 public class ArithmeticSlices {
     public int numberOfArithmeticSlices(int[] A) {
         int N = A.length;
-        int cnt = 0;
-        for (int i = 0; i < N; i++) {
-            for (int j = i + 2; j < N; j++) {
-                if (A[j] - A[j - 1] == A[j - 1] - A[j - 2]) cnt++;
-                else break;
-            }
+        int cnt = 0, x = 0;
+        for (int i = 2; i < N; i++) {
+            if (A[i] - A[i - 1] == A[i - 1] - A[i - 2]) x++;
+            else x = 0;
+            cnt += x;
         }
         return cnt;
     }
