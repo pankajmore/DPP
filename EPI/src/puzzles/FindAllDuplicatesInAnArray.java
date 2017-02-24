@@ -1,9 +1,7 @@
 package puzzles;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * https://leetcode.com/problems/find-all-duplicates-in-an-array/
@@ -12,9 +10,10 @@ import java.util.Set;
 public class FindAllDuplicatesInAnArray {
     public List<Integer> findDuplicates(int[] nums) {
         List<Integer> res = new ArrayList<>();
-        Set<Integer> set = new HashSet<>();
-        for(int x : nums) {
-            if(!set.add(x)) res.add(x);
+        for (int i = 0; i < nums.length; i++) {
+            int x = Math.abs(nums[i]);
+            if (nums[x - 1] < 0) res.add(x);
+            else nums[x - 1] *= -1;
         }
         return res;
     }
