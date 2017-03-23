@@ -9,11 +9,11 @@ import java.util.ArrayList;
 @RunWith(Theories.class)
 public class OddEvenTest {
 
-    @Test
-    public void testOddEvenInterleave() throws Exception {
-        int N = 100;
-        ArrayList<Integer> expected = new ArrayList<>();
-        for (int i = 1; i <= N; i++) expected.add(i);
-        assert OddEven.oddEvenInterleave(N).equals(expected);
-    }
+  @Test
+  public void testOddEvenInterleave() throws Exception {
+    int N = 100;
+    ArrayList<Integer> expected = new ArrayList<>();
+    for (int i = 1; i <= N; i++) expected.add(i);
+    assert OddEven.oddEvenInterleave(N).equals(expected);
+  }
 }

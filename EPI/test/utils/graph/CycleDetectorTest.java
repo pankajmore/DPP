@@ -5,9 +5,9 @@ import org.junit.Test;
 
 public class CycleDetectorTest {
 
-    @Test
-    public void testIsDAG() throws Exception {
-        assert !(new CycleDetector(DirectedGraphs.twoNodeCycle).isDAG());
-        assert new CycleDetector(DirectedGraphs.diamond).isDAG();
-    }
+  @Test
+  public void testIsDAG() throws Exception {
+    assert !(new CycleDetector(DirectedGraphs.twoNodeCycle).isDAG());
+    assert new CycleDetector(DirectedGraphs.diamond).isDAG();
+  }
 }

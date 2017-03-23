@@ -22,44 +22,40 @@ import static puzzles.KClosestStars.kClosestStars;
 @RunWith(Theories.class)
 public class KClosestStarsTest {
 
-    @Test
-    public void testKClosestStars() throws Exception {
+  @Test
+  public void testKClosestStars() throws Exception {}
 
+  @Test
+  public void testKSmallest() throws Exception {}
+
+  //TODO: fix the generator for Star
+  //TODO: report the issue to the github tracker
+  @Theory
+  public void kSmallestFromSorted(@ForAll @From(StarGenerator.class) List<KClosestStars.Star> ls) {
+    for (int k = 0; k <= ls.size(); k++) {
+      List<KClosestStars.Star> ans = kClosestStars(ls, k);
+      Collections.sort(ls);
+      assertEquals(ls.subList(0, k), ans);
+    }
+  }
+
+  /** Created by Pankaj on 7/13/15. */
+  public static class StarGenerator extends Generator<List<Star>> {
+
+    @SuppressWarnings("unchecked")
+    public StarGenerator() {
+      super(asList((Class<List<Star>>) (Object) List.class));
     }
 
-    @Test
-    public void testKSmallest() throws Exception {
-
+    @Override
+    public List<Star> generate(SourceOfRandomness random, GenerationStatus status) {
+      int size = random.nextInt(0, 10 ^ 6);
+      List<Star> stars = new ArrayList<Star>();
+      for (int i = 0; i < size; i++)
+        stars.add(
+            new Star(
+                random.nextLong(), random.nextDouble(), random.nextDouble(), random.nextDouble()));
+      return stars;
     }
-
-    //TODO: fix the generator for Star
-    //TODO: report the issue to the github tracker
-    @Theory
-    public void kSmallestFromSorted(@ForAll @From(StarGenerator.class) List<KClosestStars.Star> ls) {
-        for (int k = 0; k <= ls.size(); k++) {
-            List<KClosestStars.Star> ans = kClosestStars(ls, k);
-            Collections.sort(ls);
-            assertEquals(ls.subList(0, k), ans);
-        }
-    }
-
-    /**
-     * Created by Pankaj on 7/13/15.
-     */
-    public static class StarGenerator extends Generator<List<Star>> {
-
-        @SuppressWarnings("unchecked")
-        public StarGenerator() {
-            super(asList((Class<List<Star>>) (Object) List.class));
-        }
-
-        @Override
-        public List<Star> generate(SourceOfRandomness random, GenerationStatus status) {
-            int size = random.nextInt(0, 10 ^ 6);
-            List<Star> stars = new ArrayList<Star>();
-            for (int i = 0; i < size; i++)
-                stars.add(new Star(random.nextLong(), random.nextDouble(), random.nextDouble(), random.nextDouble()));
-            return stars;
-        }
-    }
+  }
 }

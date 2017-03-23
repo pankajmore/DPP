@@ -10,13 +10,11 @@ import java.util.List;
 import static puzzles.BuyAndSellStock.computeMaxProfit;
 import static puzzles.BuyAndSellStock.computeMaxProfit1;
 
-/**
- * Created by pankaj on 4/6/16.
- */
+/** Created by pankaj on 4/6/16. */
 @RunWith(Theories.class)
 public class BuyAndSellStockTest {
-    @Theory
-    public void compareWithBruteForce(@ForAll List<Double> prices) throws Exception {
-        assert computeMaxProfit(prices) == computeMaxProfit1(prices);
-    }
+  @Theory
+  public void compareWithBruteForce(@ForAll List<Double> prices) throws Exception {
+    assert computeMaxProfit(prices) == computeMaxProfit1(prices);
+  }
 }

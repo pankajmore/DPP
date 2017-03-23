@@ -7,29 +7,26 @@ import org.junit.contrib.theories.Theories;
 import org.junit.contrib.theories.Theory;
 import org.junit.runner.RunWith;
 
-import static puzzles.ClosestIntSameBits.closestIntSameBits;
-import static puzzles.ClosestIntSameBits.closestIntSameBits1;
-import static puzzles.ClosestIntSameBits.closestIntSameBitsBruteForce;
+import static puzzles.ClosestIntSameBits.*;
 
-/**
- * Created by pankaj on 3/26/16.
- */
+/** Created by pankaj on 3/26/16. */
 @RunWith(Theories.class)
 public class ClosestIntSameBitsTest {
 
-    @Test
-    public void testClosestIntSameBits() throws Exception {
-        assert closestIntSameBits(1) == 2;
-        assert closestIntSameBits(2) == 1;
-        assert closestIntSameBits(3) == 5;
-        assert closestIntSameBits(4) == 2;
-        assert closestIntSameBits(5) == 6;
-        assert closestIntSameBits(6) == 5;
-    }
+  @Test
+  public void testClosestIntSameBits() throws Exception {
+    assert closestIntSameBits(1) == 2;
+    assert closestIntSameBits(2) == 1;
+    assert closestIntSameBits(3) == 5;
+    assert closestIntSameBits(4) == 2;
+    assert closestIntSameBits(5) == 6;
+    assert closestIntSameBits(6) == 5;
+  }
 
-    @Theory
-    public void testCheckWithBruteForce(@ForAll @InRange(minInt = 1, maxInt = Integer.MAX_VALUE - 1) int x) throws Exception {
-        assert closestIntSameBits1(x) == closestIntSameBitsBruteForce(x);
-        assert closestIntSameBits(x) == closestIntSameBitsBruteForce(x);
-    }
+  @Theory
+  public void testCheckWithBruteForce(
+      @ForAll @InRange(minInt = 1, maxInt = Integer.MAX_VALUE - 1) int x) throws Exception {
+    assert closestIntSameBits1(x) == closestIntSameBitsBruteForce(x);
+    assert closestIntSameBits(x) == closestIntSameBitsBruteForce(x);
+  }
 }

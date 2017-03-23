@@ -12,16 +12,15 @@ import static puzzles.RebuildBSTPreOrder.rebuildBSTFromPreOrderFast;
 
 public class RebuildBSTPreOrderTest {
 
-    @Test
-    public void testRebuildBSTFromPreOrder() throws Exception {
-        List<Integer> preOrderSequence = Arrays.asList(
-                19, 7, 3, 2, 5, 11, 17, 13, 43, 23, 37, 29, 31, 41, 47, 53
-        );
-        final BinaryTreeNode expected = BinaryTreeExample.constructBSTExample();
-        final BinaryTreeNode actual1 = rebuildBSTFromPreOrder(preOrderSequence);
-        assert actual1.equals(expected);
+  @Test
+  public void testRebuildBSTFromPreOrder() throws Exception {
+    List<Integer> preOrderSequence =
+        Arrays.asList(19, 7, 3, 2, 5, 11, 17, 13, 43, 23, 37, 29, 31, 41, 47, 53);
+    final BinaryTreeNode expected = BinaryTreeExample.constructBSTExample();
+    final BinaryTreeNode actual1 = rebuildBSTFromPreOrder(preOrderSequence);
+    assert actual1.equals(expected);
 
-        final BinaryTreeNode actual2 = rebuildBSTFromPreOrderFast(preOrderSequence);
-        assert actual2.equals(expected);
-    }
+    final BinaryTreeNode actual2 = rebuildBSTFromPreOrderFast(preOrderSequence);
+    assert actual2.equals(expected);
+  }
 }

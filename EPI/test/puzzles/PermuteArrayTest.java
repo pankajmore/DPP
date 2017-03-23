@@ -16,12 +16,12 @@ import static puzzles.PermuteArray.permute1;
 @RunWith(Theories.class)
 public class PermuteArrayTest {
 
-    @Theory
-    public void testPermute(@ForAll List<Integer> A) throws Exception {
-        List<Integer> perm = IntStream.range(0, A.size()).boxed().collect(Collectors.toList());
-        Collections.shuffle(perm);
-        List<Integer> expected = permute1(A, perm);
-        permute(A, perm);
-        assert expected.equals(A);
-    }
+  @Theory
+  public void testPermute(@ForAll List<Integer> A) throws Exception {
+    List<Integer> perm = IntStream.range(0, A.size()).boxed().collect(Collectors.toList());
+    Collections.shuffle(perm);
+    List<Integer> expected = permute1(A, perm);
+    permute(A, perm);
+    assert expected.equals(A);
+  }
 }

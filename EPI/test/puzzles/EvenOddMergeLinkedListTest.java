@@ -9,25 +9,29 @@ import org.junit.runner.RunWith;
 import utils.Node;
 
 import java.util.Arrays;
-import java.util.List;
 
-import static puzzles.EvenOddMergeLinkedList.*;
+import static puzzles.EvenOddMergeLinkedList.evenOddMerge;
+import static puzzles.EvenOddMergeLinkedList.evenOddMerge1;
 
 @RunWith(Theories.class)
 public class EvenOddMergeLinkedListTest {
 
-    @Test
-    public void testEvenOddMerge() throws Exception {
-        assert evenOddMerge(new Node(new int[]{1})).toList().equals(Arrays.asList(1));
-        assert evenOddMerge(new Node(new int[]{1, 2})).toList().equals(Arrays.asList(1, 2));
-        assert evenOddMerge(new Node(new int[]{1, 2, 3})).toList().equals(Arrays.asList(1, 3, 2));
-        assert evenOddMerge(new Node(new int[]{1, 2, 3, 4})).toList().equals(Arrays.asList(1, 3, 2, 4));
-        assert evenOddMerge(new Node(new int[]{1, 2, 3, 4, 5})).toList().equals(Arrays.asList(1, 3, 5, 2, 4));
-    }
+  @Test
+  public void testEvenOddMerge() throws Exception {
+    assert evenOddMerge(new Node(new int[] {1})).toList().equals(Arrays.asList(1));
+    assert evenOddMerge(new Node(new int[] {1, 2})).toList().equals(Arrays.asList(1, 2));
+    assert evenOddMerge(new Node(new int[] {1, 2, 3})).toList().equals(Arrays.asList(1, 3, 2));
+    assert evenOddMerge(new Node(new int[] {1, 2, 3, 4}))
+        .toList()
+        .equals(Arrays.asList(1, 3, 2, 4));
+    assert evenOddMerge(new Node(new int[] {1, 2, 3, 4, 5}))
+        .toList()
+        .equals(Arrays.asList(1, 3, 5, 2, 4));
+  }
 
-    @Theory
-    public void compareEvenOddMerge(@ForAll int[] A) throws Exception {
-        if(A.length == 0) return;
-        Assert.assertEquals(evenOddMerge(new Node(A)), evenOddMerge1(new Node(A)));
-    }
+  @Theory
+  public void compareEvenOddMerge(@ForAll int[] A) throws Exception {
+    if (A.length == 0) return;
+    Assert.assertEquals(evenOddMerge(new Node(A)), evenOddMerge1(new Node(A)));
+  }
 }

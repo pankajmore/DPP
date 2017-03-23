@@ -7,15 +7,15 @@ import static puzzles.ValidParentheses.isWellFormed;
 
 public class ValidParenthesesTest {
 
-    @Test
-    public void testIsValid() throws Exception {
-        Assert.assertTrue(isWellFormed(""));
-        Assert.assertTrue(isWellFormed("()"));
-        Assert.assertTrue(isWellFormed("()[]{}"));
-        Assert.assertTrue(isWellFormed("[()[]]{}"));
-        Assert.assertTrue(isWellFormed("(()[]{()[]{}{}})"));
-        Assert.assertFalse(isWellFormed("([)]"));
-        Assert.assertFalse(isWellFormed("["));
-        Assert.assertFalse(isWellFormed("(()[]{()[]{})({}})"));
-    }
+  @Test
+  public void testIsValid() throws Exception {
+    Assert.assertTrue(isWellFormed(""));
+    Assert.assertTrue(isWellFormed("()"));
+    Assert.assertTrue(isWellFormed("()[]{}"));
+    Assert.assertTrue(isWellFormed("[()[]]{}"));
+    Assert.assertTrue(isWellFormed("(()[]{()[]{}{}})"));
+    Assert.assertFalse(isWellFormed("([)]"));
+    Assert.assertFalse(isWellFormed("["));
+    Assert.assertFalse(isWellFormed("(()[]{()[]{})({}})"));
+  }
 }

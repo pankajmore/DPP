@@ -10,15 +10,17 @@ import java.util.stream.Collectors;
 
 import static puzzles.ExteriorBinaryTree.exterior;
 
-/**
- * Created by pankaj on 2/22/16.
- */
+/** Created by pankaj on 2/22/16. */
 public class ExteriorBinaryTreeTest {
 
-    @Test
-    public void testExterior() throws Exception {
-        List<Integer> expected = Arrays.asList(314, 6, 271, 28, 0, 17, 641, 257, 28, 271, 6);
-        List<Integer> actual = exterior(BinaryTreeExample.constructBookExample()).stream().map(BinaryTreeNode::val).collect(Collectors.toList());
-        assert expected.equals(actual);
-    }
+  @Test
+  public void testExterior() throws Exception {
+    List<Integer> expected = Arrays.asList(314, 6, 271, 28, 0, 17, 641, 257, 28, 271, 6);
+    List<Integer> actual =
+        exterior(BinaryTreeExample.constructBookExample())
+            .stream()
+            .map(BinaryTreeNode::val)
+            .collect(Collectors.toList());
+    assert expected.equals(actual);
+  }
 }

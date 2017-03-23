@@ -10,15 +10,13 @@ import java.util.List;
 import static puzzles.BuyAndSellStockTwice.buyAndSellStockTwice;
 import static puzzles.BuyAndSellStockTwice.buyAndSellStockTwice1;
 
-/**
- * Created by pankaj on 4/7/16.
- */
+/** Created by pankaj on 4/7/16. */
 @RunWith(Theories.class)
 public class BuyAndSellStockTwiceTest {
-    @Theory
-    public void compareWithBruteForce(@ForAll List<Double> prices) {
-        final double expected = buyAndSellStockTwice1(prices);
-        final double actual = buyAndSellStockTwice(prices);
-        assert actual == expected;
-    }
+  @Theory
+  public void compareWithBruteForce(@ForAll List<Double> prices) {
+    final double expected = buyAndSellStockTwice1(prices);
+    final double actual = buyAndSellStockTwice(prices);
+    assert actual == expected;
+  }
 }
