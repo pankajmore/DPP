@@ -3,18 +3,17 @@
  */
 public class MinimumAbsoluteDifferenceInBst {
   public int getMinimumDifference(TreeNode root) {
-    int[] last = new int[] {-1};
-    int[] min = new int[] {Integer.MAX_VALUE};
-    minimumDifferenceHelper(root, last, min);
-    return min[0];
+    return minimumDifferenceHelper(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
   }
 
-  private void minimumDifferenceHelper(TreeNode root, int[] last, int[] min) {
-    if (root == null) return;
-    minimumDifferenceHelper(root.left, last, min);
-    min[0] = Math.min(min[0], last[0] == -1 ? Integer.MAX_VALUE : root.val - last[0]);
-    last[0] = root.val;
-    minimumDifferenceHelper(root.right, last, min);
+  private int minimumDifferenceHelper(TreeNode root, int lo, int hi) {
+    int min = Integer.MAX_VALUE;
+    if (root == null) return min;
+    if (lo != Integer.MIN_VALUE) min = Math.min(min, root.val - lo);
+    min = Math.min(min, hi - root.val);
+    min = Math.min(min, minimumDifferenceHelper(root.left, lo, root.val));
+    min = Math.min(min, minimumDifferenceHelper(root.right, root.val, hi));
+    return min;
   }
 
   private static class TreeNode {
