@@ -1,17 +1,18 @@
 /** https://leetcode.com/problems/sort-colors/ Created by pankaj on 11/04/17. */
 public class SortColors {
   public void sortColors(int[] nums) {
-    int N = nums.length, i = 0, j = N - 1, k = N;
-    while (i <= j) {
-      if (nums[j] == 1) --j;
-      else if (nums[i] == 0) ++i;
-      else if (nums[j] == 0) swap(nums, i, j);
-      else if (nums[i] == 1) swap(nums, i, j);
-      else if (nums[j] == 2) {
-        --k;
+    int N = nums.length, i = 0, j = 0, k = N - 1;
+    while (j <= k) {
+      if (nums[j] == 0) {
+        swap(nums, i, j);
+        i = i + 1;
+        j = j + 1;
+      } else if (nums[j] == 2) {
         swap(nums, j, k);
-        --j;
-      } else if (nums[i] == 2) swap(nums, i, j);
+        k = k - 1;
+      } else {
+        j = j + 1;
+      }
     }
   }
 
