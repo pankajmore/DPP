@@ -1,3 +1,5 @@
+import java.util.*;
+
 /** https://leetcode.com/problems/word-break-ii/ Created by pankaj on 14/04/17. */
 public class WordBreakII {
   public List<String> wordBreak(String s, List<String> wordDict) {

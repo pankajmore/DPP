@@ -32,4 +32,9 @@ public class BinaryTreeLongestConsecutiveSequenceII {
     max = Math.max(max, inc + dec - 1);
     return new int[] {dec, inc};
   }
+
+  private static class TreeNode {
+    int val;
+    TreeNode left, right;
+  }
 }
