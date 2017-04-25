@@ -33,4 +33,46 @@ public class StudentAttendanceRecordII {
     }
     return dp[n][1][2];
   }
+
+  public int checkRecord2(int n) {
+    int m = 1000000007;
+    int[][] A = {
+      {0, 0, 1, 0, 0, 0},
+      {1, 0, 1, 0, 0, 0},
+      {0, 1, 1, 0, 0, 0},
+      {0, 0, 1, 0, 0, 1},
+      {0, 0, 1, 1, 0, 1},
+      {0, 0, 1, 0, 1, 1},
+    };
+    return exp(A, n + 1, m)[5][2];
+  }
+
+  /* Computes A^n % m */
+  private int[][] exp(int[][] A, int n, int m) {
+    int s = A.length; // assume square
+    int[][] I = new int[s][s];
+    for (int i = 0; i < s; i++) I[i][i] = 1;
+    int[][] X = I;
+    while (n > 0) {
+      if ((n & 1) == 1) {
+        X = mult(X, A, m);
+      }
+      A = mult(A, A, m);
+      n >>= 1;
+    }
+    return X;
+  }
+
+  private int[][] mult(int[][] A, int[][] B, int m) {
+    int s = A.length; // == B.length
+    int[][] X = new int[s][s];
+    for (int i = 0; i < s; i++) {
+      for (int j = 0; j < s; j++) {
+        for (int k = 0; k < s; k++) {
+          X[i][j] = (int) (((long) X[i][j] + (long) A[i][k] * (long) B[k][j]) % m);
+        }
+      }
+    }
+    return X;
+  }
 }
