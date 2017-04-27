@@ -12,12 +12,12 @@ public class IntegerBreak {
   }
 
   public int integerBreak1(int n) {
-    if(n == 1) return 1;
-    else if(n == 2) return 1;
-    else if(n == 3) return 2;
+    if (n == 1) return 1;
+    else if (n == 2) return 1;
+    else if (n == 3) return 2;
     else {
       int p = 1;
-      while(n > 4) {
+      while (n > 4) {
         p *= 3;
         n -= 3;
       }
