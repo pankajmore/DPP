@@ -22,6 +22,22 @@ public class BinaryTreeInorderTraversal {
     return inorder;
   }
 
+  public List<Integer> inorderTraversal1(TreeNode root) {
+    List<Integer> inorder = new ArrayList<>();
+    TreeNode curr = root;
+    Stack<TreeNode> stack = new Stack<>();
+    while (curr != null || !stack.isEmpty()) {
+      while (curr != null) {
+        stack.push(curr);
+        curr = curr.left;
+      }
+      curr = stack.pop();
+      inorder.add(curr.val);
+      curr = curr.right;
+    }
+    return inorder;
+  }
+
   class TreeNode {
     int val;
     TreeNode left, right;
