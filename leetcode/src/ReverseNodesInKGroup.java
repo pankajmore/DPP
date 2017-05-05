@@ -9,11 +9,11 @@ class ReverseNodesInKGroup {
     if (curr == null) {
       return head;
     }
-    ListNode newHead = curr, next = curr.next;
+    ListNode next = curr.next;
     curr.next = null;
     reverse(head);
     head.next = reverseKGroup(next, k);
-    return newHead;
+    return curr;
   }
 
   ListNode reverse(final ListNode head) {
