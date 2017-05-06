@@ -9,9 +9,9 @@ class ReshapeTheMatrix {
       return nums;
     }
     final int[][] reshape = new int[r][c];
-    for (int i = 0, cnt = 0; i < m; i++) {
-      for (int j = 0; j < n; j++, cnt++) {
-        reshape[cnt / c][cnt % c] = nums[i][j];
+    for (int i = 0, cnt = 0; i < r; i++) {
+      for (int j = 0; j < c; j++, cnt++) {
+        reshape[i][j] = nums[cnt / c][cnt % c];
       }
     }
     return reshape;
