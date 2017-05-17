@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 /**
  * https://leetcode.com/problems/shortest-unsorted-continuous-subarray/ Created by pankaj on
  * 16/05/17.
@@ -29,5 +31,22 @@ class ShortestUnsortedContinuousSubarray {
       }
     }
     return end - start + 1;
+  }
+
+  int findUnsortedSubarray1(final int[] nums) {
+    int[] sorted = nums.clone();
+    Arrays.sort(sorted);
+    int n = nums.length, start = n, end = 0;
+    for (int i = 0; i < n; i++) {
+      if (sorted[i] != nums[i]) {
+        start = Math.min(start, i);
+        end = Math.max(end, i);
+      }
+    }
+    if (end < start) {
+      return 0;
+    } else {
+      return end - start + 1;
+    }
   }
 }
