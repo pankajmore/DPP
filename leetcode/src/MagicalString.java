@@ -15,11 +15,7 @@ class MagicalString {
     int curr = 1;
     while (seq.size() < n) {
       if (remaining == 0) {
-        if (curr == 1) {
-          curr = 2;
-        } else {
-          curr = 1;
-        }
+        curr = curr ^ 1 ^ 2;
         seq.add(curr);
         remaining = seq.get(++idx) - 1;
       } else {
