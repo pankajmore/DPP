@@ -32,5 +32,6 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="com.pholser:junit-quickcheck-generators:0.4" level="project" />
+    <orderEntry type="library" name="scala-sdk-2.12.1" level="application" />
   </component>
 </module>
