@@ -1,4 +1,7 @@
-/** Created by pankaj on 29/05/17. */
+/**
+ * https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array/ Created by pankaj on
+ * 29/05/17.
+ */
 class MaximumXorOfTwoNumbersInAnArray {
   int findMaximumXOR(final int[] nums) {
     int max = 0;
