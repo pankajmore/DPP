@@ -13,6 +13,24 @@ class ValidTriangleNumber {
     return cnt;
   }
 
+  int triangleNumber1(final int[] nums) {
+    Arrays.sort(nums);
+    int cnt = 0;
+    for (int i = nums.length - 1; i >= 2; i--) {
+      int l = 0;
+      int r = i - 1;
+      while (l < r) {
+        if (nums[l] + nums[r] > nums[i]) {
+          cnt += r - l;
+          r--;
+        } else {
+          l++;
+        }
+      }
+    }
+    return cnt;
+  }
+
   private int lessThanIdx(final int[] nums, final int start, final int x) {
     int lo = start, hi = nums.length - 1, idx = lo;
     while (lo <= hi) {
