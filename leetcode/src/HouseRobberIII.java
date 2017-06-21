@@ -19,6 +19,22 @@ class HouseRobberIII {
     }
   }
 
+  int rob2(final TreeNode root) {
+    int[] res = robHelper(root);
+    return Math.max(res[0], res[1]);
+  }
+
+  private int[] robHelper(final TreeNode root) {
+    if (root == null) {
+      return new int[] {0, 0};
+    }
+    int[] left = robHelper(root.left);
+    int[] right = robHelper(root.right);
+    int withRoot = root.val + left[1] + right[1];
+    int withoutRoot = Math.max(left[0], left[1]) + Math.max(right[0], right[1]);
+    return new int[] {withRoot, withoutRoot};
+  }
+
   int robDP(final TreeNode root) {
     return robInternal(root, new HashMap<>());
   }
