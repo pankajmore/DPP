@@ -19,4 +19,23 @@ class Subsets {
     }
     return subsets;
   }
+
+  List<List<Integer>> subsets1(final int[] nums) {
+    List<List<Integer>> subsets = new ArrayList<>();
+    backtrack(subsets, new ArrayList<>(), nums, 0);
+    return subsets;
+  }
+
+  private void backtrack(
+      final List<List<Integer>> subsets,
+      final List<Integer> subset,
+      final int[] nums,
+      final int start) {
+    subsets.add(new ArrayList<>(subset));
+    for (int i = start; i < nums.length; i++) {
+      subset.add(nums[i]);
+      backtrack(subsets, subset, nums, i + 1);
+      subset.remove(subset.size() - 1);
+    }
+  }
 }
