@@ -1,60 +1,51 @@
-import java.util.ArrayList;
-import java.util.List;
-
 /** https://leetcode.com/problems/solve-the-equation/ Created by pankaj on 09/07/17. */
 class SolveTheEquation {
-  String solveEquation(final String equation) {
+  public String solveEquation(final String equation) {
     String[] lr = equation.split("=");
-    int lhs = 0;
-    int rhs = 0;
-    for (String s : parse(lr[0])) {
-      if (s.endsWith("x")) {
-        lhs += Integer.parseInt(coeff(s));
-      } else {
-        rhs -= Integer.parseInt(s);
-      }
-    }
-    for (String s : parse(lr[1])) {
-      if (s.endsWith("x")) {
-        lhs -= Integer.parseInt(coeff(s));
-      } else {
-        rhs += Integer.parseInt(s);
-      }
-    }
-    if (lhs == 0) {
-      if (rhs == 0) {
-        return "Infinite solutions";
-      } else {
-        return "No solution";
-      }
-    } else {
-      return String.format("x=%d", rhs / lhs);
-    }
+    EqCoeff lhs = evaluate(lr[0]);
+    EqCoeff rhs = evaluate(lr[1]);
+    EqCoeff eq = new EqCoeff(lhs.coeffX - rhs.coeffX, rhs.coeffV - lhs.coeffV);
+    return eq.toString();
   }
 
-  private List<String> parse(final String s) {
-    List<String> terms = new ArrayList<>();
-    String t = "";
-    for (int i = 0; i < s.length(); i++) {
-      char c = s.charAt(i);
-      if (c == '+' || c == '-') {
-        if (t.length() > 0) {
-          terms.add(t);
+  private EqCoeff evaluate(final String expr) {
+    String[] tokens = expr.split("(?=[+-])");
+    int coeffX = 0;
+    int coeffV = 0;
+    for (String token : tokens) {
+      if (token.equals("+x") || token.equals("x")) {
+        coeffX += 1;
+      } else if (token.equals("-x")) {
+        coeffX -= 1;
+      } else if (token.contains("x")) {
+        coeffX += Integer.parseInt(token.substring(0, token.indexOf("x")));
+      } else {
+        coeffV += Integer.parseInt(token);
+      }
+    }
+    return new EqCoeff(coeffX, coeffV);
+  }
+
+  private class EqCoeff {
+    private int coeffX;
+    private int coeffV;
+
+    EqCoeff(final int x, final int v) {
+      coeffX = x;
+      coeffV = v;
+    }
+
+    @Override
+    public String toString() {
+      if (coeffX == 0) {
+        if (coeffV == 0) {
+          return "Infinite solutions";
+        } else {
+          return "No solution";
         }
-        t = "" + c;
       } else {
-        t += c;
+        return "x=" + (coeffV / coeffX);
       }
-    }
-    terms.add(t);
-    return terms;
-  }
-
-  private String coeff(final String s) {
-    if (s.length() > 1 && s.charAt(s.length() - 2) >= '0' && s.charAt(s.length() - 2) <= '9') {
-      return s.replace("x", "");
-    } else {
-      return s.replace("x", "1");
     }
   }
 }
