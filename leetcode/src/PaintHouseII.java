@@ -30,7 +30,7 @@ class PaintHouseII {
     return min;
   }
 
-  private int[] minExcludingSelf(final int[] costs) {
+  int[] minExcludingSelf(final int[] costs) {
     int n = costs.length;
     int[] min = new int[n];
     Arrays.fill(min, Integer.MAX_VALUE);
