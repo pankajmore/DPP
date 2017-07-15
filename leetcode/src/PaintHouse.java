@@ -1,6 +1,7 @@
 /** http://www.lintcode.com/en/problem/paint-house/ Created by pankaj on 11/07/17. */
 class PaintHouse {
   private static final int NUM_COLORS = 3;
+
   /**
    * @param costs n x 3 cost matrix
    * @return an integer, the minimum cost to paint all houses
