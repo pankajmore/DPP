@@ -1,6 +1,6 @@
 /** https://leetcode.com/problems/solve-the-equation/ Created by pankaj on 09/07/17. */
 class SolveTheEquation {
-  public String solveEquation(final String equation) {
+  String solveEquation(final String equation) {
     String[] lr = equation.split("=");
     EqCoeff lhs = evaluate(lr[0]);
     EqCoeff rhs = evaluate(lr[1]);
