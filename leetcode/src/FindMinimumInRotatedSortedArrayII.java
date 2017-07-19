@@ -3,6 +3,10 @@
  * 19/07/17.
  */
 class FindMinimumInRotatedSortedArrayII {
+  /** duplicates allowed
+   * @param nums array of integers
+   * @return minimum
+   */
   int findMin(final int[] nums) {
     int lo = 0;
     int hi = nums.length - 1;
