@@ -15,8 +15,9 @@ class ValidWordAbbreviation {
         num = 0;
         if (idx >= word.length() || c != word.charAt(idx)) {
           return false;
+        } else {
+          idx++;
         }
-        idx++;
       }
     }
     idx = idx + num;
