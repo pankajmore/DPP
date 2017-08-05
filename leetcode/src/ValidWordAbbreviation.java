@@ -6,7 +6,7 @@ class ValidWordAbbreviation {
     for (int i = 0; i < abbr.length(); i++) {
       char c = abbr.charAt(i);
       if (Character.isDigit(c)) {
-        num = num * 10 + (c - '0');
+        num = num * 10 + c - '0';
         if (num < 0) {
           return false;
         }
