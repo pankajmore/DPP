@@ -19,7 +19,7 @@ class FindKClosestElements {
     return arr.subList(start, end + 1);
   }
 
-  private int greatestLessThanOrEqualTo(final List<Integer> arr, final int x) {
+  int greatestLessThanOrEqualTo(final List<Integer> arr, final int x) {
     int lo = 0;
     int hi = arr.size() - 1;
     int res = 0;
