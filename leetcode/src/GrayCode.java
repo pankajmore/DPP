@@ -18,4 +18,12 @@ class GrayCode {
     }
     return codes;
   }
+
+  List<Integer> grayCode1(final int n) {
+    List<Integer> codes = new ArrayList<>();
+    for (int i = 0; i < 1 << n; i++) {
+      codes.add(i ^ (i >> 1));
+    }
+    return codes;
+  }
 }
