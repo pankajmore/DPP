@@ -3,13 +3,13 @@ import java.util.Set;
 
 /** https://leetcode.com/problems/equal-tree-partition/ Created by pankaj on 21/08/17. */
 class EqualTreePartition {
-  boolean checkEqualTree(TreeNode root) {
+  boolean checkEqualTree(final TreeNode root) {
     Set<Integer> set = new HashSet<>();
     int s = sum(root, root, set);
     return s % 2 == 0 && set.contains(s / 2);
   }
 
-  private int sum(TreeNode root, TreeNode curr, Set<Integer> set) {
+  private int sum(final TreeNode root, final TreeNode curr, final Set<Integer> set) {
     if (curr == null) {
       return 0;
     }
