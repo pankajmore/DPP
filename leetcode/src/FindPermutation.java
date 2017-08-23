@@ -39,4 +39,31 @@ class FindPermutation {
     }
     return A;
   }
+
+  int[] findPermutation1(final String s) {
+    int[] res = new int[s.length() + 1];
+    for (int i = 0; i < res.length; i++) {
+      res[i] = i + 1;
+    }
+    for (int i = 0; i < s.length(); i++) {
+      if (s.charAt(i) == 'D') {
+        int l = i;
+        int h = i;
+        while (h < s.length() && s.charAt(i) == 'D') {
+          h++;
+        }
+        reverse(res, l, h);
+        i = h;
+      }
+    }
+    return res;
+  }
+
+  void reverse(final int[] res, int l, int r) {
+    while (l < r) {
+      int tmp = res[l];
+      res[l] = res[r];
+      res[r] = tmp;
+    }
+  }
 }
