@@ -2,8 +2,8 @@
  * https://leetcode.com/problems/plus-one/
  * Created by pankaj on 26/12/16.
  */
-public class PlusOne {
-    public int[] plusOne(int[] digits) {
+class PlusOne {
+    int[] plusOne(final int[] digits) {
         int N = digits.length;
         for (int i = N - 1; i >= 0; i--) {
             if (digits[i] < 9) {
