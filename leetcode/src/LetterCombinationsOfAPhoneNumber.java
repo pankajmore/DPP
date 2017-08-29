@@ -7,7 +7,7 @@ import java.util.List;
  */
 class LetterCombinationsOfAPhoneNumber {
   private static final String[] KEYS = {
-    "", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"
+    "0", "1", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"
   };
 
   List<String> letterCombinations(final String digits) {
