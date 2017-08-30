@@ -19,6 +19,24 @@ class LetterCombinationsOfAPhoneNumber {
     return ls;
   }
 
+  List<String> letterCombinations1(final String digits) {
+    List<String> ls = new ArrayList<>();
+    if (digits == null || digits.length() == 0) {
+      return ls;
+    }
+    ls.add("");
+    for (int i = 0; i < digits.length(); i++) {
+      List<String> curr = new ArrayList<>();
+      for (char c : KEYS[digits.charAt(i) - '0'].toCharArray()) {
+        for (String s : ls) {
+          curr.add(s + c);
+        }
+      }
+      ls = curr;
+    }
+    return ls;
+  }
+
   private void combinations(
       final String prefix, final String digits, final int idx, final List<String> ls) {
     if (idx >= digits.length()) {
