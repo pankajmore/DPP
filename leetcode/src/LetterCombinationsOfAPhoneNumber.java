@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -33,6 +34,23 @@ class LetterCombinationsOfAPhoneNumber {
         }
       }
       ls = curr;
+    }
+    return ls;
+  }
+
+  List<String> letterCombinations2(final String digits) {
+    LinkedList<String> ls = new LinkedList<>();
+    if (digits == null || digits.length() == 0) {
+      return ls;
+    }
+    ls.add("");
+    for (int i = 0; i < digits.length(); i++) {
+      while (ls.peek().length() == i) {
+        String s = ls.remove();
+        for (char c : KEYS[digits.charAt(i) - '0'].toCharArray()) {
+          ls.add(s + c);
+        }
+      }
     }
     return ls;
   }
