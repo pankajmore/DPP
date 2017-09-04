@@ -1,6 +1,6 @@
 /**
- * https://leetcode.com/problems/second-minimum-node-in-a-binary-tree/ Created by pankaj on
- * 03/09/17.
+ * https://leetcode.com/problems/second-minimum-node-in-a-binary-tree/
+ * Created by pankaj on 03/09/17.
  */
 class SecondMinimumNodeInABinaryTree {
   int findSecondMinimumValue(final TreeNode root) {
