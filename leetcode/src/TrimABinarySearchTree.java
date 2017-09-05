@@ -1,4 +1,7 @@
-/** https://leetcode.com/problems/trim-a-binary-search-tree/ Created by pankaj on 03/09/17. */
+/**
+ * https://leetcode.com/problems/trim-a-binary-search-tree/
+ * Created by pankaj on 03/09/17.
+ */
 class TrimABinarySearchTree {
   TreeNode trimBST(final TreeNode root, final int l, final int r) {
     if (root == null) {
