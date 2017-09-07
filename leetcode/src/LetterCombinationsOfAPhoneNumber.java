@@ -3,8 +3,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * https://leetcode.com/problems/letter-combinations-of-a-phone-number/ Created by pankaj on
- * 29/08/17.
+ * https://leetcode.com/problems/letter-combinations-of-a-phone-number/
+ * Created by pankaj on 29/08/17.
  */
 class LetterCombinationsOfAPhoneNumber {
   private static final String[] KEYS = {
@@ -56,7 +56,7 @@ class LetterCombinationsOfAPhoneNumber {
   }
 
   private void combinations(
-      final String prefix, final String digits, final int idx, final List<String> ls) {
+    final String prefix, final String digits, final int idx, final List<String> ls) {
     if (idx >= digits.length()) {
       ls.add(prefix);
     } else {
