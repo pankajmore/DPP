@@ -2,7 +2,10 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-/** https://leetcode.com/problems/implement-magic-dictionary/ Created by pankaj on 11/09/17. */
+/**
+ * https://leetcode.com/problems/implement-magic-dictionary/
+ * Created by pankaj on 11/09/17.
+ */
 class MagicDictionary {
   private Set<String> set;
 
