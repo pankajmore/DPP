@@ -1,6 +1,9 @@
 import java.util.Arrays;
 
-/** https://leetcode.com/problems/non-decreasing-array/ Created by pankaj on 28/08/17. */
+/**
+ * https://leetcode.com/problems/non-decreasing-array/
+ * Created by pankaj on 28/08/17.
+ */
 class NonDecreasingArray {
   boolean checkPossibility(final int[] nums) {
     int[] fst = Arrays.copyOf(nums, nums.length);
