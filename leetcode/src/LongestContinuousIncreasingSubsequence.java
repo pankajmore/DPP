@@ -1,6 +1,6 @@
 /**
- * https://leetcode.com/problems/longest-continuous-increasing-subsequence/ Created by pankaj on
- * 10/09/17.
+ * https://leetcode.com/problems/longest-continuous-increasing-subsequence/
+ * Created by pankaj on 10/09/17.
  */
 class LongestContinuousIncreasingSubsequence {
   int findLengthOfLCIS(final int[] nums) {
