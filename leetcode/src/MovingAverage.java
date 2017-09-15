@@ -1,7 +1,10 @@
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-/** https://leetcode.com/problems/moving-average-from-data-stream Created by pankaj on 28/07/17. */
+/**
+ * https://leetcode.com/problems/moving-average-from-data-stream
+ * Created by pankaj on 28/07/17.
+ */
 class MovingAverage {
   private Deque<Integer> queue;
   private int size;
