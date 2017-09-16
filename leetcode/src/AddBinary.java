@@ -1,4 +1,7 @@
-/** https://leetcode.com/problems/add-binary/ Created by pankaj on 02/02/17. */
+/**
+ * https://leetcode.com/problems/add-binary/
+ * Created by pankaj on 02/02/17.
+ */
 class AddBinary {
   String addBinary(final String a, final String b) {
     int M = a.length(), N = b.length();
