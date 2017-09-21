@@ -1,7 +1,10 @@
 import java.util.HashMap;
 import java.util.Map;
 
-/** https://leetcode.com/problems/map-sum-pairs/ Created by pankaj on 19/09/17. */
+/**
+ * https://leetcode.com/problems/map-sum-pairs/
+ * Created by pankaj on 19/09/17.
+ */
 class MapSum {
 
   private static final int SIZE = 26;
@@ -9,7 +12,9 @@ class MapSum {
   private Trie trie;
   private Map<String, Integer> lastValueInserted;
 
-  /** Initialize your data structure here. */
+  /**
+   * Initialize your data structure here.
+   */
   MapSum() {
     trie = new Trie(0);
     lastValueInserted = new HashMap<>();
