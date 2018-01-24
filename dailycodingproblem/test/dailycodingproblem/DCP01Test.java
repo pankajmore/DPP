@@ -5,9 +5,9 @@ import org.junit.jupiter.api.Test;
 
 import java.util.*;
 
-import static dailycodingproblem.DCP20180107.interleave;
+import static dailycodingproblem.DCP01.interleave;
 
-class DCP20180107Test {
+class DCP01Test {
 
     @Test
     void interleaveTest1() {

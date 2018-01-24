@@ -24,7 +24,7 @@ For example, if the stack is [1, 2, 3, 4, 5], it should become [1, 5, 2, 4, 3]. 
 import java.util.Queue;
 import java.util.Stack;
 
-class DCP20180107 {
+class DCP01 {
     static void interleave(Stack<Integer> s, Queue<Integer> q) {
         int len = s.size();
         for (int i = len - 1; i >= 2; i--) {

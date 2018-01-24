@@ -8,7 +8,7 @@ package dailycodingproblem;
  * <p>For example, if our input was [1, 2, 3, 4, 5], the expected output would be [120, 60, 40, 30,
  * 24]. If our input was [3, 2, 1], the expected output would be [2, 3, 6].
  */
-class DCP20180108 {
+class DCP02 {
     static int[] productExceptSelf(int[] in) {
         int[] out = new int[in.length];
         int left = 1;

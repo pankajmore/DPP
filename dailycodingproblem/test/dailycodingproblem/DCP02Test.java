@@ -2,10 +2,10 @@ package dailycodingproblem;
 
 import org.junit.jupiter.api.Test;
 
-import static dailycodingproblem.DCP20180108.productExceptSelf;
+import static dailycodingproblem.DCP02.productExceptSelf;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-class DCP20180108Test {
+class DCP02Test {
 
     @Test
     void productExceptSelfTest() {
