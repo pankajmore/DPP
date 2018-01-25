@@ -2,10 +2,10 @@ package dailycodingproblem;
 
 import org.junit.jupiter.api.Test;
 
-import static dailycodingproblem.DCP20180110.firstMissingPositiveInteger;
+import static dailycodingproblem.DCP04.firstMissingPositiveInteger;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class DCP20180110Test {
+class DCP04Test {
 
     @Test
     void firstMissingPositiveIntegerTest() {
