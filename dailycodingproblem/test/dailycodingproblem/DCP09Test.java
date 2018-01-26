@@ -2,10 +2,10 @@ package dailycodingproblem;
 
 import org.junit.jupiter.api.Test;
 
-import static dailycodingproblem.DCP20180115.largestSumNonAdjacent;
+import static dailycodingproblem.DCP09.largestSumNonAdjacent;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class DCP20180115Test {
+class DCP09Test {
 
     @Test
     void largestSumNonAdjacentTest() {

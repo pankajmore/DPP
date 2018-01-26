@@ -5,7 +5,7 @@ package dailycodingproblem;
  * For example, [2, 4, 6, 8] should return 12, since we pick 4 and 8. [5, 1, 1, 5] should return 10,
  * since we pick 5 and 5.
  */
-class DCP20180115 {
+class DCP09 {
     static int largestSumNonAdjacent(int[] in) {
         if (in == null || in.length == 0) {
             return 0;
