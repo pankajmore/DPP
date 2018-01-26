@@ -9,7 +9,7 @@ import java.util.Set;
  * Implement an autocomplete system. That is, given a query string s and a dictionary of all
  * possible query strings, return all strings in the dictionary that have s as a prefix.
  */
-class DCP20180117 {
+class DCP11 {
     static Trie triefy(Set<String> dict) {
         Trie t = new Trie();
         for (String s : dict) {
