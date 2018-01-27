@@ -2,10 +2,10 @@ package dailycodingproblem;
 
 import org.junit.jupiter.api.Test;
 
-import static dailycodingproblem.DCP20180118.numWays;
+import static dailycodingproblem.DCP12.numWays;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class DCP20180118Test {
+class DCP12Test {
 
     @Test
     void numWaysTest() {

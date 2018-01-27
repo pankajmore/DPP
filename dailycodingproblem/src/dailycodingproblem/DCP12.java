@@ -11,7 +11,7 @@ package dailycodingproblem;
  * from a set of positive integers X? For example, if X = {1, 3, 5}, you could climb 1, 3, or 5
  * steps at a time.
  */
-class DCP20180118 {
+class DCP12 {
     static int numWays(int[] steps, int numStairs) {
         int[] numWays = new int[numStairs + 1];
         numWays[0] = 1;
