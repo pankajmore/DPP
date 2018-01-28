@@ -3,9 +3,9 @@ package dailycodingproblem;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static dailycodingproblem.DCP20180119.longestSubstringKDistinct;
+import static dailycodingproblem.DCP13.longestSubstringKDistinct;
 
-class DCP20180119Test {
+class DCP13Test {
 
     @Test
     void longestSubstringKDistinctTest() {

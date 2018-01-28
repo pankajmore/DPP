@@ -8,7 +8,7 @@ import java.util.Set;
  * k distinct characters. For example, given s = "abcba" and k = 2, the longest substring with k
  * distinct characters is "bcb", so your function should return 3.
  */
-class DCP20180119 {
+class DCP13 {
     static int longestSubstringKDistinct(String s, int k) {
         if (s.length() <= k) {
             return s.length();
