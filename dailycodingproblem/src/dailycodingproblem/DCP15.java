@@ -7,7 +7,7 @@ import java.util.Random;
  * Given a stream of elements too large to store in memory, pick a random element from the stream
  * with uniform probability.
  */
-class DCP20180121 {
+class DCP15 {
     static Integer reservoirSampling(Iterator<Integer> it) {
         Integer e = null;
         int n = 0;
