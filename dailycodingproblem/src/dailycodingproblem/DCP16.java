@@ -6,7 +6,7 @@ package dailycodingproblem;
  * log get_last(i): gets the ith last element from the log. i is guaranteed to be smaller than or
  * equal to N. You should be as efficient with time and space as possible.
  */
-class DCP20180122 {
+class DCP16 {
     static class LastN {
         Integer[] elems;
         int idx;
