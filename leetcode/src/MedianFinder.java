@@ -34,7 +34,7 @@ class MedianFinder {
         if (maxHeap.isEmpty()) {
             throw new IllegalArgumentException("Empty!");
         } else if (maxHeap.size() == minHeap.size()) {
-            return (minHeap.peek() + maxHeap.peek()) >>> 1;
+            return (minHeap.peek() + maxHeap.peek()) / 2.0;
         } else if (maxHeap.size() == minHeap.size() + 1) {
             return maxHeap.peek();
         } else if (maxHeap.size() + 1 == minHeap.size()) {
