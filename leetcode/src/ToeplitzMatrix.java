@@ -16,5 +16,5 @@ class ToeplitzMatrix {
             }
         }
         return true;
-    }
+  }
 }
