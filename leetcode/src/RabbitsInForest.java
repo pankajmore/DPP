@@ -9,13 +9,8 @@ public class RabbitsInForest {
       cnt.put(ans, cnt.getOrDefault(ans, 0) + 1);
     }
     int sum = 0;
-    for (int ans : cnt.keySet()) {
-      int numPeople = cnt.get(ans);
-      if (numPeople <= ans + 1) {
-        sum += ans + 1;
-      } else {
-        sum += Math.ceil(1.0 * numPeople / (ans + 1)) * (ans + 1);
-      }
+    for (int k : cnt.keySet()) {
+      sum += Math.floorMod(-cnt.get(k), k + 1) + cnt.get(k);
     }
     return sum;
   }
