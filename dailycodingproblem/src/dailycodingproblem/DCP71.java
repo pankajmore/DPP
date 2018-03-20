@@ -2,8 +2,8 @@ package dailycodingproblem;
 
 import java.util.Random;
 
-public class DCP71 {
-  Random rng = new Random();
+class DCP71 {
+  private Random rng = new Random();
 
   int rand5() {
     int x;
