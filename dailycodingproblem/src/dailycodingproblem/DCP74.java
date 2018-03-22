@@ -9,12 +9,12 @@ package dailycodingproblem;
  */
 class DCP74 {
   static int numberOfTimesInATable(int n, int x) {
-    int numTimes = 0;
+    int cnt = 0;
     for (int i = 1; i <= n; i++) {
       if (x % i == 0 && x <= i * n) {
-        numTimes++;
+        cnt++;
       }
     }
-    return numTimes;
+    return cnt;
   }
 }
