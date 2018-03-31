@@ -7,26 +7,26 @@ package dailycodingproblem;
  * equal to N. You should be as efficient with time and space as possible.
  */
 class DCP16 {
-    static class LastN {
-        Integer[] elems;
-        int idx;
+  static class LastN {
+    Integer[] elems;
+    int idx;
 
-        LastN(int n) {
-            elems = new Integer[n];
-            idx = -1;
-        }
-
-        void record(int e) {
-            idx = (idx + 1) % elems.length;
-            elems[idx] = e;
-        }
-
-        Integer getLast(int i) {
-            int pos = idx - i;
-            if (pos < 0) {
-                pos = pos + elems.length;
-            }
-            return elems[pos];
-        }
+    LastN(int n) {
+      elems = new Integer[n];
+      idx = -1;
     }
+
+    void record(int e) {
+      idx = (idx + 1) % elems.length;
+      elems[idx] = e;
+    }
+
+    Integer getLast(int i) {
+      int pos = idx - i;
+      if (pos < 0) {
+        pos = pos + elems.length;
+      }
+      return elems[pos];
+    }
+  }
 }
