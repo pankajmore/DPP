@@ -8,17 +8,17 @@ import java.util.Random;
  * with uniform probability.
  */
 class DCP15 {
-    static Integer reservoirSampling(Iterator<Integer> it) {
-        Integer e = null;
-        int n = 0;
-        Random rng = new Random();
-        while (it.hasNext()) {
-            Integer i = it.next();
-            n++;
-            if (rng.nextInt(n) == 0) {
-                e = i;
-            }
-        }
-        return e;
+  static Integer reservoirSampling(Iterator<Integer> it) {
+    Integer e = null;
+    int n = 0;
+    Random rng = new Random();
+    while (it.hasNext()) {
+      Integer i = it.next();
+      n++;
+      if (rng.nextInt(n) == 0) {
+        e = i;
+      }
     }
+    return e;
+  }
 }
