@@ -6,17 +6,17 @@ package dailycodingproblem;
  * since we pick 5 and 5.
  */
 class DCP09 {
-    static int largestSumNonAdjacent(int[] in) {
-        if (in == null || in.length == 0) {
-            return 0;
-        }
-        int a = 0;
-        int b = in[0];
-        for (int i = 1; i < in.length; i++) {
-            int tmp = Math.max(in[i] + a, b);
-            a = b;
-            b = tmp;
-        }
-        return b;
+  static int largestSumNonAdjacent(int[] in) {
+    if (in == null || in.length == 0) {
+      return 0;
     }
+    int a = 0;
+    int b = in[0];
+    for (int i = 1; i < in.length; i++) {
+      int tmp = Math.max(in[i] + a, b);
+      a = b;
+      b = tmp;
+    }
+    return b;
+  }
 }
