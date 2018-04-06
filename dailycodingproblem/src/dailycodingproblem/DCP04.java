@@ -7,19 +7,19 @@ package dailycodingproblem;
  * should give 2. The input [1, 2, 0] should give 3. You can modify the input array in-place.
  */
 class DCP04 {
-    static int firstMissingPositiveInteger(int[] in) {
-        for (int i = 0; i < in.length; i++) {
-            while (in[i] > 0 && in[i] <= in.length && in[i] != i + 1) {
-                int tmp = in[in[i] - 1];
-                in[in[i] - 1] = in[i];
-                in[i] = tmp;
-            }
-        }
-        for (int i = 0; i < in.length; i++) {
-            if (in[i] != i + 1) {
-                return i + 1;
-            }
-        }
-        return in.length + 1;
+  static int firstMissingPositiveInteger(int[] in) {
+    for (int i = 0; i < in.length; i++) {
+      while (in[i] > 0 && in[i] <= in.length && in[i] != i + 1) {
+        int tmp = in[in[i] - 1];
+        in[in[i] - 1] = in[i];
+        in[i] = tmp;
+      }
     }
+    for (int i = 0; i < in.length; i++) {
+      if (in[i] != i + 1) {
+        return i + 1;
+      }
+    }
+    return in.length + 1;
+  }
 }
