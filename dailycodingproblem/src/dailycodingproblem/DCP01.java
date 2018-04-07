@@ -25,19 +25,19 @@ import java.util.Queue;
 import java.util.Stack;
 
 class DCP01 {
-    static void interleave(Stack<Integer> s, Queue<Integer> q) {
-        int len = s.size();
-        for (int i = len - 1; i >= 2; i--) {
-            rotate(s, q, i);
-        }
+  static void interleave(Stack<Integer> s, Queue<Integer> q) {
+    int len = s.size();
+    for (int i = len - 1; i >= 2; i--) {
+      rotate(s, q, i);
     }
+  }
 
-    static void rotate(Stack<Integer> s, Queue<Integer> q, int k) {
-        for (int i = 0; i < k; i++) {
-            q.add(s.pop());
-        }
-        for (int i = 0; i < k; i++) {
-            s.push(q.remove());
-        }
+  static void rotate(Stack<Integer> s, Queue<Integer> q, int k) {
+    for (int i = 0; i < k; i++) {
+      q.add(s.pop());
     }
+    for (int i = 0; i < k; i++) {
+      s.push(q.remove());
+    }
+  }
 }
