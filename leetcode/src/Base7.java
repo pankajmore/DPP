@@ -2,8 +2,8 @@
  * https://leetcode.com/contest/leetcode-weekly-contest-19/problems/base-7/ Created by pankaj on
  * 12/02/17.
  */
-public class Base7 {
-  public String convertTo7(int num) {
+class Base7 {
+  String convertTo7(int num) {
     if (num == 0) return "0";
     boolean neg = num < 0;
     if (num < 0) num = -num;
