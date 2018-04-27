@@ -1,6 +1,6 @@
 /** https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/ */
-public class ConvertSortedArrayToBinarySearchTree {
-  public TreeNode sortedArrayToBST(int[] nums) {
+class ConvertSortedArrayToBinarySearchTree {
+  TreeNode sortedArrayToBST(int[] nums) {
     if (nums == null || nums.length == 0) return null;
     return sortedArrayToBSTHelper(nums, 0, nums.length);
   }
@@ -14,7 +14,7 @@ public class ConvertSortedArrayToBinarySearchTree {
     return root;
   }
 
-  public class TreeNode {
+  class TreeNode {
     int val;
     TreeNode left;
     TreeNode right;
