@@ -1,7 +1,4 @@
-/**
- * https://leetcode.com/problems/2-keys-keyboard/
- * Created by pankaj on 02/09/17.
- */
+/** https://leetcode.com/problems/2-keys-keyboard/ Created by pankaj on 02/09/17. */
 class TwoKeysKeyboard {
   int minSteps(final int n) {
     int[] minSteps = new int[n + 1];
