@@ -1,6 +1,6 @@
 /** https://leetcode.com/problems/add-strings Created by pankaj on 10/9/16. */
-public class AddStrings {
-  public String addStrings(String num1, String num2) {
+class AddStrings {
+  String addStrings(String num1, String num2) {
     int M = num1.length(), N = num2.length();
     int i, j, d1, d2, s, carry = 0;
     StringBuilder sb = new StringBuilder();
