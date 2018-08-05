@@ -1,6 +1,6 @@
 /** https://leetcode.com/problems/binary-number-with-alternating-bits/description/ */
-public class BinaryNumbersWithAlternatingBits {
-  public boolean hasAlternatingBits(int n) {
+class BinaryNumbersWithAlternatingBits {
+  boolean hasAlternatingBits(int n) {
     int last = n & 1;
     n >>= 1;
     while (n > 0) {
