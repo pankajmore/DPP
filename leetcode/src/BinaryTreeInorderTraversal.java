@@ -1,8 +1,8 @@
 import java.util.*;
 
 /** https://leetcode.com/problems/binary-tree-inorder-traversal/ Created by pankaj on 26/04/17. */
-public class BinaryTreeInorderTraversal {
-  public List<Integer> inorderTraversal(TreeNode root) {
+class BinaryTreeInorderTraversal {
+  List<Integer> inorderTraversal(TreeNode root) {
     List<Integer> inorder = new ArrayList<>();
     if (root == null) return inorder;
     Set<TreeNode> visited = new HashSet<>();
@@ -22,7 +22,7 @@ public class BinaryTreeInorderTraversal {
     return inorder;
   }
 
-  public List<Integer> inorderTraversal1(TreeNode root) {
+  List<Integer> inorderTraversal1(TreeNode root) {
     List<Integer> inorder = new ArrayList<>();
     TreeNode curr = root;
     Stack<TreeNode> stack = new Stack<>();
