@@ -2,10 +2,10 @@
  * https://leetcode.com/problems/binary-tree-longest-consecutive-sequence-ii Created by pankaj on
  * 15/04/17.
  */
-public class BinaryTreeLongestConsecutiveSequenceII {
+class BinaryTreeLongestConsecutiveSequenceII {
   private int max = 0;
 
-  public int longestConsecutive(TreeNode root) {
+  int longestConsecutive(TreeNode root) {
     longestConsecutiveHelper(root);
     return max;
   }
