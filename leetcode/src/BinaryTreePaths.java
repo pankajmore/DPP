@@ -2,8 +2,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /** https://leetcode.com/problems/binary-tree-paths/ Created by pankaj on 11/01/17. */
-public class BinaryTreePaths {
-  public List<String> binaryTreePaths(TreeNode root) {
+class BinaryTreePaths {
+  List<String> binaryTreePaths(TreeNode root) {
     List<String> paths = new ArrayList<>();
     List<Integer> path = new ArrayList<>();
     binaryTreePathsHelper(root, path, paths);
