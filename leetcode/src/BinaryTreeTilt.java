@@ -1,6 +1,6 @@
 /** https://leetcode.com/problems/binary-tree-tilt/ Created by pankaj on 23/04/17. */
-public class BinaryTreeTilt {
-  public int findTilt(TreeNode root) {
+class BinaryTreeTilt {
+  int findTilt(TreeNode root) {
     return findTiltHelper(root)[0];
   }
 
