@@ -2,8 +2,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /** https://leetcode.com/problems/binary-tree-preorder-traversal/ Created by pankaj on 07/04/17. */
-public class BinaryTreePreOrderTraversal {
-  public List<Integer> preorderTraversal(TreeNode root) {
+class BinaryTreePreOrderTraversal {
+  List<Integer> preorderTraversal(TreeNode root) {
     List<Integer> preOrder = new ArrayList<>();
     preOrderHelper(root, preOrder);
     return preOrder;
