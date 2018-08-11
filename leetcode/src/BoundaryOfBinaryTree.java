@@ -3,8 +3,8 @@ import java.util.List;
 import java.util.Stack;
 
 /** https://leetcode.com/problems/boundary-of-binary-tree/ Created by pankaj on 28/03/17. */
-public class BoundaryOfBinaryTree {
-  public List<Integer> boundaryOfBinaryTree(TreeNode root) {
+class BoundaryOfBinaryTree {
+  List<Integer> boundaryOfBinaryTree(TreeNode root) {
     List<Integer> boundary = new ArrayList<>();
     if (root == null) return boundary;
     boundary.add(root.val);
