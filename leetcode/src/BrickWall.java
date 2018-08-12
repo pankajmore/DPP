@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 /** Created by pankaj on 09/04/17. */
-public class BrickWall {
-  public int leastBricks(List<List<Integer>> wall) {
+class BrickWall {
+  int leastBricks(List<List<Integer>> wall) {
     if (wall == null || wall.size() == 0) return 0;
     int M = wall.size();
     Map<Integer, Integer> cnt = new HashMap<>();
