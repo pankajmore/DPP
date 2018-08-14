@@ -1,6 +1,6 @@
 /** https://leetcode.com/problems/bulls-and-cows/ Created by pankaj on 12/01/17. */
-public class BullsAndCows {
-  public String getHint(String secret, String guess) {
+class BullsAndCows {
+  String getHint(String secret, String guess) {
     int[] cntSecret = new int[10], cntGuess = new int[10];
     int bulls = 0, cows = 0;
     int N = secret.length();
