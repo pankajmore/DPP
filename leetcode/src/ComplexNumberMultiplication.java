@@ -2,8 +2,8 @@
  * https://leetcode.com/contest/leetcode-weekly-contest-25/problems/complex-number-multiplication/
  * Created by pankaj on 26/03/17.
  */
-public class ComplexNumberMultiplication {
-  public String complexNumberMultiply(String a, String b) {
+class ComplexNumberMultiplication {
+  String complexNumberMultiply(String a, String b) {
     int[] x = parse(a);
     int[] y = parse(b);
     int c = x[0] * y[0] - x[1] * y[1];
