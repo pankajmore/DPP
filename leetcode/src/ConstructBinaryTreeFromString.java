@@ -1,8 +1,8 @@
 /**
  * https://leetcode.com/problems/construct-binary-tree-from-string/ Created by pankaj on 12/03/17.
  */
-public class ConstructBinaryTreeFromString {
-  public TreeNode str2tree(String s) {
+class ConstructBinaryTreeFromString {
+  TreeNode str2tree(String s) {
     return str2treeHelper(s, 0, s.length() - 1);
   }
 
