@@ -1,6 +1,6 @@
 /** https://leetcode.com/problems/convert-a-number-to-hexadecimal/ Created by pankaj on 19/12/16. */
-public class ConvertANumberToHexadecimal {
-  public String toHex(int num) {
+class ConvertANumberToHexadecimal {
+  String toHex(int num) {
     if (num == 0) return "0";
     StringBuilder sb = new StringBuilder();
     while (num != 0) {
