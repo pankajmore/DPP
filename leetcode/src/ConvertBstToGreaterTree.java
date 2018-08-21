@@ -1,6 +1,6 @@
 /** https://leetcode.com/problems/convert-bst-to-greater-tree/ Created by pankaj on 22/03/17. */
-public class ConvertBstToGreaterTree {
-  public TreeNode convertBST(TreeNode root) {
+class ConvertBstToGreaterTree {
+  TreeNode convertBST(TreeNode root) {
     convertBSTHelper(root, 0);
     return root;
   }
@@ -11,7 +11,7 @@ public class ConvertBstToGreaterTree {
     return convertBSTHelper(root.left, root.val);
   }
 
-  public class TreeNode {
+  class TreeNode {
     int val;
     TreeNode left, right;
   }
