@@ -4,8 +4,8 @@ import java.util.List;
  * https://leetcode.com/contest/leetcode-weekly-contest-11/problems/convex-polygon/ Created by
  * pankaj on 5/12/16.
  */
-public class ConvexPolygon {
-  public boolean isConvex(List<List<Integer>> points) {
+class ConvexPolygon {
+  boolean isConvex(List<List<Integer>> points) {
     int N = points.size();
     Boolean sign = null;
     if (N < 3) return false;
