@@ -1,6 +1,6 @@
 /** https://leetcode.com/problems/count-and-say/ Created by pankaj on 13/01/17. */
-public class CountAndSay {
-  public String countAndSay(int n) {
+class CountAndSay {
+  String countAndSay(int n) {
     String s = "1";
     StringBuilder sb;
     for (int i = 1; i < n; i++) {
