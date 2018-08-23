@@ -1,6 +1,5 @@
 /**
- * https://leetcode.com/problems/count-numbers-with-unique-digits/
- * Created by pankaj on 18/08/17.
+ * https://leetcode.com/problems/count-numbers-with-unique-digits/ Created by pankaj on 18/08/17.
  */
 class CountNumbersWithUniqueDigits {
   int countNumbersWithUniqueDigits(final int n) {
