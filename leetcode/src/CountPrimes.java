@@ -1,6 +1,6 @@
 /** https://leetcode.com/problems/count-primes/ Created by pankaj on 10/02/17. */
-public class CountPrimes {
-  public int countPrimes(int N) {
+class CountPrimes {
+  int countPrimes(int N) {
     int cnt = 0;
     boolean[] A = new boolean[N];
     for (int i = 2; i * i < N; i++) {
