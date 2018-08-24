@@ -1,8 +1,8 @@
 import java.util.Stack;
 
 /** https://leetcode.com/problems/decode-string/ Created by pankaj on 9/6/16. */
-public class DecodeString {
-  public String decodeString(String s) {
+class DecodeString {
+  String decodeString(String s) {
     String res = "";
     Stack<String> stack = new Stack<>();
     Stack<Integer> count = new Stack<>();
