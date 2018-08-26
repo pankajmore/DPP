@@ -1,6 +1,6 @@
 /** https://leetcode.com/problems/diameter-of-binary-tree/ Created by pankaj on 20/03/17. */
-public class DiameterOfBinaryTree {
-  public int diameterOfBinaryTree(TreeNode root) {
+class DiameterOfBinaryTree {
+  int diameterOfBinaryTree(TreeNode root) {
     if (root == null) return 0;
     return diameter(root)[0] - 1;
   }
@@ -14,7 +14,7 @@ public class DiameterOfBinaryTree {
     return new int[] {d, h};
   }
 
-  public static class TreeNode {
+  static class TreeNode {
     int val;
     TreeNode left, right;
   }
