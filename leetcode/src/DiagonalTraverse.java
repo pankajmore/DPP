@@ -1,6 +1,6 @@
 /** https://leetcode.com/problems/diagonal-traverse/ Created by pankaj on 03/03/17. */
-public class DiagonalTraverse {
-  public int[] findDiagonalOrder(int[][] matrix) {
+class DiagonalTraverse {
+  int[] findDiagonalOrder(int[][] matrix) {
     if (matrix == null || matrix.length == 0) return new int[0];
     int m = matrix.length, n = matrix[0].length;
     int[] result = new int[m * n];
