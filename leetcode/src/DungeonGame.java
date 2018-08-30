@@ -1,6 +1,6 @@
 /** https://leetcode.com/problems/dungeon-game/ Created by pankaj on 31/03/17. */
-public class DungeonGame {
-  public int calculateMinimumHP(int[][] A) {
+class DungeonGame {
+  int calculateMinimumHP(int[][] A) {
     if (A.length == 0 || A[0].length == 0) return 0;
     int M = A.length, N = A[0].length;
     int[][] dp = new int[M][N];
