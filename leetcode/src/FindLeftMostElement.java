@@ -2,12 +2,12 @@
  * https://leetcode.com/contest/leetcode-weekly-contest-19/problems/find-left-most-element/ Created
  * by pankaj on 13/02/17.
  */
-public class FindLeftMostElement {
-  public int findLeftMostNode(TreeNode root) {
+class FindLeftMostElement {
+  int findLeftMostNode(TreeNode root) {
     return find(root, 0)[0];
   }
 
-  public int[] find(TreeNode root, int depth) {
+  int[] find(TreeNode root, int depth) {
     if (root == null) return new int[] {-1, -1};
     int[] left = find(root.left, depth + 1);
     int[] right = find(root.right, depth + 1);
