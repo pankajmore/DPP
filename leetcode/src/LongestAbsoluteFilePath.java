@@ -3,8 +3,8 @@ import java.util.Stack;
 /**
  * https://leetcode.com/contest/1/problems/longest-absolute-file-path/ Created by pankaj on 8/21/16.
  */
-public class LongestAbsoluteFilePath {
-  public int lengthLongestPath(String input) {
+class LongestAbsoluteFilePath {
+  int lengthLongestPath(String input) {
     int N = input.length();
     int longestPath = 0;
     Stack<Integer> s = new Stack<>();
