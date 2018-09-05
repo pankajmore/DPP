@@ -1,10 +1,10 @@
 /**
  * https://leetcode.com/problems/longest-increasing-path-in-a-matrix/ Created by pankaj on 31/03/17.
  */
-public class LongestIncreasingPathInAMatrix {
+class LongestIncreasingPathInAMatrix {
   private static final int[][] dirs = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
 
-  public int longestIncreasingPath(int[][] matrix) {
+  int longestIncreasingPath(int[][] matrix) {
     if (matrix == null || matrix.length == 0 || matrix[0].length == 0) return 0;
     int max = 1, M = matrix.length, N = matrix[0].length;
     int[][] dp = new int[M][N];
