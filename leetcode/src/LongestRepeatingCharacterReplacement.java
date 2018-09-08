@@ -2,8 +2,8 @@
  * https://leetcode.com/problems/longest-repeating-character-replacement/ Created by pankaj on
  * 10/20/16.
  */
-public class LongestRepeatingCharacterReplacement {
-  public int characterReplacement(String s, int k) {
+class LongestRepeatingCharacterReplacement {
+  int characterReplacement(String s, int k) {
     int N = s.length();
     int i = 0, j = 0, max = 0;
     int[] cnt = new int[26];
@@ -35,7 +35,7 @@ public class LongestRepeatingCharacterReplacement {
     return check(cnt, k);
   }
 
-  public int characterReplacement1(String s, int k) {
+  int characterReplacement1(String s, int k) {
     int N = s.length(), start = 0, maxCount = 0, maxResult = 0;
     int[] count = new int[26];
     for (int end = 0; end < N; end++) {
