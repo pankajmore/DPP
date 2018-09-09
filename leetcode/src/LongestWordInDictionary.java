@@ -3,8 +3,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 /** https://leetcode.com/problems/longest-word-in-dictionary/description/ */
-public class LongestWordInDictionary {
-  public String longestWord(String[] words) {
+class LongestWordInDictionary {
+  String longestWord(String[] words) {
     String longest = null;
     Set<String> set = new HashSet<>();
     Collections.addAll(set, words);
