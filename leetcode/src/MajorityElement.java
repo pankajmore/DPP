@@ -1,6 +1,6 @@
 /** https://leetcode.com/problems/majority-element/ Created by pankaj on 17/12/16. */
-public class MajorityElement {
-  public int majorityElement(int[] nums) {
+class MajorityElement {
+  int majorityElement(int[] nums) {
     int majority = nums[0];
     int cnt = 0;
     for (int x : nums) {
