@@ -2,8 +2,8 @@
  * https://leetcode.com/contest/leetcode-weekly-contest-15/problems/max-consecutive-ones-ii/ Created
  * by pankaj on 15/01/17.
  */
-public class MaxConsecutiveOnesII {
-  public int findMaxConsecutiveOnes(int[] nums) {
+class MaxConsecutiveOnesII {
+  int findMaxConsecutiveOnes(int[] nums) {
     int max = 0, N = nums.length;
     int[] begin = new int[N], end = new int[N];
     for (int i = 0, j = N - 1; i < N; i++, j--) {
