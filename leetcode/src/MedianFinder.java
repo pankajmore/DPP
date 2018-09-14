@@ -7,12 +7,12 @@ class MedianFinder {
   private PriorityQueue<Integer> maxHeap;
 
   /** initialize your data structure here. */
-  public MedianFinder() {
+  MedianFinder() {
     minHeap = new PriorityQueue<>();
     maxHeap = new PriorityQueue<>(Comparator.reverseOrder());
   }
 
-  public void addNum(int num) {
+  void addNum(int num) {
     if (maxHeap.isEmpty() || maxHeap.peek() >= num) {
       maxHeap.add(num);
     } else {
@@ -26,7 +26,7 @@ class MedianFinder {
     assert Math.abs(maxHeap.size() - minHeap.size()) <= 1;
   }
 
-  public double findMedian() {
+  double findMedian() {
     if (maxHeap.isEmpty()) {
       throw new IllegalArgumentException("Empty!");
     } else if (maxHeap.size() == minHeap.size()) {
