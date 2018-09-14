@@ -1,6 +1,6 @@
 /** https://leetcode.com/problems/maximum-product-subarray/ Created by pankaj on 9/15/16. */
-public class MaximumProductSubarray {
-  public int maxProduct(int[] nums) {
+class MaximumProductSubarray {
+  int maxProduct(int[] nums) {
     if (nums == null || nums.length == 0) return 1;
     int N = nums.length;
     int max = nums[0], maxSoFar = nums[0], minSoFar = nums[0];
