@@ -1,6 +1,6 @@
 /** https://leetcode.com/problems/merge-two-sorted-lists/ Created by pankaj on 8/25/16. */
-public class MergeTwoSortedLists {
-  public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+class MergeTwoSortedLists {
+  ListNode mergeTwoLists(ListNode l1, ListNode l2) {
     ListNode dummyHead = new ListNode(0);
     ListNode curr = dummyHead;
     while (l1 != null && l2 != null) {
