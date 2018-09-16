@@ -1,6 +1,6 @@
 /** https://leetcode.com/problems/min-cost-climbing-stairs/description/ */
-public class MinCostClimbingStairs {
-  public int minCostClimbingStairs(int[] cost) {
+class MinCostClimbingStairs {
+  int minCostClimbingStairs(int[] cost) {
     if (cost.length < 2) {
       return 0;
     }
