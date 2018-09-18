@@ -2,8 +2,8 @@
  * https://leetcode.com/contest/12/problems/minimum-moves-to-equal-array-elements/ Created by pankaj
  * on 11/6/16.
  */
-public class MinimumMovesToEqualArrayElements {
-  public int minMoves(int[] nums) {
+class MinimumMovesToEqualArrayElements {
+  int minMoves(int[] nums) {
     int N = nums.length;
     if (N == 0) return 0;
     int min = Integer.MAX_VALUE;
