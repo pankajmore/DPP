@@ -1,8 +1,8 @@
 /**
  * https://leetcode.com/problems/minimum-absolute-difference-in-bst/ Created by pankaj on 29/03/17.
  */
-public class MinimumAbsoluteDifferenceInBst {
-  public int getMinimumDifference(TreeNode root) {
+class MinimumAbsoluteDifferenceInBst {
+  int getMinimumDifference(TreeNode root) {
     return minimumDifferenceHelper(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
   }
 
