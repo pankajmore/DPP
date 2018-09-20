@@ -3,7 +3,7 @@ import java.util.List;
 
 /** https://leetcode.com/problems/all-paths-from-source-to-target/description/ */
 class AllPathsFromSourceToTarget {
-  public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
+  List<List<Integer>> allPathsSourceTarget(int[][] graph) {
     List<Integer> path = new ArrayList<>();
     List<List<Integer>> allPaths = new ArrayList<>();
     visit(graph, 0, graph.length - 1, path, allPaths);
