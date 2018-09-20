@@ -6,8 +6,8 @@ import java.util.List;
 /**
  * https://leetcode.com/problems/binary-tree-level-order-traversal/ Created by pankaj on 29/12/16.
  */
-public class BinaryTreeLevelOrderTraversal {
-  public List<List<Integer>> levelOrder(TreeNode root) {
+class BinaryTreeLevelOrderTraversal {
+  List<List<Integer>> levelOrder(TreeNode root) {
     LinkedList<List<Integer>> levels = new LinkedList<>();
     if (root == null) return levels;
     Deque<TreeNode> q = new LinkedList<>();
@@ -26,7 +26,7 @@ public class BinaryTreeLevelOrderTraversal {
     return levels;
   }
 
-  public class TreeNode {
+  class TreeNode {
     int val;
     TreeNode left;
     TreeNode right;
