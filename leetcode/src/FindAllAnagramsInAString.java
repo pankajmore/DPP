@@ -2,8 +2,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /** https://leetcode.com/problems/find-all-anagrams-in-a-string/ Created by pankaj on 10/24/16. */
-public class FindAllAnagramsInAString {
-  public List<Integer> findAnagrams(String s, String p) {
+class FindAllAnagramsInAString {
+  List<Integer> findAnagrams(String s, String p) {
     List<Integer> l = new ArrayList<>();
     int[] cnt = new int[26];
     int[] actual = new int[26];
