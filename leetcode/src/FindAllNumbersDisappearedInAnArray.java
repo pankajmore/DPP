@@ -5,8 +5,8 @@ import java.util.List;
  * https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/ Created by pankaj on
  * 22/12/16.
  */
-public class FindAllNumbersDisappearedInAnArray {
-  public List<Integer> findDisappearedNumbers(int[] nums) {
+class FindAllNumbersDisappearedInAnArray {
+  List<Integer> findDisappearedNumbers(int[] nums) {
     List<Integer> disappeared = new ArrayList<>();
     int N = nums.length;
     for (int i = 0; i < N; i++) {
