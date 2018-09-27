@@ -1,6 +1,6 @@
 /** https://leetcode.com/problems/find-peak-element/ Created by pankaj on 13/04/17. */
-public class FindPeakElement {
-  public int findPeakElement(int[] nums) {
+class FindPeakElement {
+  int findPeakElement(int[] nums) {
     int N = nums.length, lo = 0, hi = N - 1;
     while (lo <= hi) {
       int mid = lo + (hi - lo) / 2;
