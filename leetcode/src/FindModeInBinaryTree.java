@@ -4,8 +4,8 @@ import java.util.*;
  * https://leetcode.com/contest/leetcode-weekly-contest-17/problems/find-mode-in-binary-tree/
  * Created by pankaj on 29/01/17.
  */
-public class FindModeInBinaryTree {
-  public int[] findMode(TreeNode root) {
+class FindModeInBinaryTree {
+  int[] findMode(TreeNode root) {
     List<Integer> A = new ArrayList<>();
     inorder(root, A);
     Map<Integer, Integer> cnt = new HashMap<>();
