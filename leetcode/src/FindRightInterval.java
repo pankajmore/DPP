@@ -1,8 +1,8 @@
 import java.util.Arrays;
 
 /** https://leetcode.com/contest/11/problems/find-right-interval/ Created by pankaj on 10/31/16. */
-public class FindRightInterval {
-  public int[] findRightInterval(Interval[] intervals) {
+class FindRightInterval {
+  int[] findRightInterval(Interval[] intervals) {
     Pair[] A = new Pair[intervals.length];
     int[] res = new int[intervals.length];
     for (int i = 0; i < intervals.length; i++) {
