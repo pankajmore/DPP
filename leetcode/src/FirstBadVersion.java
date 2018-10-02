@@ -1,7 +1,7 @@
 /** https://leetcode.com/problems/first-bad-version/ Created by pankaj on 17/02/17. */
-public class FirstBadVersion {
+class FirstBadVersion {
   class Solution extends VersionControl {
-    public int firstBadVersion(int n) {
+    int firstBadVersion(int n) {
       int lo = 1, hi = n;
       while (lo < hi) {
         int mid = lo + (hi - lo) / 2;
