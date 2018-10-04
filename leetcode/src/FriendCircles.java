@@ -1,6 +1,6 @@
 /** https://leetcode.com/problems/friend-circles/ Created by pankaj on 02/04/17. */
-public class FriendCircles {
-  public int findCircleNum(int[][] M) {
+class FriendCircles {
+  int findCircleNum(int[][] M) {
     int N = M.length, cnt = 0;
     boolean[] visited = new boolean[N];
     for (int i = 0; i < N; i++) {
