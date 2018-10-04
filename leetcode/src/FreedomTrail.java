@@ -1,8 +1,8 @@
 import java.util.Arrays;
 
 /** https://leetcode.com/problems/freedom-trail/ Created by pankaj on 01/04/17. */
-public class FreedomTrail {
-  public int findRotateSteps(String ring, String key) {
+class FreedomTrail {
+  int findRotateSteps(String ring, String key) {
     int N = ring.length(), M = key.length();
     int[][] dp = new int[M + 1][N + 1];
     for (int i = 0; i <= M; i++) Arrays.fill(dp[i], -1);
