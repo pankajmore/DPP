@@ -1,8 +1,8 @@
 import java.util.HashSet;
 
 /** https://leetcode.com/problems/happy-number/ Created by pankaj on 21/12/16. */
-public class HappyNumber {
-  public boolean isHappy(int n) {
+class HappyNumber {
+  boolean isHappy(int n) {
     HashSet<Integer> visited = new HashSet<>();
     if (n <= 0) return false;
     while (n > 1) {
