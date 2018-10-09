@@ -1,8 +1,8 @@
 import java.util.Arrays;
 
 /** https://leetcode.com/problems/heaters/ Created by pankaj on 03/02/17. */
-public class Heaters {
-  public int findRadius(int[] houses, int[] heaters) {
+class Heaters {
+  int findRadius(int[] houses, int[] heaters) {
     Arrays.sort(heaters);
     if (houses.length == 0) return 0;
     int minR = 0;
