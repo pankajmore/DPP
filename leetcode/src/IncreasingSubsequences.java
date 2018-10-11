@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Set;
 
 /** https://leetcode.com/problems/increasing-subsequences/ Created by pankaj on 22/01/17. */
-public class IncreasingSubsequences {
-  public List<List<Integer>> findSubsequences(int[] nums) {
+class IncreasingSubsequences {
+  List<List<Integer>> findSubsequences(int[] nums) {
     int N = nums.length;
     Set<List<Integer>> ls = new HashSet<>();
     for (int i = 0; i < (1 << N); i++) {
@@ -23,7 +23,7 @@ public class IncreasingSubsequences {
     return new ArrayList<>(ls);
   }
 
-  public List<List<Integer>> findSubsequences1(int[] nums) {
+  List<List<Integer>> findSubsequences1(int[] nums) {
     List<Integer> l = new ArrayList<>();
     Set<List<Integer>> set = new HashSet<>();
     findSubsequencesHelper(nums, 0, l, set);
