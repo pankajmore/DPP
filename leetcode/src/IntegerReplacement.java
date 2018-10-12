@@ -2,8 +2,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /** https://leetcode.com/problems/integer-replacement/ Created by pankaj on 9/14/16. */
-public class IntegerReplacement {
-  public int integerReplacement(int n_) {
+class IntegerReplacement {
+  int integerReplacement(int n_) {
     long n = (long) n_;
     int res = 0;
     while (n > 1) {
@@ -16,7 +16,7 @@ public class IntegerReplacement {
     return res;
   }
 
-  public int integerReplacement1(int n_) {
+  int integerReplacement1(int n_) {
     long n = (long) n_;
     Map<Long, Integer> map = new HashMap<>();
     map.put(1L, 0);
