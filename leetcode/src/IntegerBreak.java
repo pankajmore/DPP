@@ -1,6 +1,6 @@
 /** https://leetcode.com/problems/integer-break/ Created by pankaj on 26/04/17. */
-public class IntegerBreak {
-  public int integerBreak(int n) {
+class IntegerBreak {
+  int integerBreak(int n) {
     int[] dp = new int[n + 1];
     dp[1] = 1;
     for (int i = 2; i <= n; i++) {
@@ -11,7 +11,7 @@ public class IntegerBreak {
     return dp[n];
   }
 
-  public int integerBreak1(int n) {
+  int integerBreak1(int n) {
     if (n == 1) {
       return 1;
     } else if (n == 2) {
